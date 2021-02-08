@@ -16,4 +16,6 @@ public class Utilisateur {
 	
 	
 	// Coucou Guillaume et Brice
+	
+	// Est ce que ça marche?
 }
