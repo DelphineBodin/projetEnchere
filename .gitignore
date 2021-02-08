@@ -96,5 +96,10 @@ hs_err_pid*
 
 .classpath
 .project
+<<<<<<< HEAD
 MANIFEST.MF
 /build/
+=======
+MANIFEST.MF
+/build/
+>>>>>>> branch 'main' of https://github.com/DelphineBodin/projetEnchere
