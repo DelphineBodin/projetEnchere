@@ -16,6 +16,4 @@ public class Utilisateur {
 	
 	
 	// Coucou Guillaume et Brice
-	
-	// Allez vous bien ?
 }
