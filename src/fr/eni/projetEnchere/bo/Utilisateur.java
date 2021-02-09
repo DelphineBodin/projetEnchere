@@ -19,6 +19,8 @@ public class Utilisateur {
 	private int credit;
 	private byte administrateur;
 	
+	//possibilité de mettre une liste d'encheres (lien 1 et * entre utilisateur>enchere)
+	
 	// Attribut d'association
 	private List <ArticleVendu> articleVendu;
 	

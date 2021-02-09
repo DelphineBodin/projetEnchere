@@ -1,9 +1,11 @@
 package fr.eni.projetEnchere.bo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleVendu {
-	
+
 	// Attributs
 	private int noArticle;
 	private String nomArticle;
@@ -13,14 +15,17 @@ public class ArticleVendu {
 	private int miseAPrix;
 	private int prixVente;
 	// Type à valider avec Gregory (enchères non débuté, enchère en cours, enchère cloturé ???)
-	private boolean etatVente;
-	private Retrait retrait = null;
-	
-	
-	// si le lieu de retrait est l'adresse de l'utilisaeteur (vendeur), valeur = null
-	// constructeur 
+	private EtatVente etatVente;    //pas un boolean, on a cree une classe EtatVente avc 3 attributs
+	private Retrait lieuRetrait = null;
+	private Categorie categorie;
+	private List<Enchere> listeEncheres;
+
+
+	// si le lieu de retrait est l'adresse de l'utilisateur (vendeur), valeur = null
+
+	// constructeur avc tous les parametres
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, boolean etatVente, Retrait retrait) {
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, EtatVente etatVente, Retrait retrait, Categorie categorie, List<Enchere> listeEncheres) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -29,28 +34,33 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
-		this.retrait = retrait;
+		this.lieuRetrait = retrait;
+		this.categorie = categorie;
+		this.listeEncheres= listeEncheres;
 	}
-	
-	
+
+
 	// constructeur vide (java bean)
 	public ArticleVendu() {
+		this.listeEncheres = new ArrayList<Enchere>();
 	}
-	
-	
+
+
 	// constructeur (sans prix de vente et mise à prix = DON)
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, boolean etatVente, Retrait retrait) {
+			LocalDate dateFinEncheres, EtatVente etatVente, Retrait retrait, Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.etatVente = etatVente;
-		this.retrait = retrait;
+		this.lieuRetrait = retrait;
+		this.categorie = categorie;
+		this.listeEncheres = new ArrayList<Enchere>();
 	}
-	
-	
+
+
 	// Assesseurs et mutateurs :
 
 	public int getNoArticle() {
@@ -110,27 +120,48 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public boolean isEtatVente() {
+	public EtatVente isEtatVente() {
 		return etatVente;
 	}
 
-	public void setEtatVente(boolean etatVente) {
+	public void setEtatVente(EtatVente etatVente) {
 		this.etatVente = etatVente;
 	}
-	
-	
+
+
 	public Retrait getRetrait() {
-		return retrait;
+		return lieuRetrait;
 	}
 
 
 	public void setRetrait(Retrait retrait) {
-		this.retrait = retrait;
+		this.lieuRetrait = retrait;
 	}
 
 
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public List<Enchere> getListeEncheres() {
+		return listeEncheres;
+	}
+
+
+	public void setListeEncheres(List<Enchere> listeEncheres) {
+		this.listeEncheres = listeEncheres;
+	}
+
+	
 	//Méthodes :
 	// TODO : met on retrait dans l'article vendu dans le string builder?
+	// met on categorie dans l'article vendu dans le string builder?
+	// met on listeEncheres dans l'article vendu dans le string builder?
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -154,8 +185,6 @@ public class ArticleVendu {
 		return builder.toString();
 	}
 
-	
-	
-	
+
 
 }
