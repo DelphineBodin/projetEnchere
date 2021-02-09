@@ -1,18 +1,18 @@
 package fr.eni.projetEnchere.bo;
 
 public class Retrait {
-	
+
 	// Attributs
 	private String rue;
 	private int codePostal;
 	private String ville;
 
-	
+
 	// Constructeur sans paramêtre
 	public Retrait() {
 	}
 
-	
+
 	// Constructeur
 	public Retrait(String rue, int codePostal, String ville) {
 		this.rue = rue;
@@ -20,7 +20,7 @@ public class Retrait {
 		this.ville = ville;
 	}
 
-	
+
 	// Assesseurs et mutateurs :
 	public String getRue() {
 		return rue;
@@ -46,9 +46,9 @@ public class Retrait {
 		this.ville = ville;
 	}
 
-	
+
 	//Méthodes :
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -63,6 +63,6 @@ public class Retrait {
 	}
 
 
-	
-	
+
+
 }

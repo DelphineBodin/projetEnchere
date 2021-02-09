@@ -15,25 +15,25 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TestConnection")
 public class TestConnection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection connexion = null;
 		try {
 			connexion=ConnexionProvider.seConnecter();
 			response.getWriter().append("Connection avec Base Enchère ok");
 		} catch (DALException e) {
-			response.getWriter().append("Pas de connection avec la base Enchère").append("/n").append(e.getMessage());
+			response.getWriter().append("Pas de connection avec la base Enchère").append("\n").append(e.getMessage());
 		}finally {
 			try {
 				ConnexionProvider.seDeconnecter(connexion);
 			} catch (DALException e) {
-				response.getWriter().append("Problème Libération de connection avec la base Enchère").append("/n").append(e.getMessage());
+				response.getWriter().append("Problème Libération de connection avec la base Enchère").append("\n").append(e.getMessage());
 			}
 		}
-		
+
 	}
 
-	
+
 
 }

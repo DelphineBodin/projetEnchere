@@ -17,24 +17,24 @@ public class ConnexionProvider {
 	// bloc d'initialisation
 	static {
 		InitialContext jndi;
-	try {
-		jndi = new InitialContext();
-		ConnexionProvider.ds = (DataSource) jndi.lookup("java:comp/env/dsEnchere");
-	} catch (NamingException e) {
-		throw new RuntimeException("impossible d'acceder à la BDD");
-	}
+		try {
+			jndi = new InitialContext();
+			ConnexionProvider.ds = (DataSource) jndi.lookup("java:comp/env/dsEnchere");
+		} catch (NamingException e) {
+			throw new RuntimeException("impossible d'acceder à la BDD");
+		}
 	}// Fin du bloc d'initialisation
 
 	//Méthode permettant d'obtenir une connexion à la base de données via un pool de connexion
 	public static Connection seConnecter() throws DALException {
 		Connection cnx = null;
 		//--> obtention de la connexion à la BDD à partir de la datasource
-			try {
-				cnx= ConnexionProvider.ds.getConnection();
-			} catch (SQLException e) {
-				throw new DALException("Impossible d'obtenir une connexion", e);
-			}
-			
+		try {
+			cnx= ConnexionProvider.ds.getConnection();
+		} catch (SQLException e) {
+			throw new DALException("Impossible d'obtenir une connexion", e);
+		}
+
 		return cnx;
 	}
 	//Méthode permettant d'obtenir une connexion à la base de données via un pool de connexion
@@ -56,7 +56,7 @@ public class ConnexionProvider {
 		} catch (SQLException e) {
 			throw new DALException("Impossible de fermer le statement", e);
 		}
-		
+
 		seDeconnecter(cnx);
 	}
 

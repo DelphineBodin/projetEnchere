@@ -157,7 +157,7 @@ public class ArticleVendu {
 		this.listeEncheres = listeEncheres;
 	}
 
-	
+
 	//Méthodes :
 	// TODO : met on retrait dans l'article vendu dans le string builder?
 	// met on categorie dans l'article vendu dans le string builder?

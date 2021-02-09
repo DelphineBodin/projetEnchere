@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utilisateur {
-	
+
 	// Attributs
 	private int noUtilisateur ;
 	private String pseudo;
@@ -18,19 +18,19 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private byte administrateur;
-	
+
 	//possibilité de mettre une liste d'encheres (lien 1 et * entre utilisateur>enchere)
-	
+
 	// Attribut d'association
 	private List <ArticleVendu> articleVendu;
-	
+
 
 	// constructeur sans paramêtre (java bean)
 	public Utilisateur() {
 		this.articleVendu=new ArrayList<ArticleVendu>();
 	}
-	
-	
+
+
 	// constructeur (sans article vendu)
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, byte administrateur) {
@@ -48,8 +48,8 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 		this.articleVendu = new ArrayList<ArticleVendu>();
 	}
-	
-	
+
+
 	// constructeur avec tous les paramêtres 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, byte administrateur, List<ArticleVendu>articleVendu) {
@@ -75,10 +75,10 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 		this.articleVendu = articleVendu;
 	}
-	
 
-	
-	
+
+
+
 	// Assesseurs et mutateurs : 
 	public int getNoUtilisateur() {
 		return noUtilisateur;
@@ -175,7 +175,7 @@ public class Utilisateur {
 	public void setAdministrateur(byte administrateur) {
 		this.administrateur = administrateur;
 	}
-	
+
 	public List<ArticleVendu> getArticleVendu() {
 		return articleVendu;
 	}
@@ -219,14 +219,14 @@ public class Utilisateur {
 	}
 
 
-	
-	
-	
 
-	
 
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 }

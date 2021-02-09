@@ -8,16 +8,16 @@ public class Enchere {
 	//attributs
 	private LocalDate dateEnchere;
 	private int montantEnchere;
-	
+
 	//constructeur
 	public Enchere(LocalDate dateEnchere, int montantEnchere) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
 	}
-	
-	
-//getters/setters
-	
+
+
+	//getters/setters
+
 	public LocalDate getDateEnchere() {
 		return dateEnchere;
 	}
@@ -45,18 +45,18 @@ public class Enchere {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
-	
-	
-	
 
 
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 
 
 
