@@ -17,7 +17,7 @@ public class Utilisateur {
 	private String ville;
 	private String motDePasse;
 	private int credit;
-	private byte administrateur;
+	private boolean administrateur;
 
 	//possibilité de mettre une liste d'encheres (lien 1 et * entre utilisateur>enchere)
 
@@ -33,7 +33,7 @@ public class Utilisateur {
 
 	// constructeur (sans article vendu)
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, byte administrateur) {
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -52,7 +52,7 @@ public class Utilisateur {
 
 	// constructeur avec tous les paramêtres 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, byte administrateur, List<ArticleVendu>articleVendu) {
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
 		this(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 		this.articleVendu = articleVendu;
 	}
@@ -60,7 +60,7 @@ public class Utilisateur {
 
 	// constructeur (utilisateur sans numéro de téléphone) , cf NOT Null SQL
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String rue,
-			String codePostal, String ville, String motDePasse, int credit, byte administrateur, List<ArticleVendu>articleVendu) {
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
 		this(noUtilisateur, pseudo, nom, prenom, email, email, rue, codePostal, ville, motDePasse, credit, administrateur);
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -168,11 +168,11 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public byte getAdministrateur() {
+	public boolean getAdministrateur() {
 		return administrateur;
 	}
 
-	public void setAdministrateur(byte administrateur) {
+	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
 
