@@ -14,9 +14,8 @@ public class Categorie {
 	}
 
 
-	//constructeur sans la liste, mais on la crée ensuite dedans
-	public Categorie(int noCategorie, String libelle) {
-		this.noCategorie = noCategorie;
+	//constructeur Avec parametre libelle
+	public Categorie(String libelle) {
 		this.libelle = libelle;
 	}
 
