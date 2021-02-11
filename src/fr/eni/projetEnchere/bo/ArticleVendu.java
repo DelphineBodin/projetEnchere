@@ -23,15 +23,14 @@ public class ArticleVendu {
 
 	// si le lieu de retrait est l'adresse de l'utilisateur (vendeur), valeur = null
 
-	// constructeur avc tous les parametres// Delphine modif sauf IdArticle(créer en base de données)sauf prix de vente,sauf ListeEncheresauf etat vente
+	// constructeur avec les parametres suivants :  nomArticle, description, dateDebutEncheres,dateFinEncheres,  miseAPrix,  Categorie 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, Retrait retrait, Categorie categorie) {
+			LocalDate dateFinEncheres, int miseAPrix,  Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
-		this.lieuRetrait = retrait;
 		this.categorie = categorie;
 	}
 

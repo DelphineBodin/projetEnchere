@@ -3,8 +3,9 @@ package fr.eni.projetEnchere.bo;
 public class Retrait {
 
 	// Attributs
+	private int noRetrait;
 	private String rue;
-	private int codePostal;
+	private String codePostal;
 	private String ville;
 
 
@@ -14,7 +15,8 @@ public class Retrait {
 
 
 	// Constructeur
-	public Retrait(String rue, int codePostal, String ville) {
+	public Retrait(int noRetrait, String rue, String codePostal, String ville) {
+		this.noRetrait=noRetrait;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
@@ -22,19 +24,30 @@ public class Retrait {
 
 
 	// Assesseurs et mutateurs :
+	
 	public String getRue() {
 		return rue;
 	}
+
+	public int getNoRetrait() {
+		return noRetrait;
+	}
+
+
+	public void setNoRetrait(int noRetrait) {
+		this.noRetrait = noRetrait;
+	}
+
 
 	public void setRue(String rue) {
 		this.rue = rue;
 	}
 
-	public int getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
 
-	public void setCodePostal(int codePostal) {
+	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
 

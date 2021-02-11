@@ -14,8 +14,9 @@ public class Categorie {
 	}
 
 
-	//constructeur Avec parametre libelle
-	public Categorie(String libelle) {
+	//constructeur avec les deux parametres
+	public Categorie(int noCategorie,String libelle) {
+		this.noCategorie=noCategorie;
 		this.libelle = libelle;
 	}
 
