@@ -24,12 +24,26 @@ public class Utilisateur {
 	// Attribut d'association
 	private List <ArticleVendu> articleVendu;
 
-
 	// constructeur sans paramêtre (java bean)
 	public Utilisateur() {
 		this.articleVendu=new ArrayList<ArticleVendu>();
 	}
-
+	
+	// constructeur (inscription)
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, int credit) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+		this.credit = credit;
+		this.administrateur = false;
+	}
 
 	// constructeur (sans article vendu)
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
@@ -48,33 +62,33 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 		this.articleVendu = new ArrayList<ArticleVendu>();
 	}
-
-
-	// constructeur avec tous les paramêtres 
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
-		this(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-		this.articleVendu = articleVendu;
-	}
-
-
-	// constructeur (utilisateur sans numéro de téléphone) , cf NOT Null SQL
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
-		this(noUtilisateur, pseudo, nom, prenom, email, email, rue, codePostal, ville, motDePasse, credit, administrateur);
-		this.noUtilisateur = noUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-		this.administrateur = administrateur;
-		this.articleVendu = articleVendu;
-	}
+//
+//
+//	// constructeur avec tous les paramêtres 
+//	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+//			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
+//		this(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+//		this.articleVendu = articleVendu;
+//	}
+//
+//
+//	// constructeur (utilisateur sans numéro de téléphone) , cf NOT Null SQL
+//	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String rue,
+//			String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
+//		this(noUtilisateur, pseudo, nom, prenom, email, email, rue, codePostal, ville, motDePasse, credit, administrateur);
+//		this.noUtilisateur = noUtilisateur;
+//		this.pseudo = pseudo;
+//		this.nom = nom;
+//		this.prenom = prenom;
+//		this.email = email;
+//		this.rue = rue;
+//		this.codePostal = codePostal;
+//		this.ville = ville;
+//		this.motDePasse = motDePasse;
+//		this.credit = credit;
+//		this.administrateur = administrateur;
+//		this.articleVendu = articleVendu;
+//	}
 
 
 

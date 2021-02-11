@@ -18,14 +18,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public void addUtilisateur(Utilisateur u) throws DALException{
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
-		
-		// initialiser connection
-		try {
-			
+		cnx = ConnexionProvider.seConnecter();
+		try {		
 			String requeteSQL = "INSERT into UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			
 			// Etape 3 : Création de la requête paramétrée et insertion des paramètres dans la requête
-			pstmt = cnx.prepareStatement(requeteSQL, Statement.RETURN_GENERATED_KEYS);
+			pstmt = cnx.prepareStatement(requeteSQL, PreparedStatement.RETURN_GENERATED_KEYS);
 			
 			// Etape 4 : Remplacer les ? (valoriser les parametres de la requete) 
 			pstmt.setString(1, u.getPseudo());
@@ -38,10 +36,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pstmt.setString(8, u.getVille());
 			pstmt.setString(9, u.getMotDePasse());
 			pstmt.setInt(10, u.getCredit());
-			pstmt.setBoolean(11,u.getAdministrateur());
+			pstmt.setBoolean(11, false);
+			
+			System.out.println("coucou2");
 			
 			//Exécution de la requête
 			pstmt.executeUpdate();
+			System.out.println("coucou3");
 			
 			// récupération de la valeur de identity pour noUtilisateur
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -53,11 +54,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			// fermeture de resultatset et du prepareStatement
 			rs.close();
 			pstmt.close();
-			
-			// si j'arrive jusqu'à la je peux committer
-			cnx.commit();
-			
-			
+				
 		} catch (SQLException e) {
 			throw new DALException("Erreur lors de l'ajout d'un utilisateur: " + u, e);
 		}finally {
@@ -71,13 +68,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			}catch (SQLException e) {
 				throw new DALException("Erreur lors de l'ajout d'un utilisateur: " + u);
 			}
-		
 		}
-		
 	}
 		
 		public Utilisateur selectByPseudo(String pseudo) throws DALException {
-			
+			// =================> A TOI BRICE <============================
+			// =================> A TOI BRICE <============================
 			return null;
 		}
 			
