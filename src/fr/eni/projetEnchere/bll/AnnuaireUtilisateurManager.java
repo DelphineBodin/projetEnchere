@@ -17,51 +17,51 @@ public class AnnuaireUtilisateurManager {
 		//this.daoUtilisateur = FactoryDAO.getUtilisateurDAO() ;
 	}
 	
-	//Méthode permettant d'acceder à l'ensemble des utilisateurs de l'application
-	public List<Utilisateur> getCatalogue() throws BLLException{
-		List<Utilisateur> listeUtilisateur;
-		try {
-			listeUtilisateur = this.daoUtilisateur.selectAll();
-		} catch (DALException e) {
-			throw new BLLException("Erreur lors de la récupération du catalogue", e);
-		}
-		return listeUtilisateur;
-	}
+//	//Méthode permettant d'acceder à l'ensemble des utilisateurs de l'application
+//	public List<Utilisateur> getCatalogue() throws BLLException{
+//		List<Utilisateur> listeUtilisateur;
+//		try {
+//			listeUtilisateur = this.daoUtilisateur.selectAll();
+//		} catch (DALException e) {
+//			throw new BLLException("Erreur lors de la récupération du catalogue", e);
+//		}
+//		return listeUtilisateur;
+//	}
 	
 	//Ajout d'un utilisateur à notre application
 	public void addUtilisateur(Utilisateur u) throws BLLException {
 		addUtilisateur(u);
 		try {
-			this.daoUtilisateur.insert(u);
+			this.daoUtilisateur.addUtilisateur(u);
 		} catch (DALException e) {
 			throw new BLLException("Echec ajout utilisateur", e);			
 		}
 	}
 	
-	//Mise à jour des données d'un utilisateur à notre application
-	public void uptdateUtilsateur(Utilisateur u) throws BLLException {
-		try {
-			this.daoUtilisateur.update(u);
-		} catch (DALException e) {
-			throw new BLLException("Echec mise à jour utilisateur", e);
-		} 
-	}
-	
-	// Suppression d'un utilisateur dans notre application
-	public void removeUtilsateur(int noUtilisateur) throws BLLException {
-		try {
-			this.daoUtilisateur.delete(noUtilisateur);
-		} catch (DALException e) {
-			throw new BLLException("Echec de la suppression de l'utilisateur", e);
-		} 
-	}
+//	//Mise à jour des données d'un utilisateur à notre application
+//	public void uptdateUtilsateur(Utilisateur u) throws BLLException {
+//		try {
+//			this.daoUtilisateur.update(u);
+//		} catch (DALException e) {
+//			throw new BLLException("Echec mise à jour utilisateur", e);
+//		} 
+//	}
+//	
+//	// Suppression d'un utilisateur dans notre application
+//	public void removeUtilsateur(int noUtilisateur) throws BLLException {
+//		try {
+//			this.daoUtilisateur.delete(noUtilisateur);
+//		} catch (DALException e) {
+//			throw new BLLException("Echec de la suppression de l'utilisateur", e);
+//		} 
+//	}
 	
 	// Lecture d'un utilisateur depuis son identifiant
-	public Utilisateur getUtilisateur(int noUtilisateur) throws BLLException {
+	public Utilisateur getUtilisateur(String pseudo) throws BLLException {
 		try {
-			return this.daoUtilisateur.selectById(noUtilisateur);
+			return this.daoUtilisateur.selectByPseudo(pseudo);
 		} catch (DALException e){
-			throw new BLLException("Echec getUtilisateur :" + noUtilisateur, e);
+			throw new BLLException("Echec getUtilisateur :" + pseudo, e);
 		}
 	}
 	

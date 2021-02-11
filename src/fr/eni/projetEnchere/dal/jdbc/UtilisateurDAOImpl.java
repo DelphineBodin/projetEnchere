@@ -10,23 +10,17 @@ import java.sql.Statement;
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.ConnexionProvider;
 import fr.eni.projetEnchere.dal.DALException;
+import fr.eni.projetEnchere.dal.UtilisateurDAO;
 
-public class UtilisateurDAOJdbcImpl  {
+public class UtilisateurDAOImpl implements UtilisateurDAO {
 
-
-	
-
+	@Override
 	public void addUtilisateur(Utilisateur u) throws DALException{
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		
-		/*
-		 * if(u==null) { throw new DALException("Pas d'utilisateur en paramêtre"); }
-		 * Connection cnx = ConnexionProvider.seConnecter();
-		 */
+		// initialiser connection
 		try {
-//			// desactivation de l'auto commit
-//			cnx.setAutoCommit(false);
 			
 			String requeteSQL = "INSERT into UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 			
@@ -64,24 +58,6 @@ public class UtilisateurDAOJdbcImpl  {
 			cnx.commit();
 			
 			
-//		}catch (SQLException e) {
-//			try {	
-//				// si je tombe ici, je reviens en arrière
-//				cnx.rollback();
-//			}catch (SQLException e1) {
-//				throw new DALException("Erreur lors de l'ajout d'un utilisateur: " + e1.getMessage());
-//			}// Fin du deuxième catch
-//			throw new DALException(e.getMessage());
-//			//Fin du premier catch
-//			
-//		}finally {
-//			try {
-//				//réatcivation de l'auto commit
-//				cnx.setAutoCommit(true);
-//				cnx.close();
-//			} catch (SQLException e) {
-//				throw new DALException(e.getMessage());
-			
 		} catch (SQLException e) {
 			throw new DALException("Erreur lors de l'ajout d'un utilisateur: " + u, e);
 		}finally {
@@ -97,7 +73,14 @@ public class UtilisateurDAOJdbcImpl  {
 			}
 		
 		}
-			
+		
 	}
+		
+		public Utilisateur selectByPseudo(String pseudo) throws DALException {
+			
+			return null;
+		}
+			
+
 		
 }
