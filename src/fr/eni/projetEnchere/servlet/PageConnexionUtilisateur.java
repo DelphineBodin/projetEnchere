@@ -37,13 +37,14 @@ public class PageConnexionUtilisateur extends HttpServlet {
 		System.out.println(identifiant);
 
 		//recuperation ds parametre mot de passe
+		
 		String motdepasse="";
+		motdepasse = request.getParameter("smotdepasse");
 		
 		if(motdepasse.trim().isEmpty() || motdepasse == null) {
 			System.out.println("Veuillez rentrer un mot de passe valide");
 		}else {
-			motdepasse = request.getParameter("smotdepasse");	
-			System.out.println(motdepasse);
+				System.out.println(motdepasse);
 		}
 		
 

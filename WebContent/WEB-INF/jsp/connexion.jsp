@@ -23,7 +23,7 @@
 			</tr>
 		</table>
 
-		<button type="submit" name="ssubmit" value="Connexion">
+		<button type="submit" name="ssubmit" value="Connexion">Connexion</button>
 
 
 			<!-- 		<input type="checkbox" name="ssouvenirdemoi">Se souvenir de moi</input> -->
