@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetEnchere.bll.AnnuaireUtilisateurManager;
+import fr.eni.projetEnchere.bo.Utilisateur;
+
 
 //@WebServlet(name ="PageConnexionUtilisateur",
 //value = {"/ConnexionUtilisateur"})
@@ -30,25 +33,35 @@ public class PageConnexionUtilisateur extends HttpServlet {
 		//on s'assure que tomcat decodera les informations reçues avc le coade utf-8
 		request.setCharacterEncoding("UTF-8");
 
+
 		//recuperation ds parametre identifiant
 		String identifiant="";
 		identifiant = request.getParameter("sidentifiant");
 
 		System.out.println(identifiant);
 
-		//recuperation ds parametre mot de passe
+		//syso utilisateur recup de la bdd
+		//cree une instance de annuaireUtilisateurManager pour avoir acces a la methode getUtilisateur
+		AnnuaireUtiisateurManager dao = new AnnuaireUtilisateurManager();
 		
+		//je cree une variable pour recuperer ce getUtilisateur
+		Utilisateur u = null;
+		
+		//compare la variable identifiant qui est sidentifiant recupéré du champ de login / au resultat de la methode getutilisateur
+
+		//recuperation ds parametre mot de passe
+
 		String motdepasse="";
 		motdepasse = request.getParameter("smotdepasse");
-		
+
 		if(motdepasse.trim().isEmpty() || motdepasse == null) {
 			System.out.println("Veuillez rentrer un mot de passe valide");
 		}else {
-				System.out.println(motdepasse);
+			System.out.println(motdepasse);
 		}
-		
 
-	
+
+
 
 
 
