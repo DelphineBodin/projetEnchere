@@ -84,14 +84,30 @@ public class AnnuaireUtilisateurManager {
 				inscriptionValide = false;
 			}
 			
+			if(!inscriptionValide) {
+				throw new BLLException(messageErreur.toString());
+			}
+			return inscriptionValide;
+		}
+		
+		// méthode créer une vente si elle est valide
+	public void nouvelleInscription(Utilisateur u) throws BLLException{
 		validerInscription(u);
 		try {
+			// Méthode préciser = celle de la DAL
 			this.daoUtilisateur.addUtilisateur(u);
-		} catch (DALException e) {
-			throw new BLLException("Echec ajout utilisateur", e);			
+		} catch (DALException e){
+			throw new BLLException("Echec inscription utilisateur", e);
 		}
-		return inscriptionValide;
-}
+		
+	}
+//		validerInscription(u);
+//		try {
+//			this.daoUtilisateur.addUtilisateur(u);
+//		} catch (DALException e) {
+//			throw new BLLException("Echec ajout utilisateur", e);			
+//		}
+//		return inscriptionValide;
 	
 	//Pas de contrainte de renseignement sur : crédit, administrateur et article vendu
 	
@@ -116,6 +132,8 @@ public class AnnuaireUtilisateurManager {
 //		} 
 //	}
 	
+	// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ // BASE A VERIFIER = PAS SUR
+	
 //	// Lecture d'un utilisateur depuis son identifiant
 //	public Utilisateur getUtilisateur(String pseudo) throws BLLException {
 //		try {
@@ -124,6 +142,8 @@ public class AnnuaireUtilisateurManager {
 //			throw new BLLException("Echec getUtilisateur :" + pseudo, e);
 //		}
 //	}
+	
+	// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ //
 //	
 //	//Méthode permettant d'acceder à l'ensemble des utilisateurs de l'application
 //	public List<Utilisateur> getCatalogue() throws BLLException{

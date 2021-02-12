@@ -1,7 +1,5 @@
 package fr.eni.projetEnchere.dal;
 
-import java.util.List;
-
 import fr.eni.projetEnchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {
