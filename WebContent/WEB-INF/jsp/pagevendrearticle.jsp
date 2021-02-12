@@ -1,3 +1,6 @@
+<%@page import="fr.eni.projetEnchere.bo.Categorie"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -16,20 +19,15 @@
 <!--  Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
+
 </head>
 <body>
+<%
+List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategorie");
+%>
+<%
+
+%>
 	<div class="container">
 		<div class="row">
 			<h1>Nouvelle vente</h1>
@@ -69,13 +67,16 @@
 					</div>
 					<br>
 					<div class="form-group">
+						
 						<label class="control-label col-sm-2">Mise à prix</label>
-						<input type="number" name="sarticle"><br>
+						<div class="col-sm-6">
+						<input type="number" name="sprix" class="form-control"><br>
+						</div>
 					</div>
 					<div class="form-group">
 					<label class="control-label col-sm-2">Début de l'enchere</label>
 					<div class="col-sm-6">
-					<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text">
+					<input type="date" class="form-control" name="sdateDebut">
 					</div>
 					</div>
 					<div class="form-group">

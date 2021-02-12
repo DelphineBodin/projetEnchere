@@ -2,6 +2,8 @@ package fr.eni.projetEnchere.dal.jdbc;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
+import fr.eni.projetEnchere.dal.CategorieDAO;
 import fr.eni.projetEnchere.dal.DALException;
 
 
@@ -25,9 +29,9 @@ public class TestArticleDAOImpl extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
-		Categorie cat1=new Categorie(1,"INFORMATIQUE");
-//		ArticleVendu a1=new ArticleVendu("Ordinateur Portable","Philips",LocalDate.of(2021,02, 25),LocalDate.of(2021,02, 28),100,cat1);//utilisateur ?
+//		Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
+//		Categorie cat1=new Categorie(1,"INFORMATIQUE");
+////		ArticleVendu a1=new ArticleVendu("Ordinateur Portable","Philips",LocalDate.of(2021,02, 25),LocalDate.of(2021,02, 28),100,cat1);//utilisateur ?
 		ArticleDAOImpl a = new ArticleDAOImpl();
 
 // Test 1 Création d'une vente sans classe Retrait		
@@ -47,19 +51,34 @@ public class TestArticleDAOImpl extends HttpServlet {
 //		} catch (DALException e) {
 //			System.out.println(e.getMessage());
 //		}		
-		// Test 3 Création d'une vente avec classe Retrait à null
-		ArticleVendu a3=new ArticleVendu("Clavier","Noir",LocalDate.of(2021,02, 24),LocalDate.of(2021,02, 27),10,cat1);
-	
+//		// Test 3 Création d'une vente avec classe Retrait à null
+//		ArticleVendu a3=new ArticleVendu("Clavier","Noir",LocalDate.of(2021,02, 24),LocalDate.of(2021,02, 27),10,cat1);
+//	
+//		try {
+//			a.nouvelleVente(a3, u1,cat1,null);
+//			System.out.println("J'ai créer un article sans retrait");
+//		} catch (DALException e) {
+//			System.out.println(e.getMessage());
+//		}
+//	
+//	try {
+//		System.out.println(a.selectByNo(1));
+//	} catch (DALException e) {
+//		System.out.println("eh merdre");	}
+//	}
+//	
+		List <Categorie> liste=new ArrayList<>();
+		CategorieDAO cat = new CategorieDAOImpl();
 		try {
-			a.nouvelleVente(a3, u1,cat1,null);
-			System.out.println("J'ai créer un article sans retrait");
+			liste =cat.selectAllCategorie();
 		} catch (DALException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}
-	
-	
-	
-	
+		for (Categorie c : liste) {
+			System.out.println(c);			
+		}
+				
+	}
 	}
 
-}
+

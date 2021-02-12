@@ -4,6 +4,8 @@ package fr.eni.projetEnchere.bll;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.bo.Retrait;
@@ -92,7 +94,8 @@ public class AnnuaireArticleManager {
 		} catch (DALException e) {
 			throw new BLLException("Echec Insertion vente",e);
 		}
-			
+	
+		
 	}
 
 }

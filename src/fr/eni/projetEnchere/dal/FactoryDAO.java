@@ -1,6 +1,7 @@
 package fr.eni.projetEnchere.dal;
 
 import fr.eni.projetEnchere.dal.jdbc.ArticleDAOImpl;
+import fr.eni.projetEnchere.dal.jdbc.CategorieDAOImpl;
 import fr.eni.projetEnchere.dal.jdbc.UtilisateurDAOImpl;
 
 public abstract class FactoryDAO {
@@ -13,6 +14,9 @@ public static ArticleDAO getArticleDao() {
 
 public static UtilisateurDAO getUtilisateurDAO() {
 	return new UtilisateurDAOImpl();
+}
+public static CategorieDAO getCategorieDAO() {
+	return new CategorieDAOImpl();
 }
 
 }

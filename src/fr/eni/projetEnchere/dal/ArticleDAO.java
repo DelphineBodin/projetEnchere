@@ -7,6 +7,7 @@ import fr.eni.projetEnchere.bo.Utilisateur;
 
 public interface ArticleDAO {
 
-void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException;	
+void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException;
+
 	
 }

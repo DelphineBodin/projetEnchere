@@ -17,7 +17,8 @@ import fr.eni.projetEnchere.dal.DALException;
 public class ArticleDAOImpl implements ArticleDAO {
 
 	private static final String INSERT="INSERT into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_Retrait) values(?,?,?,?,?,?,?,?)";
-
+	
+	
 	@Override
 	public void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException {
 		if(a==null) {
@@ -62,4 +63,5 @@ public class ArticleDAOImpl implements ArticleDAO {
 		}// Fin du finally
 	}
 
+	
 }
