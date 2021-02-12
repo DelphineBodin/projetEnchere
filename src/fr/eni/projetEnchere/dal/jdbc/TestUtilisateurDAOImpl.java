@@ -12,7 +12,7 @@ import fr.eni.projetEnchere.dal.DALException;
 import fr.eni.projetEnchere.dal.UtilisateurDAO;
 
 @WebServlet("/TestUtilisateurJdbcImpl")
-public class TestUtilisateurImpl extends HttpServlet {
+public class TestUtilisateurDAOImpl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
