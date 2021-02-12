@@ -25,8 +25,18 @@ public class PageVendreArticle extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	// je m'assure que TomCat decodera en UTF8
+		request.setCharacterEncoding("UTF-8");
+		String nomProduit,description;
+		int categorie;
+		
+		
+		nomProduit=request.getParameter("sarticle");
+		description=request.getParameter("sdescription");
+		//categorie=request.getParameter("scategorie");
+		
+		System.out.println(nomProduit+" "+description);
+		
 	}
 
 }

@@ -3,7 +3,7 @@ package fr.eni.projetEnchere.bll;
 
 
 import java.time.LocalDate;
-
+import java.time.temporal.ChronoUnit;
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.bo.Retrait;
@@ -69,12 +69,13 @@ public class AnnuaireArticleManager {
 			messageErreur.append("La date de fin d'enchère doit être après la date de début d'enchère\n");
 			venteValide=false;
 		}
-		//long nbdejours = LocalDate.now().
-				
-		//if() {
-			//messageErreur.append("La date de fin d'enchère doit être dans les 45 jours après la date de début d'enchère\n");
-			//venteValide=false;
-		//}
+		long nbdejours = ChronoUnit.DAYS.between(article.getDateDebutEncheres(),article.getDateFinEncheres());
+		System.out.println(nbdejours);
+		if(nbdejours>45) {
+			messageErreur.append("La date de fin d'enchère doit être dans les 45 jours après la date de début d'enchère\n");
+			venteValide=false;
+		}
+		System.out.println(nbdejours);
 		// A voir ?
 		// par défaut le champs retrait affichera l'adresse de l'utilisateur. Si un champs est modifié
 		// on crééra un nouveau lieu de retrait// les 3 champs doivent impérativement être rempli
@@ -85,15 +86,13 @@ public class AnnuaireArticleManager {
 	}
 	// méthode créer une vente si elle est valide
 	public void nouvelleVente(ArticleVendu article, Utilisateur utilisateur, Categorie categorie,Retrait retrait) throws BLLException {
-		if(validerVente(article,  utilisateur,  categorie, retrait)) {
-			try {
-				this.articleDao.nouvelleVente( article,  utilisateur,  categorie, retrait);
-			} catch (DALException e) {
-				throw new BLLException("Echec d'insertion de la nouvelle vente",e);
-			}// fin du catch
-		}else {/// doit t'on vraiment prévoir ce else ???!!!
-			System.out.println("Cette Vente n'est pas valide");
+		validerVente(article,  utilisateur,  categorie, retrait);
+		try {
+			this.articleDao.nouvelleVente( article,  utilisateur,  categorie, retrait);
+		} catch (DALException e) {
+			throw new BLLException("Echec Insertion vente",e);
 		}
+			
 	}
 
 }
