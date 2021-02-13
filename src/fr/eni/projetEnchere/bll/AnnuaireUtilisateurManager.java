@@ -11,6 +11,7 @@ import fr.eni.projetEnchere.dal.jdbc.UtilisateurDAOImpl;
 public class AnnuaireUtilisateurManager {
 
 	private UtilisateurDAO daoUtilisateur;
+	//Pourquoi static ???
 	static AnnuaireUtilisateurManager annuaire;
 
 	// Constructeur privé pour mise en place du pattern Singleton	
