@@ -169,6 +169,8 @@ public class AnnuaireUtilisateurManager {
 		return u;
 		//equivalent a return dao.selectByPseudo(pseudo);
 	}
+	
+	
 }
 
 
