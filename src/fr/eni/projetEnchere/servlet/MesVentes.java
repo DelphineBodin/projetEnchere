@@ -21,6 +21,7 @@ public class MesVentes extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp").forward(request, response);
 	}
 

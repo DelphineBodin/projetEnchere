@@ -158,14 +158,15 @@ public class AnnuaireUtilisateurManager {
 
 
 	public Utilisateur getUtilisateur(String pseudo) throws BLLException {
-
-		StringBuilder messageErreur = new StringBuilder();
+		// Delphine : modification de la gestion du message erreur 
+		//StringBuilder messageErreur = new StringBuilder();
 		UtilisateurDAO dao = new UtilisateurDAOImpl();
 		Utilisateur u= null;
 		try {
 			u = dao.selectByPseudo(pseudo);
 		} catch (DALException e) {
-			messageErreur.append("Pas de pseudo\n");
+			throw new BLLException(e.getMessage());
+			//messageErreur.append("Pas de pseudo\n");
 		}
 		return u;
 		//equivalent a return dao.selectByPseudo(pseudo);

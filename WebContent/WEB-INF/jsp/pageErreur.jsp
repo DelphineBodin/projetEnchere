@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Listes des encheres</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>Liste des enchères</h1>
-
-<h2> Filtres </h2>
-<input type="text" default="Le nom de l'article contient">
-
 
 </body>
 </html>
