@@ -31,6 +31,15 @@ public class CategorieManager {
 			throw new BLLException(e.getMessage());
 		}
 	}
+	public Categorie getCategorieParId(int idCategorie) throws BLLException{
+		Categorie c =null;
+		try {
+			c=categorieDAO.selectByNo(idCategorie);
+		} catch (DALException e) {
+			throw new BLLException("Pb Méthode"+e.getMessage());
+		}
+		return c;
+	}
 	
 	
 }

@@ -8,13 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!--  jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<link rel="stylesheet"
-	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/style.css">
 
 <title>Liste des enchères</title>

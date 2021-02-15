@@ -33,7 +33,8 @@ public class MesVentes extends HttpServlet {
 		try {
 			this.categories=cat.getCategories();
 		} catch (BLLException e) {
-			messageerreur.append("Je n'arrive pas à récupérer les Categories");
+			System.out.println(messageerreur.append("Je n'arrive pas à récupérer les Categories"));;
+			
 		}
 		
 	}
