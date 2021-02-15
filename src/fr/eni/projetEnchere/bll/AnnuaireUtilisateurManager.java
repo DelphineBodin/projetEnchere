@@ -11,15 +11,15 @@ import fr.eni.projetEnchere.dal.jdbc.UtilisateurDAOImpl;
 public class AnnuaireUtilisateurManager {
 
 	private UtilisateurDAO daoUtilisateur;
-	//Pourquoi static ???
+	// ======>>>>>>Pourquoi static ???
 	static AnnuaireUtilisateurManager annuaire;
 
 	// Constructeur privé pour mise en place du pattern Singleton	
-	public AnnuaireUtilisateurManager() {
+	private AnnuaireUtilisateurManager() {
 		this.daoUtilisateur = FactoryDAO.getUtilisateurDAO() ;
 	}
 
-	// Méthode pour créer u.... ???????????????????????????????????????
+	// Méthode pour créer une instance
 	public static AnnuaireUtilisateurManager getInstance() {
 		if(annuaire==null) {
 			annuaire= new AnnuaireUtilisateurManager();
@@ -41,7 +41,7 @@ public class AnnuaireUtilisateurManager {
 			messageErreur.append("Le pseudo est obligatoire et ne doit pas comporter d'espace\n");
 			inscriptionValide = false;
 		}
-
+		
 		if(u.getNom()==null || u.getNom().isEmpty()) {
 			messageErreur.append("Le nom est obligatoire\n");
 			inscriptionValide = false;
@@ -83,14 +83,16 @@ public class AnnuaireUtilisateurManager {
 			messageErreur.append("Le mot de passe est obligatoire et ne doit pas comporter d'espace\n");
 			inscriptionValide = false;
 		}
-
+		//==========>>>>>Pas de contrainte de renseignement sur : 
+		//==========>>>>>crédit, administrateur et article vendu
+		
 		if(!inscriptionValide) {
 			throw new BLLException(messageErreur.toString());
 		}
 		return inscriptionValide;
 	}
 
-	// méthode créer une vente si elle est valide
+	// méthode créer une nouvelle inscription si elle est valide
 	public void nouvelleInscription(Utilisateur u) throws BLLException{
 		validerInscription(u);
 		try {
@@ -99,20 +101,7 @@ public class AnnuaireUtilisateurManager {
 		} catch (DALException e){
 			throw new BLLException("Echec inscription utilisateur", e);
 		}
-
 	}
-	//		validerInscription(u);
-	//		try {
-	//			this.daoUtilisateur.addUtilisateur(u);
-	//		} catch (DALException e) {
-	//			throw new BLLException("Echec ajout utilisateur", e);			
-	//		}
-	//		return inscriptionValide;
-
-	//Pas de contrainte de renseignement sur : crédit, administrateur et article vendu
-
-
-
 
 	//	//Mise à jour des données d'un utilisateur à notre application
 	//	public void uptdateUtilsateur(Utilisateur u) throws BLLException {
@@ -131,9 +120,6 @@ public class AnnuaireUtilisateurManager {
 	//			throw new BLLException("Echec de la suppression de l'utilisateur", e);
 	//		} 
 	//	}
-
-
-
 
 	// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ // BASE A VERIFIER = PAS SUR
 

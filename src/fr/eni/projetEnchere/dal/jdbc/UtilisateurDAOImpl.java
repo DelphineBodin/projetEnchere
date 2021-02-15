@@ -14,6 +14,7 @@ import fr.eni.projetEnchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
+	////////////////////////////////////////////ADDUTILISATEUR////////////////////////////////////////
 	@Override
 	public void addUtilisateur(Utilisateur u) throws DALException{
 		Connection cnx = null;
@@ -22,10 +23,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		try {		
 			String requeteSQL = "INSERT into UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
-			// Etape 3 : Création de la requête paramétrée et insertion des paramètres dans la requête
+			// Etape : Création de la requête paramétrée et insertion des paramètres dans la requête
 			pstmt = cnx.prepareStatement(requeteSQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
-			// Etape 4 : Remplacer les ? (valoriser les parametres de la requete) 
+			// Etape : Remplacer les ? (valoriser les parametres de la requete) 
 			pstmt.setString(1, u.getPseudo());
 			pstmt.setString(2, u.getNom());
 			pstmt.setString(3, u.getPrenom());
@@ -38,11 +39,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pstmt.setInt(10, u.getCredit());
 			pstmt.setBoolean(11, false);
 
-			System.out.println("coucou2");
-
 			//Exécution de la requête
 			pstmt.executeUpdate();
-			System.out.println("coucou3");
+	System.out.println("coucou3");
 
 			// récupération de la valeur de identity pour noUtilisateur
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -71,20 +70,28 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 	}
 
+	////////////////////////////////////////////UPDATEUTILISATEUR////////////////////////////////////////
+	@Override
+	public void upUtilisateur(Utilisateur uMiseAJour) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		cnx = ConnexionProvider.seConnecter();
+		
+		//String requeteSQL = 
+		
+	}
+	
+	////////////////////////////////////////////SELECTBYPSEUDO////////////////////////////////////////
+	
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
-
 		Connection cnx=null;
 		PreparedStatement pstmt= null;
 		cnx=ConnexionProvider.seConnecter();
 		Utilisateur u2=null;
-
 		
-		//requete sql testee et fonctionnelle: affiche pseudo et mdp quand pseudo= qqch
-
-		
+		//requete sql testee et fonctionnelle: affiche pseudo et mdp quand pseudo= qqch	
 		String requeteSQL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur "
 				+ "FROM UTILISATEURS where pseudo= ?"; 
-
 
 		try {
 			pstmt= cnx.prepareStatement(requeteSQL);
@@ -108,18 +115,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				int credit = rs.getInt("credit");
 				boolean admin = rs.getBoolean("administrateur");
 
-
-
 				//on cree objet utilisateur ayant en parametres les éléments ci-dessus
 				u2= new Utilisateur(numero,pseudo1,nom,prenom,email, telephone,rue,cp,ville,mdp,credit,admin);
-
-
 			}
 
 			// CLOSE de RS et PSTMT
 			rs.close();
 			pstmt.close();
-
 
 		} catch (SQLException e) {
 			throw new DALException("Erreur dans les parametres de l'utilisateur: " + u2, e);
@@ -135,7 +137,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				throw new DALException("Erreur dans les parametres de l'utilisateur: " + u2);
 			}
 		}
-
 		return u2;
 	}	
 }

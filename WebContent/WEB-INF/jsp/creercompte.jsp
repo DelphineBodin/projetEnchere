@@ -47,7 +47,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="tel">Teléphone :</label>
-					<input type="text" name="telephone" class="form-control">
+					<input type="text" name="tel" class="form-control">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="rue">Rue :</label>

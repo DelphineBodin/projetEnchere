@@ -63,7 +63,6 @@ public class Utilisateur {
 		this.articleVendu = new ArrayList<ArticleVendu>();
 	}
 //
-//
 //	// constructeur avec tous les paramêtres 
 //	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 //			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<ArticleVendu>articleVendu) {
