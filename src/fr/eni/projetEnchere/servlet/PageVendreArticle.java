@@ -1,3 +1,5 @@
+
+
 package fr.eni.projetEnchere.servlet;
 
 import java.io.IOException;
@@ -22,7 +24,7 @@ value = {"/VendreArticle"})
 public class PageVendreArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Categorie> categories;
-	CategorieManager cat = CategorieManager.getInstance();
+	CategorieManager cat ;
 DateTimeFormatter df;
 
 	@Override

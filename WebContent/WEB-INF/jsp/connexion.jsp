@@ -8,18 +8,16 @@
 </head>
 <body>
 
-	<h1>Page de connexion, titre a retirer ensuite</h1>
-
+	
 	<form action="./connexion" method="post">
-		<table>
+	<table>
 			<tr>
 				<td>Identifiant:</td>
-				<td><input name="sidentifiant" placeholder="NineJea"
-					type="text"></td>
+				<td><input name="sidentifiant" placeholder="NineJea"type="text"></td>
 			</tr>
 			<tr>
 				<td>Mot de Passe:</td>
-				<td><input name="smotdepasse" placeholder="******" type="text"></td>
+				<td><input name="smotdepasse" type="password"></td>
 			</tr>
 		</table>
 
@@ -28,8 +26,9 @@
 
 			<!-- 		<input type="checkbox" name="ssouvenirdemoi">Se souvenir de moi</input> -->
 
-			<!-- 		<input type="submit" name="screeruncompte" value="Créer un compte"> -->
-	</form>
+		</form>
+		
+		<a href="./ProfilDe"><input type="submit" value="Créer un compte" ></a>
 
 </body>
 </html>
