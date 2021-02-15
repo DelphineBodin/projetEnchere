@@ -73,40 +73,17 @@ public class PageConnexionUtilisateur extends HttpServlet {
 			}
 		HttpSession maSession=null;
 		RequestDispatcher dispatcher = null;
-		System.out.println(res);
 		if(res==true) {
 			maSession = request.getSession();
 			maSession.setAttribute("utilisateurConnecte", u);	
-			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp");
+			dispatcher = request.getRequestDispatcher("./MesVentes");
 		}else {
+			System.out.println("page erreur");
 			request.setAttribute("messageErreur", message.toString());
-			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pageErreur.jsp");
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 		}
 		dispatcher.forward(request, response);	
-		//syso utilisateur recup de la bdd
-		//cree une instance de annuaireUtilisateurManager pour avoir acces a la methode getUtilisateur
 		
-	
-		
-		
-//		//je cree une variable pour recuperer ce getUtilisateur
-//		Utilisateur u = null;
-//		
-//		//compare la variable identifiant qui est sidentifiant recupéré du champ de login / au resultat de la methode getutilisateur
-//
-//		//recuperation ds parametre mot de passe
-//
-//		String motdepasse="";
-//		motdepasse = request.getParameter("smotdepasse");
-//
-//		if(motdepasse.trim().isEmpty() || motdepasse == null) {
-//			System.out.println("Veuillez rentrer un mot de passe valide");
-//		}else {
-//			System.out.println(motdepasse);
-//		}
-
-
-
 	}
 	}
 

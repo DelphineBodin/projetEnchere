@@ -1,8 +1,8 @@
-<%@page import="jdk.internal.misc.FileSystemOption"%>
 <%@page import="fr.eni.projetEnchere.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="fr.eni.projetEnchere.bo.Utilisateur"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -32,7 +32,22 @@
 	<%
 // je récupère la liste de catégorie
 List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategorie");
-%>
+String rue = "";
+String ville = "";
+String codePostal = "";
+
+		Utilisateur u = (Utilisateur) session.getAttribute("utilisateurConnecte");
+		if (u != null) {
+			rue = u.getRue();
+			codePostal=u.getCodePostal();
+			ville = u.getVille();
+			
+		}
+		
+		%>
+
+
+		
 
 	<div class="container">
 		<div class="row">
@@ -106,26 +121,25 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 					<div class="form-group">
 						<label class="control-label col-sm-2">Rue</label>
 						<div class="col-sm-6">
-							<input type="text" name="sarticle" class="form-control">
+							<input type="text" name="srue" class="form-control" placeholder="<%=rue%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2">Code postal</label>
 						<div class="col-sm-6">
-							<input type="text" name="sarticle" class="form-control">
+							<input type="text" name="scodePostal" class="form-control" placeholder="<%=codePostal%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2">Ville</label>
 						<div class="col-sm-6">
-							<input type="text" name="sarticle" class="form-control">
+							<input type="text" name="sarticle" class="form-control" placeholder="<%=ville%>">
 						</div>
 					</div>
 				</fieldset>
-				<br> <input type="submit" value="Enregistrer"
-					class="btn btn-primary"> <a href="allerà la page avant"><input
-					type="submit" class="btn btn-primary" value="Annuler"></a>
-			</form>
+				<br> <input type="submit" value="Enregistrer"class="btn btn-primary"> </form>
+				<a href="./MesVentes"><input type="submit" class="btn btn-primary" value="Annuler"></a>
+			
 		</div>
 	</div>
 
