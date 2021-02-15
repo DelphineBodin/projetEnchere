@@ -20,63 +20,70 @@
 <div class="container">
 	<div class="row">
 		<h1>Mon profil</h1>
-		<form>
+		<form method="post" action="Profil">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="formPseudo">Pseudo :</label>
-					<input type="text" class="form-control">
+					<label for="pseudo">Pseudo :</label>
+					<input type="text" name="pseudo" class="form-control">
+					<%-- <span class="erreur">${erreurs['pseudo']}</span> --%>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="formNom">Nom :</label>
-					<input type="text" class="form-control">
+					<label for="nom">Nom :</label>
+					<input type="text" name="nom" class="form-control">
+					<%-- <span class="erreur">${erreurs['nom']}</span> --%>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="formPrenom">Prénom :</label>
-					<input type="text" class="form-control">
+					<label for="prenom">Prénom :</label>
+					<input type="text" name="prenom" class="form-control">
+					<%-- <span class="erreur">${erreurs['prenom']}</span> --%>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="formEmail">Email :</label>
-					<input type="email" class="form-control">
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="formTel">Teléphone :</label>
-					<input type="text" class="form-control">
-				</div>
-				<div class="form-group col-md-6">
-					<label for="formRue">Rue :</label>
-					<input type="text" class="form-control">
+					<label for="email">Email :</label>
+					<input type="email" name="email" class="form-control" size="20" maxlength="20">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="formCP">Code postal :</label>
-					<input type="text" class="form-control">
+					<label for="tel">Teléphone :</label>
+					<input type="text" name="telephone" class="form-control">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="formVille">Ville :</label>
-					<input type="text" class="form-control">
+					<label for="rue">Rue :</label>
+					<input type="text" name="rue" class="form-control">
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="formPassword">Mot de passe :</label>
-					<input type="password" class="form-control">
+					<label for="codePostal">Code postal :</label>
+					<input type="text" name="codePostal" class="form-control">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="ville">Ville :</label>
+					<input type="text" name="ville" class="form-control">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="password">Mot de passe :</label>
+					<input type="password" name="password" class="form-control">
 			</div>
 			<div class="form-group col-md-6">
-			  		<label for="formPasswordConfirm">Confirmation :</label>
-					<input type="password" class="form-control">
+			  		<label for="passwordConfirm">Confirmation :</label>
+					<input type="password" name="passwordConfirm" class="form-control">
 				</div>
 			</div>
-			<br> 
-			<input type="submit" value="Enregistrer"class="btn btn-primary"> 
-	  		<a href="/connexion">
+			<br>
+			<input type="submit" class="btn btn-primary" value="Enregistrer">
+			
+			<a href="/servlet/ServletDemarrage">
 	  			<input type="submit" class="btn btn-primary" value="Annuler">
 	  		</a>
-		</form>
+			  
+		</form>		
+			
+
 	</div>
 </div>
 
