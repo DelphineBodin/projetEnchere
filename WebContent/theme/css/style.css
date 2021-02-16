@@ -1,18 +1,8 @@
-@CHARSET "UTF-8";
-.footer {
-    text-align: center;
+@charset "ISO-8859-1";
+
+h1 {
+	text-align: center !important;
+	color: tomato !important;
+	background-color : blue;
 }
 
-.formation {
-	border: 1px dotted;
-}
-
-.formation h2 {
-	color: white;
-	background-color: #01B0F0;
-}
-
-.formation p, li {
-	padding-left: 10px;
-	padding-right: 10px;
-}

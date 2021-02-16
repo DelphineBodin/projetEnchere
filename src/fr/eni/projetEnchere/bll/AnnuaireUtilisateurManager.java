@@ -71,16 +71,19 @@ public class AnnuaireUtilisateurManager {
 		// limiter la taille des caractères à 5 et que des chiffres
 		if(u.getCodePostal()==null || u.getCodePostal().trim().isEmpty()) {
 			messageErreur.append("Le code postal est obligatoire et ne doit pas comporter d'espace\n");
+			messageErreur.append("\n");
 			inscriptionValide = false;
 		}
 
 		if(u.getVille()==null || u.getVille().trim().isEmpty()) {
-			messageErreur.append("Le nom de la ville est obligatoire et ne doit pas comporter d'espace\n");
+			messageErreur.append("\n Le nom de la ville est obligatoire et ne doit pas comporter d'espace\n");
+			messageErreur.append("\n");
 			inscriptionValide = false;
 		}
 
 		if(u.getMotDePasse()==null || u.getMotDePasse().trim().isEmpty()) {
 			messageErreur.append("Le mot de passe est obligatoire et ne doit pas comporter d'espace\n");
+			messageErreur.append("\n");
 			inscriptionValide = false;
 		}
 		//==========>>>>>Pas de contrainte de renseignement sur : 
