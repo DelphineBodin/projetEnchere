@@ -89,7 +89,7 @@ public class CreerCompte extends HttpServlet {
 			//		dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
 			//	}
 			}
-			if(testPassword==true) {
+	//		if(testPassword==true) {
 			//Création de l'inscription
 			try {
 				annuaire.nouvelleInscription(new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
@@ -106,7 +106,7 @@ public class CreerCompte extends HttpServlet {
 			//testInscription = false;
 			//testPassword = false;
 		//	messageError.append(e1.getMessage());
-		}
+	//	}
 		if(testPassword==true) {
 			maSession = request.getSession();
 			maSession.setAttribute("utilisateurConnecte", new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
