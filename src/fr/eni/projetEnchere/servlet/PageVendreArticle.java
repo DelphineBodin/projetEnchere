@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-
 import fr.eni.projetEnchere.bll.AnnuaireArticleManager;
 import fr.eni.projetEnchere.bll.BLLException;
 import fr.eni.projetEnchere.bll.CategorieManager;

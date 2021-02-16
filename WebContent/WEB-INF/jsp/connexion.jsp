@@ -12,26 +12,42 @@
 <title>Connexion Utilisateur</title>
 </head>
 <body>
-<% 
-String messageErreur=(String)request.getAttribute("messageErreur"); 
-%>
+	<%
+		String messageErreur = (String) request.getAttribute("messageErreur");
+	%>
+	<form method="post">
+		<div class="container">
+			<div class="row">
+				<h1>Mon profil</h1>
+				<form method="post" action="MesAchats">
+					<div class="form-group">
+						<div class="form-group col-md-2">
+							<label for="pseudo">Pseudo :</label> <input type="text" name="sidentifiant" class="form-control">
+							<%-- <span class="erreur">${erreurs['pseudo']}</span> --%>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<div class="form-group col-md-2">
+							<label for="password">Mot de passe :</label> <input type="password" name="smotdepasse" class="form-control">
+						</div>
+					</div>
 
-	<form method="post" action="./connexion">
-		<table>
-			<tr>
-				<td>Identifiant:</td>
-				<td><input name="sidentifiant" placeholder="NineJea"
-					type="text"></td>
-			</tr>
-			<tr>
-				<td>Mot de Passe:</td>
-				<td><input name="smotdepasse" type="password"></td>
-			</tr>
-		</table>
-		<button type="submit" name="ssubmit" value="Connexion">Connexion</button>
+					<button type="submit" name="ssubmit" class="btn btn-primary" value="Connexion">Connexion</button>
+
+					<br> <font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
+					
+					<!-- 	bouton creer compte sorti du form ci dessus car le lien ne marchait pas -->
+<br> <a href="./Profil"> <input type="submit" class="btn btn-primary" value="Créer un compte"></a>
+			</div>
+		</div>
 	</form>
-	<a href="./ProfilDe"><input type="submit" value="Créer un compte"></a><br>
-	<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
-	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
+	
+<!-- 	bouton creer compte sorti du form ci dessus car le lien ne marchait pas -->
+<br> <a href="./Profil"> <input type="submit" class="btn btn-primary" value="Créer un compte"></a>
+
+
+		<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
+	</form>
 </body>
 </html>
