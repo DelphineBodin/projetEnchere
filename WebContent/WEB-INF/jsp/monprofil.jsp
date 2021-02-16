@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Pas de titre a cette page Mon compte</title>
+<title>pdf p7 monprofil.jsp jojo44 modifier</title>
 </head>
 <body>
 

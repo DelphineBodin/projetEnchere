@@ -22,7 +22,9 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 	<a href="./VendreArticle">Vendre un Article</a>
 	<a href="./ProfilDe">Mon profil</a>
 	<a href="./seDeconnecter">Déconnexion</a>
-	<h1>Liste des enchères</h1>
+	
+	<h1>Liste des enchères mes ventes.jsp</h1>
+	
 	<p>Filtres</p>
 	<form method="post" action=>
 		<div class="col-sm-4">
