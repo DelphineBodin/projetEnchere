@@ -76,7 +76,10 @@ public class AnnuaireArticleManager {
 			messageErreur.append("La date de fin d'enchère doit être dans les 45 jours après la date de début d'enchère\n");
 			venteValide=false;
 		}
-		
+		//if(article.getDateDebutEncheres().isEqual(article.getDateFinEncheres())) {
+		//	);
+		//}
+			
 		if(!venteValide) {
 			throw new BLLException(messageErreur.toString());
 		}

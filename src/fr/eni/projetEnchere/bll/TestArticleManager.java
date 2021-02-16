@@ -28,11 +28,11 @@ public class TestArticleManager extends HttpServlet {
 	AnnuaireArticleManager annuaire=AnnuaireArticleManager.getInstance();
 	Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
 	Categorie cat1=new Categorie(1,"INFORMATIQUE");
-	ArticleVendu a1=new ArticleVendu("Ecran","Philips",LocalDate.of(2021,2, 25),LocalTime.of(9,00),LocalDate.of(2021,2, 26),LocalTime.of(10,00),14000,cat1);
+	ArticleVendu a1=new ArticleVendu("Ecran","Philips",LocalDate.of(2021,2, 25),LocalTime.of(9,00),LocalDate.of(2021,2, 25),LocalTime.of(10,00),14000,cat1);
 	Retrait retrait1 = new Retrait(1,"rue des Peupliers","13000","Aix en Provence");
 	try {
-		System.out.println(annuaire.validerVente(a1,u1, cat1, null));
-		annuaire.nouvelleVente(a1, u1, cat1, null);
+		//System.out.println(annuaire.validerVente(a1,u1, cat1, null));
+		annuaire.nouvelleVente(a1, u1, cat1, retrait1);
 	} catch (BLLException e) {
 		System.out.println((e.getMessage()));
 	}
