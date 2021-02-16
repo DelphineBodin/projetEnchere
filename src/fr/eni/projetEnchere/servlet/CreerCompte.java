@@ -16,7 +16,7 @@ import fr.eni.projetEnchere.bo.Utilisateur;
 
 @WebServlet("/Profil")
 
-public class Profil extends HttpServlet {
+public class CreerCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,6 +24,18 @@ public class Profil extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Récupération des champs de formulaire
+//		String pseudo = "";
+//		String nom = "";
+//		String prenom = "";
+//		String email = "";
+//		String telephone = "";
+//		String rue = "";
+//		String codePostal = "";
+//		String ville = "";
+//		String password = "";
+//		String passwordConfirm = "";
+		
 		// Récupération des champs de formulaire
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -37,56 +49,63 @@ public class Profil extends HttpServlet {
 		String passwordConfirm = request.getParameter("passwordConfirm");
 			
 		StringBuilder messageError = new StringBuilder();
-		
+
 // =========>>>> met on le crédit ici à 100 ?
 		// Appel du manager (lien servlet <> BLL);
 		AnnuaireUtilisateurManager annuaire = AnnuaireUtilisateurManager.getInstance();
-		Utilisateur u = null;
-		boolean test;
-		try {
-			test = annuaire.validerInscription(u);
-		} catch (BLLException e1) {
-			test = false;
-			messageError.append(e1.getMessage());
-		}
-		System.out.println(test);
-		boolean error;
-		
 		// Initialisation des attributs session
 		HttpSession maSession = null;
 		RequestDispatcher dispatcher = null;
+		//Création de l'utilisateur
+		Utilisateur u = new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100);
 		
-		if(test == true) {
-			if(!password.equals(passwordConfirm)) {
-				error = true;
+		//Test de la validité des champs de saisie:
+	//		boolean testInscription = false;
+	//		try {
+	//			testInscription = annuaire.validerInscription(u);
+	//			System.out.println(testInscription);
+	//		} catch (BLLException e1) {
+	//			testInscription = false;
+	//			messageError.append(e1.getMessage());
+	//		}
+	//		System.out.println(testInscription);	
+		
+		boolean testInscription = false;
+		boolean testPassword = false;
+		//Test de la validité des champs de saisie:
+		try {
+			testInscription = annuaire.validerInscription(u);
+			System.out.println(testInscription);
+			//Test de la confirmation du mot de passe
+			if(password.equals(passwordConfirm)) {
+				testPassword = true;
+				System.out.println("Confirmation mot de passe identique");
+			} else {
+				testPassword = false;
 				messageError.append("Les mots de passes ne sont pas identiques");
 				System.out.println("Les mots de passes ne sont pas identiques");
-			} else {
-				error = false;
-				System.out.println("Inscription réussi");
-				//Création de l'utilisateur
-				u = new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100);
-
-				// Création d'une session
-				maSession = request.getSession();
-				maSession.setAttribute("utilisateurConnecte", u);
-				// Redirection vers la page...
-				dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesachats.jsp");
-				try {
-					System.out.println(annuaire.validerInscription(u));
-					//Nouvelle inscription validé
-					annuaire.nouvelleInscription(u);
-				} catch (BLLException e) {
-					messageError.append(e.getMessage());
-					System.out.println(e.getMessage());
+				if(testPassword == false) {
+					request.setAttribute("messageErreur", messageError.toString());
+					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
 				}
 			}
-		} else {
-			System.out.println("page erreur");
-			request.setAttribute("messageErreur", messageError.toString());
-			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
+			
+			//Création de l'inscription
+			try {
+				annuaire.nouvelleInscription(u);
+				// Création d'une session
+				maSession = request.getSession();
+				maSession.setAttribute("utilisateurConnecte", new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
+				// Redirection vers la page...
+				dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesachats.jsp");
+			} catch (BLLException e1) {
+				messageError.append(e1.getMessage());
+			}
+		} catch (BLLException e1) {
+			testInscription = false;
+			testPassword = false;
+			messageError.append(e1.getMessage());
 		}
 		dispatcher.forward(request, response);	
-		request.setAttribute("erreurEMessage", messageError.toString());
 	}
 }

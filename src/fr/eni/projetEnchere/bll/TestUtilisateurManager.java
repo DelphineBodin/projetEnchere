@@ -19,7 +19,7 @@ public class TestUtilisateurManager extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AnnuaireUtilisateurManager annuaire = AnnuaireUtilisateurManager.getInstance();
-		Utilisateur u1 = new Utilisateur("Batman","ROBIN","Brice","deux@laposte.net","0610203040","4 rue du soleil", "44000","Nantes","lataupe",0);
+		Utilisateur u1 = new Utilisateur("","","","","","", "","","",0);
 		try {
 			System.out.println(annuaire.validerInscription(u1));
 			annuaire.nouvelleInscription(u1);
