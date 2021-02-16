@@ -15,42 +15,34 @@
 	<%
 		String messageErreur = (String) request.getAttribute("messageErreur");
 	%>
-	<form method="post">
-		<div class="container">
-			<div class="row">
-
-				<form method="post" action="MesAchats">
+	<div class="container">
+		<div class="row">
+			<div class="col-4 offset-3">
+				<h1>Mon profil</h1>
+				<form method="post" action="./connexion">
 					<div class="form-group">
-						<!-- col-md-offset je rajoute une marge de 4 colonnes, ce qui centre -->
-						<div class="form-group col-lg-2 col-lg-offset-4">
-							<h1>Mon profil</h1>
-							<label for="pseudo">Identifiant :</label> <input type="text" name="sidentifiant" class="form-control">
-							<%-- <span class="erreur">${erreurs['pseudo']}</span> --%>
-						</div>
+						<label for="pseudo">Identifiant :</label> <input type="text" name="sidentifiant" class="form-control">
+						<%-- <span class="erreur">${erreurs['pseudo']}</span> --%>
 					</div>
-
 					<div class="form-group ">
-						<div class="form-group col-lg-2 col-lg-offset-5">
+						<div class="form-group ">
 							<label for="password">Mot de passe :</label> <input type="password" name="smotdepasse" class="form-control">
 						</div>
 					</div>
-					
-					
-
 					<button type="submit" name="ssubmit" class="btn btn-primary" value="Connexion">Connexion</button>
-<br> <font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
+					<br> <font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
 				</form>
 			</div>
 		</div>
-		
-		
-<!-- 		container pour creer compte, toujours pareil ça ne fmarche pas dans le form -->
-		<div class="container">
-			<div class="from-group col-md-2 col-md-offset-5">
-				<!-- 	bouton creer compte sorti du form ci dessus car le lien ne marchait pas, gregoyr m'a dit que ça devrai marcher...bizarre -->
-				<br> <a href="./Profil"> <input type="submit"
-					class="btn btn-primary btn-lg" value="Créer un compte"></a>
-			</div>
+	</div>
+
+
+		<!-- 		container pour creer compte, toujours pareil ça ne fmarche pas dans le form -->
+
+		<div class="from-group col-md-2 col-md-offset-5">
+			<!-- 	bouton creer compte sorti du form ci dessus car le lien ne marchait pas, gregoyr m'a dit que ça devrai marcher...bizarre -->
+			<br> <a href="./Profil"> <input type="submit"
+				class="btn btn-primary btn-lg" value="Créer un compte"></a>
 		</div>
 
 
