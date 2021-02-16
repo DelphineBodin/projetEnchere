@@ -20,7 +20,7 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 %>
 	<a href="">Enchères</a>
 	<a href="./VendreArticle">Vendre un Article</a>
-	<a href="./MonProfil">Mon profil</a>
+	<a href="./AfficherProfil">Mon profil</a>
 	<a href="./seDeconnecter">Déconnexion</a>
 	
 	<h1>Liste des enchères mes ventes.jsp</h1>

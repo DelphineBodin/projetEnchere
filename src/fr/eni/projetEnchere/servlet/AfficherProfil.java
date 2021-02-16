@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name ="MonProfil",
-value = {"/MonProfil"})
-public class MonProfil extends HttpServlet {
+value = {"/AfficherProfil"})
+public class AfficherProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
-    public MonProfil() {
+    public AfficherProfil() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/monprofil.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/afficherprofil.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
