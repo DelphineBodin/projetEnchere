@@ -2,6 +2,8 @@ package fr.eni.projetEnchere.dal;
 
 import fr.eni.projetEnchere.dal.jdbc.ArticleDAOImpl;
 import fr.eni.projetEnchere.dal.jdbc.CategorieDAOImpl;
+import fr.eni.projetEnchere.dal.jdbc.RetraitDAO;
+import fr.eni.projetEnchere.dal.jdbc.RetraitDAOImpl;
 import fr.eni.projetEnchere.dal.jdbc.UtilisateurDAOImpl;
 
 public abstract class FactoryDAO {
@@ -18,5 +20,7 @@ public static UtilisateurDAO getUtilisateurDAO() {
 public static CategorieDAO getCategorieDAO() {
 	return new CategorieDAOImpl();
 }
-
+public static RetraitDAO getRetraitDAO() {
+	return new RetraitDAOImpl();
+}
 }

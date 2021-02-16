@@ -4,8 +4,11 @@ package fr.eni.projetEnchere.servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import fr.eni.projetEnchere.bll.AnnuaireArticleManager;
 import fr.eni.projetEnchere.bll.BLLException;
 import fr.eni.projetEnchere.bll.CategorieManager;
+import fr.eni.projetEnchere.bll.RetraitManager;
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
+import fr.eni.projetEnchere.bo.Retrait;
 import fr.eni.projetEnchere.bo.Utilisateur;
 
 
@@ -59,21 +66,32 @@ public class PageVendreArticle extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Categorie categorie=null;
 		ArticleVendu article=null;
-		String nomProduit,description;
+		String nomProduit="";
+		String description="";
 		LocalDate dateDebut=null;
 		LocalDate dateFin=null;
+		LocalTime heureDebut =null;
+		LocalTime heureFin=null;
 		int idcategorie;
 		int miseAPrix=0;
-		StringBuilder message = new StringBuilder();
+		StringBuilder message = new StringBuilder("L'enregistrement de cette vente à échoué : \n");
+		RetraitManager retraitManager= RetraitManager.getInstance();
+		boolean ok = true;
 		// Récupération du nom de l'article
-		nomProduit=request.getParameter("sarticle");
-		if(nomProduit==null || nomProduit.trim().isEmpty()) {
-			message.append("Le nom du produit est obligatoire <br>");
+		if(request.getParameter("sarticle")!=null) {
+			nomProduit=request.getParameter("sarticle");
+			if(nomProduit==null || nomProduit.trim().isEmpty()) {
+			message.append("Le nom du produit est obligatoire. \n");
+			ok=false;
+		}	
 		}
 		// Récupération de la description
-		description=request.getParameter("sdescription");
-		if(description==null || description.trim().isEmpty()) {
-			message.append("La description du produit est obligatoire <br>");
+		if(request.getParameter("sdescription")!=null) {		
+			description=request.getParameter("sdescription");
+			if(description==null || description.trim().isEmpty()) {
+			message.append("La description du produit est obligatoire. \n");
+			ok=false;
+		}
 		}
 		// Récupération de l'id catégorie
 		idcategorie=Integer.parseInt(request.getParameter("scategorie"));
@@ -81,25 +99,88 @@ public class PageVendreArticle extends HttpServlet {
 		try {
 			miseAPrix=Integer.parseInt(request.getParameter("sprix"));
 		} catch (NumberFormatException e) {
-			message.append("Veuillez saisir un chiffre");
+			message.append("Un chiffre doit être saisi dans Mise à Prix. \n");
+			ok=false;
 		}
 		// Récupération des dates
-		dateDebut=LocalDate.parse(request.getParameter("sdateDebut"));
-		dateFin=LocalDate.parse(request.getParameter("sdateFin"));
+		if(!request.getParameter("sdateDebut").trim().isEmpty()) {
+			dateDebut=LocalDate.parse(request.getParameter("sdateDebut"));
+		}else {
+			ok=false;
+			message.append("Une date de début d'enchère doit être saisie. \n");
+		}
+		if(!request.getParameter("sdateFin").trim().isEmpty()) {
+			dateFin=LocalDate.parse(request.getParameter("sdateFin"));
+		}else {
+			ok=false;
+			message.append("Une date de fin d'enchère doit être saisie. \n");
+		}
+		if(!request.getParameter("sheureFin").trim().isEmpty()) {
+			heureDebut=LocalTime.parse(request.getParameter("sheureDebut"));
+		}else {
+			ok=false;
+			message.append("Une heure de début d'enchère doit être saisie. \n");
+		}
+		if(!request.getParameter("sheureFin").trim().isEmpty()) {
+			heureFin=LocalTime.parse(request.getParameter("sheureFin"));
+		}else {
+			ok=false;
+			message.append("Une heure de fin d'enchère doit être saisie. \n");
+		}
 		// Récupére la catégorie
 		try {
 			categorie=cat.getCategorieParId(idcategorie);
 		} catch (BLLException e) {
+			ok=false;
 			message.append("Pb récupération catégorie"+e.getMessage());
 		}
-		a=a.getInstance();
-		article=new ArticleVendu(nomProduit, description, dateDebut, dateFin, miseAPrix, categorie);
+		// Gestion du lieu de Retrait
+		Retrait r = null;
+		// Récupération du lieu de retrait par défaut
+		String rueDefaut = u.getRue();
+		String codeDefaut = u.getCodePostal();
+		String villeDefaut = u.getVille();
+		// Récupération des infos saisies dans le formulaire
+		String rueFormulaire=request.getParameter("srue");
+		String codeFormulaire=request.getParameter("scodePostal");
+		String villeFormulaire=request.getParameter("sville");
+		// Création du lieu de Retrait
+		if(!rueDefaut.equals(rueFormulaire)||!codeDefaut.equals(codeFormulaire)||!villeDefaut.equals(villeFormulaire)) {
+			if(rueFormulaire.trim().isEmpty()) {
+				rueFormulaire=rueDefaut;
+			}
+			if(codeFormulaire.trim().isEmpty()) {
+				codeFormulaire=codeDefaut;
+			}
+			if(villeFormulaire.trim().isEmpty()) {
+				villeFormulaire=villeDefaut;
+			}
 		try {
-			a.nouvelleVente(article, u, categorie, null);
+				retraitManager.ajouterRetrait(new Retrait(rueFormulaire,villeFormulaire,codeFormulaire));
+			} catch (BLLException e) {
+				message.append(e.getMessage());
+			}
+		}
+		if(ok==true) {
+		a=AnnuaireArticleManager.getInstance();
+		article=new ArticleVendu(nomProduit, description, dateDebut,heureDebut, dateFin,heureFin, miseAPrix, categorie);
+		try {
+			a.nouvelleVente(article, u, categorie, r);
 		} catch (BLLException e) {
 			message.append("Pb création Article Vendu"+e.getMessage());
+			ok=false;
 		}
-	System.out.println(message.toString());
+		}
+		RequestDispatcher disp=null;
+		if(ok==true) {
+			disp = request.getRequestDispatcher("./MesVentes");
+		}else {
+			request.setAttribute("messageErreur", message.toString());
+			disp = request.getRequestDispatcher("/WEB-INF/jsp/pagevendrearticle.jsp");
+		}
+		disp.forward(request, response);	
+		
+	
 	}
 
 }

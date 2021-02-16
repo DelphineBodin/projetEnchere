@@ -4,7 +4,7 @@ package fr.eni.projetEnchere.bll;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
+
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
@@ -72,15 +72,11 @@ public class AnnuaireArticleManager {
 			venteValide=false;
 		}
 		long nbdejours = ChronoUnit.DAYS.between(article.getDateDebutEncheres(),article.getDateFinEncheres());
-		System.out.println(nbdejours);
 		if(nbdejours>45) {
 			messageErreur.append("La date de fin d'enchère doit être dans les 45 jours après la date de début d'enchère\n");
 			venteValide=false;
 		}
-		System.out.println(nbdejours);
-		// A voir ?
-		// par défaut le champs retrait affichera l'adresse de l'utilisateur. Si un champs est modifié
-		// on crééra un nouveau lieu de retrait// les 3 champs doivent impérativement être rempli
+		
 		if(!venteValide) {
 			throw new BLLException(messageErreur.toString());
 		}

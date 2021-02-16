@@ -1,6 +1,7 @@
 package fr.eni.projetEnchere.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,17 +17,18 @@ import fr.eni.projetEnchere.dal.DALException;
 
 public class ArticleDAOImpl implements ArticleDAO {
 
-	private static final String INSERT="INSERT into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_Retrait) values(?,?,?,?,?,?,?,?)";
+	private static final String INSERT="INSERT into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_Retrait,heure_debut_encheres,heure_fin_encheres) values(?,?,?,?,?,?,?,?,?,?)";
 	
 	
 	@Override
 	public void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException {
+		
+		
 		if(a==null) {
 			throw new DALException("Pas d'Articles en parametre");
 		}
 		Connection cnx = ConnexionProvider.seConnecter();
 		try {
-			// desactivation de l'auto commit
 			// Création de la requête paramétrée et "insertion" des paramètres dans la requête
 			PreparedStatement pstatement=cnx.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			pstatement.setString(1, a.getNomArticle());
@@ -41,6 +43,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}else {
 				pstatement.setNull(8, Types.INTEGER);
 			}
+			pstatement.setTime(9, java.sql.Time.valueOf(a.getHeureDebutEnchere()));
+			pstatement.setTime(10, java.sql.Time.valueOf(a.getHeureFinEnchere()));
 			// Exécution de la requête
 			pstatement.executeUpdate();
 			//récupération de la valeur de identity pour noArticle

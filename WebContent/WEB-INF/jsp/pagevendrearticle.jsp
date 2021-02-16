@@ -106,14 +106,20 @@ String codePostal = "";
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Début de l'enchere</label>
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<input type="date" class="form-control" name="sdateDebut">
+					</div>
+					<div class="col-sm-3">
+						<input type="time" class="form-control" name="sheureDebut">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Fin de l'enchere</label>
-					<div class="col-sm-6">
+					<div class="col-sm-3">
 						<input class="form-control" id="date" name="sdateFin" type="date">
+					</div>
+					<div class="col-sm-3">
+						<input class="form-control" id="date" name="sheureFin" type="time">
 					</div>
 				</div>
 				<fieldset class="scheduler-border">
@@ -133,13 +139,13 @@ String codePostal = "";
 					<div class="form-group">
 						<label class="control-label col-sm-2">Ville</label>
 						<div class="col-sm-6">
-							<input type="text" name="sarticle" class="form-control" placeholder="<%=ville%>">
+							<input type="text" name="sville" class="form-control" placeholder="<%=ville%>">
 						</div>
 					</div>
 				</fieldset>
 				<br> <input type="submit" value="Enregistrer"class="btn btn-primary"> </form>
 				<a href="./MesVentes"><input type="submit" class="btn btn-primary" value="Annuler"></a>
-			
+			<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
 		</div>
 	</div>
 

@@ -21,7 +21,12 @@ public class Retrait {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
-
+	// Constructeur
+	public Retrait(String rue, String codePostal, String ville) {
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
 
 	// Assesseurs et mutateurs :
 	

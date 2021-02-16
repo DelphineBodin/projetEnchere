@@ -1,6 +1,8 @@
 package fr.eni.projetEnchere.bo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,9 @@ public class ArticleVendu {
 	private String nomArticle;
 	private String description;
 	private LocalDate dateDebutEncheres;
-	private LocalDate dateFinEncheres;
+	private LocalTime heureDebutEnchere;
+	private LocalDate dateFinEncheres;	
+	private LocalTime heureFinEnchere;
 	private int miseAPrix;
 	private int prixVente;
 	// Type à valider avec Gregory (enchères non débuté, enchère en cours, enchère cloturé ???)
@@ -21,15 +25,18 @@ public class ArticleVendu {
 	private List<Enchere> listeEncheres;
 
 
+
 	// si le lieu de retrait est l'adresse de l'utilisateur (vendeur), valeur = null
 
 	// constructeur avec les parametres suivants :  nomArticle, description, dateDebutEncheres,dateFinEncheres,  miseAPrix,  Categorie 
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix,  Categorie categorie) {
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,LocalTime heureDebutEnchere,
+			LocalDate dateFinEncheres,LocalTime heureFinEnchere, int miseAPrix,  Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
+		this.heureDebutEnchere=heureDebutEnchere;
 		this.dateFinEncheres = dateFinEncheres;
+		this.heureFinEnchere=heureFinEnchere;
 		this.miseAPrix = miseAPrix;
 		this.categorie = categorie;
 	}
@@ -42,13 +49,15 @@ public class ArticleVendu {
 
 
 	// constructeur (sans prix de vente et mise à prix = DON)
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, EtatVente etatVente, Retrait retrait, Categorie categorie) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,LocalTime heureDebutEnchere,
+			LocalDate dateFinEncheres,LocalTime heureFinEnchere, EtatVente etatVente, Retrait retrait, Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
+		this.heureDebutEnchere=heureDebutEnchere;
 		this.dateFinEncheres = dateFinEncheres;
+		this.heureFinEnchere=heureFinEnchere;
 		this.etatVente = etatVente;
 		this.lieuRetrait = retrait;
 		this.categorie = categorie;
@@ -61,7 +70,6 @@ public class ArticleVendu {
 	public int getNoArticle() {
 		return noArticle;
 	}
-
 
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
@@ -150,6 +158,26 @@ public class ArticleVendu {
 
 	public void setListeEncheres(List<Enchere> listeEncheres) {
 		this.listeEncheres = listeEncheres;
+	}
+
+
+	public LocalTime getHeureDebutEnchere() {
+		return heureDebutEnchere;
+	}
+
+
+	public void setHeureDebutEnchere(LocalTime heureDebutEnchere) {
+		this.heureDebutEnchere = heureDebutEnchere;
+	}
+
+
+	public LocalTime getHeureFinEnchere() {
+		return heureFinEnchere;
+	}
+
+
+	public void setHeureFinEnchere(LocalTime heureFinEnchere) {
+		this.heureFinEnchere = heureFinEnchere;
 	}
 
 
