@@ -77,7 +77,7 @@
 			<br>
 			<input type="submit" class="btn btn-primary" value="Enregistrer">	
 		</form>		
-		<a href="/servlet/ServletDemarrage"><input type="submit" class="btn btn-primary" value="Annuler"></a>
+		<a href="./ListesDesEncheres"><input type="submit" class="btn btn-primary" value="Annuler"></a>
 		<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
 	</div>
 </div>

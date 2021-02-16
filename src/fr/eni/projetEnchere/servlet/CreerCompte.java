@@ -57,7 +57,7 @@ public class CreerCompte extends HttpServlet {
 		HttpSession maSession = null;
 		RequestDispatcher dispatcher = null;
 		//Création de l'utilisateur
-		Utilisateur u = new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100);
+		//Utilisateur u = new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100);
 		
 		//Test de la validité des champs de saisie:
 	//		boolean testInscription = false;
@@ -70,42 +70,53 @@ public class CreerCompte extends HttpServlet {
 	//		}
 	//		System.out.println(testInscription);	
 		
-		boolean testInscription = false;
+		//boolean testInscription = false;
 		boolean testPassword = false;
 		//Test de la validité des champs de saisie:
-		try {
-			testInscription = annuaire.validerInscription(u);
-			System.out.println(testInscription);
+		//try {
+		//	testInscription = annuaire.validerInscription(u);
+		//	System.out.println(testInscription);
 			//Test de la confirmation du mot de passe
 			if(password.equals(passwordConfirm)) {
 				testPassword = true;
-				System.out.println("Confirmation mot de passe identique");
+			//	System.out.println("Confirmation mot de passe identique");
 			} else {
 				testPassword = false;
 				messageError.append("Les mots de passes ne sont pas identiques");
-				System.out.println("Les mots de passes ne sont pas identiques");
-				if(testPassword == false) {
-					request.setAttribute("messageErreur", messageError.toString());
-					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
-				}
+			//	System.out.println("Les mots de passes ne sont pas identiques");
+			//	if(testPassword == false) {
+			//		request.setAttribute("messageErreur", messageError.toString());
+			//		dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
+			//	}
 			}
-			
+			if(testPassword==true) {
 			//Création de l'inscription
 			try {
-				annuaire.nouvelleInscription(u);
+				annuaire.nouvelleInscription(new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
 				// Création d'une session
-				maSession = request.getSession();
-				maSession.setAttribute("utilisateurConnecte", new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
+				//maSession = request.getSession();
+				//maSession.setAttribute("utilisateurConnecte", new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
 				// Redirection vers la page...
-				dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesachats.jsp");
+				//dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesachats.jsp");
 			} catch (BLLException e1) {
+				testPassword=false;
 				messageError.append(e1.getMessage());
 			}
-		} catch (BLLException e1) {
-			testInscription = false;
-			testPassword = false;
-			messageError.append(e1.getMessage());
+		//} catch (BLLException e1) {
+			//testInscription = false;
+			//testPassword = false;
+		//	messageError.append(e1.getMessage());
 		}
+		if(testPassword==true) {
+			maSession = request.getSession();
+			maSession.setAttribute("utilisateurConnecte", new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
+			//Redirection vers la page...
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesachats.jsp");
+		}else {
+			request.setAttribute("messageErreur", messageError.toString());
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/creercompte.jsp");
+		}
+				
 		dispatcher.forward(request, response);	
 	}
 }
