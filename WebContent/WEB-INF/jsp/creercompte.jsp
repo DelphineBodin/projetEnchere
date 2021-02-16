@@ -20,7 +20,7 @@
 <div class="container">
 	<div class="row">
 		<h1>Mon profil</h1>
-		<form method="post" action="Profil">
+		<form method="post" action="./Profil">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="pseudo">Pseudo :</label>
@@ -75,15 +75,10 @@
 				</div>
 			</div>
 			<br>
-			<input type="submit" class="btn btn-primary" value="Enregistrer">
-			
-			<a href="/servlet/ServletDemarrage">
-	  			<input type="submit" class="btn btn-primary" value="Annuler">
-	  		</a>
-			  
+			<input type="submit" class="btn btn-primary" value="Enregistrer">	
 		</form>		
-			
-
+		<a href="/servlet/ServletDemarrage"><input type="submit" class="btn btn-primary" value="Annuler"></a>
+		<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
 	</div>
 </div>
 
