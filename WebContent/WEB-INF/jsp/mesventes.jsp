@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
-
+<%@ include file="../fragments/header.jspf" %>
 <title>Liste des enchères</title>
 </head>
 <body>

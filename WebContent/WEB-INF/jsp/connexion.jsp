@@ -8,6 +8,7 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
+<%@ include file="../fragments/header.jspf" %>
 <title>Connexion Utilisateur</title>
 </head>
 <body>
