@@ -89,22 +89,22 @@ public class AnnuaireUtilisateurManager {
 		}
 		// Est ce que le pseudo Existe déjà ?
 		
-		if(getUtilisateur(u.getPseudo())==null) {
-				messageErreur.append("Un utilisateur a déjà cet email. Merci d'en renseigner un autre. \n");
-				inscriptionValide=false;
-			}
+//		if(getUtilisateur(u.getPseudo())==null) {
+//			messageErreur.append("Un utilisateur a déjà ce pseudo. Merci d'en renseigner un autre. \n");
+//			inscriptionValide=false;
+//		}
 		
 		//Est ce que le pseudo contient des caracteres alphanumeric a-z A-Z 0-9?
 		
-		if(!u.getPseudo().matches("[A-Za-z0-9]")) {
-			inscriptionValide=false;
-			messageErreur.append("Le pseudo nécessite un code alphnumerique \n");
-		}
+//		if(!u.getPseudo().matches("[A-Za-z0-9]")) {
+//			messageErreur.append("Le pseudo nécessite un code alphnumerique \n");
+//			inscriptionValide=false;
+//		}
 		
 		// Est ce que le pseudo Existe déjà ?
 		try {
 			if(daoUtilisateur.selectByPseudo(u.getPseudo())!=null) {
-				messageErreur.append("Un utilisateur a déjà ce pseudo. Merci d'en renseigner un autre. \n");
+				messageErreur.append("Ce pseudo est déjà utilisé, merci d'en renseigner un autre. \n");
 				inscriptionValide=false;
 			}
 		} catch (DALException e) {
@@ -112,14 +112,13 @@ public class AnnuaireUtilisateurManager {
 		}
 		//==========>>>>>Pas de contrainte de renseignement sur : 
 		//==========>>>>>crédit, administrateur et article vendu
-		
 		if(!inscriptionValide) {
 			throw new BLLException(messageErreur.toString());
 		}
 		return inscriptionValide;
 	}
 
-	// méthode créer une nouvelle inscription si elle est valide
+	// Méthode pour créer une nouvelle inscription si elle est valide
 	public void nouvelleInscription(Utilisateur u) throws BLLException{
 		validerInscription(u);
 		try {
@@ -136,16 +135,13 @@ public class AnnuaireUtilisateurManager {
 			u = dao.selectByPseudo(pseudo);
 		} catch (DALException e) {
 			throw new BLLException(e.getMessage());
-			
 		}
 		return u;
 	}
 
-	/**
-	 * Méthode qui permet ou non de se connecter et d'entrer en session 
-	 * * @return Utilisatateur (si on ne peut se connecter il sera nul
-	 * @throws BLLException 
-	 */
+	//Méthode qui permet ou non de se connecter et d'entrer en session 
+		// Utilisateur (si on ne peut se connecter il sera nul
+
 	public Utilisateur testConnexion(String pseudo, String motDePasse) throws BLLException {
 		Utilisateur u = null;
 		boolean res = true;
@@ -177,28 +173,27 @@ public class AnnuaireUtilisateurManager {
 			throw new BLLException(sb.toString());
 		}
 		return u;
-
 	}
 
-	
-
-	//	//Mise à jour des données d'un utilisateur à notre application
-	//	public void uptdateUtilsateur(Utilisateur u) throws BLLException {
-	//		try {
-	//			this.daoUtilisateur.update(u);
-	//		} catch (DALException e) {
-	//			throw new BLLException("Echec mise à jour utilisateur", e);
-	//		} 
-	//	}
-	//	
-	//	// Suppression d'un utilisateur dans notre application
-	//	public void removeUtilsateur(int noUtilisateur) throws BLLException {
-	//		try {
-	//			this.daoUtilisateur.delete(noUtilisateur);
-	//		} catch (DALException e) {
-	//			throw new BLLException("Echec de la suppression de l'utilisateur", e);
-	//		} 
-	//	}
+	// Méthode pour mettre à jour des données d'un utilisateur à notre application
+	public void updateUtilisateur(Utilisateur u) throws BLLException {
+		validerInscription(u);
+		try {
+			// Méthode préciser = celle de la DAL
+			this.daoUtilisateur.upUtilisateur(u);
+		} catch (DALException e) {
+			throw new BLLException("Echec de la mise à jour du profil utilisateur", e);
+		} 
+	}
+		
+//		// Suppression d'un utilisateur dans notre application
+//		public void removeUtilsateur(int noUtilisateur) throws BLLException {
+//			try {
+//				this.daoUtilisateur.delete(noUtilisateur);
+//			} catch (DALException e) {
+//				throw new BLLException("Echec de la suppression de l'utilisateur", e);
+//			} 
+//		}
 
 	// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ // BASE A VERIFIER = PAS SUR
 

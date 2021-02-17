@@ -20,57 +20,57 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="pseudo">Pseudo : </label>
-						<input type="text" name="pseudo" class="form-control" required>
+						<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.pseudo}"required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nom">Nom : </label>
-						<input type="text" name="nom" class="form-control" required>
+						<input type="text" name="nom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.nom}" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" class="form-control" required>
+						<input type="text" name="prenom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.prenom}" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="email">Email : </label>
-						<input type="email" name="email" class="form-control" size="20" maxlength="20" required>
+						<input type="email" name="email" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.email}" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="tel">Teléphone :</label>
-						<input type="text" name="tel" class="form-control" required>
+						<input type="text" name="tel" class="form-control" size="10" maxlength="10" placeholder="${utilisateurConnecte.telephone}" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="rue">Rue :</label>
-						<input type="text" name="rue" class="form-control" required>
+						<input type="text" name="rue" class="form-control" size="50" maxlength="50"placeholder="${utilisateurConnecte.rue}" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="codePostal">Code postal :</label>
-						<input type="text" name="codePostal" class="form-control" required>
+						<input type="text" name="codePostal" class="form-control" size="5" maxlength="5" placeholder="${utilisateurConnecte.codePostal}" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="ville">Ville :</label>
-						<input type="text" name="ville" class="form-control" required>
+						<input type="text" name="ville" class="form-control" placeholder="${utilisateurConnecte.ville}"required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="password">Mot de passe actuel :</label>
-						<input type="password" name="password" class="form-control" required>
+						<input type="password" name="password" class="form-control" placeholder="xxxxxxxxxxxxx" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="passwordNew">Nouveau mot de passe :</label>
-						<input type="password" name="passwordNew" class="form-control" required>
+						<input type="password" name="passwordNew" class="form-control" placeholder="xxxxxxxxxxxxx" required>
 					</div>
 					<div class="form-group col-md-6">
 				  		<label for="passwordNewConfirm">Confirmation :</label>
-						<input type="password" name="passwordNewConfirm" class="form-control" required>
+						<input type="password" name="passwordNewConfirm" class="form-control" placeholder="xxxxxxxxxxxxx" required>
 					</div>
 				</div>
 				<div class="form-row">

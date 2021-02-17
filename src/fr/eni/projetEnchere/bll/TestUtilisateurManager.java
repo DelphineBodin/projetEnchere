@@ -19,10 +19,17 @@ public class TestUtilisateurManager extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AnnuaireUtilisateurManager annuaire = AnnuaireUtilisateurManager.getInstance();
-		Utilisateur u1 = new Utilisateur("","","","","","", "","","",0);
+//		Utilisateur u1 = new Utilisateur("","","","","","", "","","",0);
+//		try {
+//			System.out.println(annuaire.validerInscription(u1));
+//			annuaire.nouvelleInscription(u1);
+//		} catch (BLLException e) {
+//			System.out.println(e.getMessage());
+//		}
+		
+		Utilisateur u = new Utilisateur(12, "jp", "jean-pierre", "papin", "jpp44@orange.fr", "060606", "4", "440000", "nantes", "000");
 		try {
-			System.out.println(annuaire.validerInscription(u1));
-			annuaire.nouvelleInscription(u1);
+			annuaire.updateUtilisateur(u);
 		} catch (BLLException e) {
 			System.out.println(e.getMessage());
 		}
