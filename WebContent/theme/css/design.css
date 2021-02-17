@@ -1,5 +1,43 @@
 @charset "ISO-8859-1";
 
+
+button {
+	min-width: 250px;
+	padding-top : 25px;
+	padding-bottom : 25px;
+	margin : 10px;
+}
+
+
+input {
+	min-width: 250px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
 h1 {
 	text-align: center !important;
+		padding-top : 20px;
+		padding-bottom : 50px;
+}
+
+label {
+	min-width: 120px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+
+table {
+	margin-top: 200px;
+	margin-bottom: 50px;
+	padding: 30px;
+	font-weight: 20;
+	font-size : 18px;
+	min-height: 400px;
+	min-width: 300px
+}
+
+tr{
+	margin : 25px
 }
