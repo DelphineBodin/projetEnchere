@@ -3,7 +3,7 @@ package fr.eni.projetEnchere.bll;
 import fr.eni.projetEnchere.bo.Retrait;
 import fr.eni.projetEnchere.dal.DALException;
 import fr.eni.projetEnchere.dal.FactoryDAO;
-import fr.eni.projetEnchere.dal.jdbc.RetraitDAO;
+import fr.eni.projetEnchere.dal.RetraitDAO;
 
 public class RetraitManager {
 

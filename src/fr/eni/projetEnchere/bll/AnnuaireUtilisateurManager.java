@@ -1,5 +1,7 @@
 package fr.eni.projetEnchere.bll;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.DALException;
 import fr.eni.projetEnchere.dal.FactoryDAO;
@@ -82,9 +84,24 @@ public class AnnuaireUtilisateurManager {
 		}
 
 		if(u.getMotDePasse()==null || u.getMotDePasse().trim().isEmpty()) {
-			messageErreur.append("Le mot de passe est obligatoire et ne doit pas comporter d'espace\n");
+			messageErreur.append("Le mot de passe est obligatoire et ne doit pas comporter d'espace. \n");
 			messageErreur.append("\n");
 			inscriptionValide = false;
+		}
+		// Est ce que le pseudo Existe déjà ?
+		
+		if(getUtilisateur(u.getPseudo())==null) {
+				messageErreur.append("Un utilisateur a déjà cet email. Merci d'en renseigner un autre. \n");
+				inscriptionValide=false;
+			}
+		// Est ce que le pseudo Existe déjà ?
+		try {
+			if(daoUtilisateur.selectByPseudo(u.getPseudo())!=null) {
+				messageErreur.append("Un utilisateur a déjà ce pseudo. Merci d'en renseigner un autre. \n");
+				inscriptionValide=false;
+			}
+		} catch (DALException e) {
+			throw new BLLException("Pb pseudo "+ e.getMessage());
 		}
 		//==========>>>>>Pas de contrainte de renseignement sur : 
 		//==========>>>>>crédit, administrateur et article vendu
@@ -104,6 +121,17 @@ public class AnnuaireUtilisateurManager {
 		} catch (DALException e){
 			throw new BLLException("Echec inscription utilisateur", e);
 		}
+	}
+	public Utilisateur getUtilisateur(String pseudo) throws BLLException {
+		UtilisateurDAO dao = new UtilisateurDAOImpl();
+		Utilisateur u= null;
+		try {
+			u = dao.selectByPseudo(pseudo);
+		} catch (DALException e) {
+			throw new BLLException(e.getMessage());
+			
+		}
+		return u;
 	}
 
 	//	//Mise à jour des données d'un utilisateur à notre application
@@ -126,63 +154,12 @@ public class AnnuaireUtilisateurManager {
 
 	// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ // BASE A VERIFIER = PAS SUR
 
-	// Lecture d'un utilisateur depuis son identifiant
-
-	//	public boolean validerConnexion(Utilisateur u1) throws BLLException {
-	//
-	//		StringBuilder messageErreur = new StringBuilder();
-	//		boolean pseudo = true;
-	//
-	//
-	//		// L'utilisateur doit avoir un pseudo qui existe
-	//		if(u1.getPseudo()==null || u1.getPseudo().trim().isEmpty()) {
-	//			messageErreur.append("Pseudo inexistant\n");
-	//
-	//
-	//
-	//			return this.daoUtilisateur.selectByPseudo(pseudo);
-	//		}
-	//
-	//	}
 
 
-	public Utilisateur getUtilisateur(String pseudo) throws BLLException {
-		// Delphine : modification de la gestion du message erreur 
-		//StringBuilder messageErreur = new StringBuilder();
-		UtilisateurDAO dao = new UtilisateurDAOImpl();
-		Utilisateur u= null;
-		try {
-			u = dao.selectByPseudo(pseudo);
-		} catch (DALException e) {
-			throw new BLLException(e.getMessage());
-			//messageErreur.append("Pas de pseudo\n");
-		}
-		return u;
-		//equivalent a return dao.selectByPseudo(pseudo);
-	}
+	
 	
 	
 }
 
-
-
-
-
-
-// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ //
-//	
-//	//Méthode permettant d'acceder à l'ensemble des utilisateurs de l'application
-//	public List<Utilisateur> getCatalogue() throws BLLException{
-//		List<Utilisateur> listeUtilisateur;
-//		try {
-//			listeUtilisateur = this.daoUtilisateur.selectAll();
-//		} catch (DALException e) {
-//			throw new BLLException("Erreur lors de la récupération du catalogue", e);
-//		}
-//		return listeUtilisateur;
-//	}
-//		
-//		//Pas de contrainte de renseignement sur : crédit, administrateur et article vendu
-//	}
 
 

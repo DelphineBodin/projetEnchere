@@ -27,10 +27,11 @@ public class ArticleDAOImpl implements ArticleDAO {
 		if(a==null) {
 			throw new DALException("Pas d'Articles en parametre");
 		}
+		PreparedStatement pstatement=null;
 		Connection cnx = ConnexionProvider.seConnecter();
 		try {
 			// Création de la requête paramétrée et "insertion" des paramètres dans la requête
-			PreparedStatement pstatement=cnx.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
+			pstatement=cnx.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			pstatement.setString(1, a.getNomArticle());
 			pstatement.setString(2, a.getDescription());
 			pstatement.setDate(3, java.sql.Date.valueOf(a.getDateDebutEncheres()));
@@ -55,15 +56,16 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}
 			// fermeture de resultset et du prepareStatement
 			rs.close();
-			pstatement.close();
+			
 			} catch (SQLException e) {
 			throw new DALException(e.getMessage());
 		}finally {
-			try {
-				cnx.close();
-			} catch (SQLException e) {
-				throw new DALException(e.getMessage());
-			}//Fin du catch
+			ConnexionProvider.seDeconnecter(pstatement,cnx);
+//			try {
+//				cnx.close();
+//			} catch (SQLException e) {
+//				throw new DALException(e.getMessage());
+//			}//Fin du catch
 		}// Fin du finally
 	}
 

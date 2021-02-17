@@ -65,8 +65,6 @@ public class PageVendreArticle extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Categorie categorie=null;
 		ArticleVendu article=null;
-		String nomProduit="";
-		String description="";
 		LocalDate dateDebut=null;
 		LocalDate dateFin=null;
 		LocalTime heureDebut =null;
@@ -76,22 +74,9 @@ public class PageVendreArticle extends HttpServlet {
 		StringBuilder message = new StringBuilder("L'enregistrement de cette vente à échoué : \n");
 		RetraitManager retraitManager= RetraitManager.getInstance();
 		boolean ok = true;
-		// Récupération du nom de l'article
-		if(request.getParameter("sarticle")!=null) {
-			nomProduit=request.getParameter("sarticle");
-			if(nomProduit==null || nomProduit.trim().isEmpty()) {
-			message.append("Le nom du produit est obligatoire. \n");
-			ok=false;
-		}	
-		}
-		// Récupération de la description
-		if(request.getParameter("sdescription")!=null) {		
-			description=request.getParameter("sdescription");
-			if(description==null || description.trim().isEmpty()) {
-			message.append("La description du produit est obligatoire. \n");
-			ok=false;
-		}
-		}
+		// Récupératon article et description
+		String nomProduit=request.getParameter("sarticle");
+		String description=request.getParameter("sdescription");
 		// Récupération de l'id catégorie
 		idcategorie=Integer.parseInt(request.getParameter("scategorie"));
 		// Récupération du prix
@@ -143,8 +128,11 @@ public class PageVendreArticle extends HttpServlet {
 		String rueFormulaire=request.getParameter("srue");
 		String codeFormulaire=request.getParameter("scodePostal");
 		String villeFormulaire=request.getParameter("sville");
-		// Création du lieu de Retrait
-		if(!rueDefaut.equals(rueFormulaire)||!codeDefaut.equals(codeFormulaire)||!villeDefaut.equals(villeFormulaire)) {
+		// Est ce que je crée un lieu de retrait
+		if(!rueFormulaire.trim().isEmpty()&
+				!codeFormulaire.trim().isEmpty()&
+				!villeFormulaire.trim().isEmpty()) {
+			// je crée un lieu de retrait
 			if(rueFormulaire.trim().isEmpty()) {
 				rueFormulaire=rueDefaut;
 			}
@@ -154,12 +142,15 @@ public class PageVendreArticle extends HttpServlet {
 			if(villeFormulaire.trim().isEmpty()) {
 				villeFormulaire=villeDefaut;
 			}
-		try {
-				retraitManager.ajouterRetrait(new Retrait(rueFormulaire,villeFormulaire,codeFormulaire));
+			r=new Retrait(rueFormulaire,villeFormulaire,codeFormulaire);
+			try {
+				retraitManager.ajouterRetrait(r);
 			} catch (BLLException e) {
 				message.append(e.getMessage());
+				ok=false;
 			}
 		}
+		// je ne crée pas de lieu de retrait r restera à null
 		if(ok==true) {
 		a=AnnuaireArticleManager.getInstance();
 		article=new ArticleVendu(nomProduit, description, dateDebut,heureDebut, dateFin,heureFin, miseAPrix, categorie);

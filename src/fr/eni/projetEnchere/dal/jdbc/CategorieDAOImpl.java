@@ -35,17 +35,11 @@ public class CategorieDAOImpl implements CategorieDAO{
 		} catch (SQLException e) {
 			throw new DALException("Pb select All categorie"+e.getMessage());
 		}finally {
-			
-			try {
-				ConnexionProvider.seDeconnecter(pstmt,cnx);
-			} catch (DALException e) {
-				throw new DALException("Pb Fermeture select All categorie"+e.getMessage());
-			}
-		
+			ConnexionProvider.seDeconnecter(pstmt,cnx);
 		}
 			return categories;	
+		}
 	
-	}
 	@Override
 	public Categorie selectByNo(int noCategorie) throws DALException {
 		Categorie cat=null;
@@ -66,20 +60,10 @@ public class CategorieDAOImpl implements CategorieDAO{
 		} catch (SQLException e) {
 			throw new DALException("erreur dans selectCategorie"+e.getMessage());
 		}finally {
-				try {
-					if(ppst!=null) {
-						ppst.close();
-					}
-					if(cnx!=null) {
-						cnx.close();
-					}
-				} catch (SQLException e) {
-					throw new DALException("erreur dans selectCategorie fermeture"+e.getMessage());
-				}
-				}//fin du finaly
+			ConnexionProvider.seDeconnecter(ppst,cnx);}
 		return cat;
+	
+	
 	}
-	
-	
 	
 }

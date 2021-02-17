@@ -41,7 +41,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 			//Exécution de la requête
 			pstmt.executeUpdate();
-	System.out.println("coucou3");
 
 			// récupération de la valeur de identity pour noUtilisateur
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -57,28 +56,40 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			throw new DALException("Erreur lors de l'ajout d'un utilisateur: " + u, e);
 		}finally {
-			try {
-				if(pstmt!=null) {
-					pstmt.close();
-				}
-				if(cnx!=null) {
-					cnx.close();
-				}
-			}catch (SQLException e) {
-				throw new DALException("Erreur lors de l'ajout d'un utilisateur: " + u);
-			}
+			ConnexionProvider.seDeconnecter(pstmt, cnx);
 		}
 	}
 
 	////////////////////////////////////////////UPDATEUTILISATEUR////////////////////////////////////////
 	@Override
-	public void upUtilisateur(Utilisateur uMiseAJour) throws DALException {
+	public boolean upUtilisateur(Utilisateur uMiseAJour) throws DALException {
+		boolean res= false;
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		cnx = ConnexionProvider.seConnecter();
 		
-		//String requeteSQL = 
-		
+		String requeteSQL ="UPDATE UTILISATEURS SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe = ? WHERE no_utilisateur=?";
+		//UPDATE UTILISATEURS SET pseudo = 'bavard',nom = 'Salmon',prenom = 'Gaek',email = '40687554',telephone ='',rue ='',code_postal ='',ville = '',mot_de_passe = 'coucou' WHERE no_utilisateur=3
+		try {
+			pstmt = cnx.prepareStatement(requeteSQL);
+			// Etape : Remplacer les ? (valoriser les parametres de la requete) 
+			pstmt.setString(1, uMiseAJour.getPseudo());
+			pstmt.setString(2, uMiseAJour.getNom());
+			pstmt.setString(3, uMiseAJour.getPrenom());
+			pstmt.setString(4, uMiseAJour.getEmail());
+			pstmt.setString(5, uMiseAJour.getTelephone());
+			pstmt.setString(6, uMiseAJour.getRue());
+			pstmt.setString(7, uMiseAJour.getCodePostal());
+			pstmt.setString(8, uMiseAJour.getVille());
+			pstmt.setString(9, uMiseAJour.getMotDePasse());
+			pstmt.setInt(10, uMiseAJour.getNoUtilisateur());
+			pstmt.executeUpdate();
+			res=true;
+		} catch (SQLException e) {
+			throw new DALException("Erreur lors de la mise à jour de l'utilisateur");
+		}
+	ConnexionProvider.seDeconnecter(pstmt,cnx);
+	return res;
 	}
 	
 	////////////////////////////////////////////SELECTBYPSEUDO////////////////////////////////////////
@@ -117,17 +128,38 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			throw new DALException("Erreur dans les parametres de l'utilisateur: " + u2, e);
 		}finally {
-			try {
-				if(pstmt!=null) {
-					pstmt.close();
-				}
-				if(cnx!=null) {
-					cnx.close();
-				}
-			}catch (SQLException e) {
-				throw new DALException("Erreur dans les parametres de l'utilisateur: " + u2);
-			}
+			ConnexionProvider.seDeconnecter(pstmt, cnx);
 		}
 		return u2;
-	}	
+	}
+
+	@Override
+	public boolean emailAlreadyExist(String email) throws DALException {
+		String emailRecup="";
+		Connection cnx=null;
+		PreparedStatement pstmt= null;
+		cnx=ConnexionProvider.seConnecter();
+		String sql="select email from Utilisateurs where email=?";
+		try {
+			pstmt= cnx.prepareStatement(sql);
+			pstmt.setString(1,email);
+			ResultSet rs= pstmt.executeQuery();
+			if(rs.next()) {
+				emailRecup=rs.getString("email");
+			}
+			rs.close();
+		} catch (SQLException e) {
+			throw new DALException("Requête emailIsExist "+ e.getMessage());
+		}finally {
+		ConnexionProvider.seDeconnecter(pstmt,cnx);
+		}
+		System.out.println(email+" "+emailRecup);
+		// Comparaison de l'email en paramètre et le l'email récupéré
+		if(emailRecup.trim().equalsIgnoreCase(email)) {
+			return true;
+		}else
+		return false;
+	}
+
+
 }

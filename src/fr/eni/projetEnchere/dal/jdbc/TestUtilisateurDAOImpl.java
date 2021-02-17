@@ -20,31 +20,39 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 //		Utilisateur u1 = new Utilisateur("Renelataupe","René","Brice","deux@laposte.net","0610203040","4 rue du soleil", "44000","Nantes","lataupe",0);
 //		UtilisateurDAO u = new UtilisateurDAOImpl();
 //		
-//		try {
-//			u.addUtilisateur(u1);
-//			System.out.println("J'ai créer un article sans retrait");
-//			} catch (DALException e) {
-//			System.out.println(e.getMessage());
-//			}
-//	}
-//
+////		try {
+////			u.addUtilisateur(u1);
+////			System.out.println("J'ai créer un article sans retrait");
+////			} catch (DALException e) {
+////			System.out.println(e.getMessage());
+////			}
+////	}
+////
+////	
 //	
-	
-	//Appel a la methode dans le doget?
-	
-	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
-	try {
-		Utilisateur u2= utilisateurdaoimpl.selectByPseudo("tSalmon");
-		System.out.println(u2);
-	} catch (DALException e) {
-		System.out.println(e.getMessage());
-	}
-}
-	
+//	//Appel a la methode dans le doget?
+//	
+//	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
+//	try {
+//		Utilisateur u2= utilisateurdaoimpl.selectByPseudo("tSalmon");
+//		System.out.println(u2);
+//	} catch (DALException e) {
+//		System.out.println(e.getMessage());
+//	}
+//}
+//	
 	
 	// =================> A TOI BRICE <============================
 	// Test selectByPseudo
 	// =================> A TOI BRICE <============================
-	
-	
+	String email="rose@orange.com";
+	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
+	try {
+		System.out.println(utilisateurdaoimpl.emailAlreadyExist(email));
+		System.out.println("emailexist");
+	} catch (DALException e) {
+		System.out.println("emailexist pas");
+	}
+
+}
 }
