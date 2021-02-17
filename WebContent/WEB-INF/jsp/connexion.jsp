@@ -14,29 +14,30 @@
 	<%
 		String messageErreur = (String) request.getAttribute("messageErreur");
 	%>
-	<div class="container">
+	<div class="container col-md-offset-4">
 		<div class="row">
-			<h1>Mon profil</h1>
-			<form method="post" action="./connexion">
-				<div class="form-group">
-					<label for="pseudo">Identifiant :</label> <input type="text" name="sidentifiant" class="form-control" required>
-					<%-- <span class="erreur">${erreurs['pseudo']}</span> --%>
+			<h1></h1>
+			<form method="post" action="./connexion" class="form-inline">
+				<div class="form-group col-md-12">
+					<label for="pseudo">Identifiant :</label> 
+					<input type="text" name="sidentifiant" class="form-control" required>
 				</div>
-				<div class="form-group">
-					<div class="form-group ">
-						<label for="password">Mot de passe :</label> <input type="password" name="smotdepasse" class="form-control"required>
+				<div class="form-group col-md-12">
+					<label for="password">Mot de passe :</label> 
+					<input type="password" name="smotdepasse" class="form-control"required>
+				</div>
+				<br>
+					<div class="form-group">
+						<button type="submit" name="ssubmit" class="btn btn-primary" value="Connexion">Connexion</button>
+						<font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
 					</div>
-				</div>
-				<button type="submit" name="ssubmit" class="btn btn-primary"
-					value="Connexion">Connexion</button>
-				<br> <font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
-
+			</form>				
 				<div class="checkbox">
 					<label><input type="checkbox" value="">Se souvenir de moi</label>
 				</div>
-				<div class="form-group"> <a href="">Mot de passe oublié</a>
+				<div class="form-group"> 
+					<a href="">Mot de passe oublié</a>
 				</div>
-			</form>
 <!-- MOT DE PASSE OUBLIE>> AHREF A METTRE A JOUR -->
 		</div>
 	</div>

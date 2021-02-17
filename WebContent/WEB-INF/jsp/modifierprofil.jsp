@@ -12,26 +12,86 @@
 </head>
 <body>
 				<!-- //////////////PAGE 8/13\\\\\\\\\\\\\\\ -->
-<p>label Pseudo</p>
-<p>label Prenom</p>
-<p>label Telephone</p>
-<p>label COde Postal</p>
-<p>label Mot De Passe actuel</p>
-<p>label nouveau Mot De Passe </p>
-
-
-<p>label Nom</p>
-<p>label Email</p>
-<p>label Rue</p>
-<p>label Ville</p>
-<p>label Confirmation</p>
-
-
-<p> affichage credit  640</p>
-
-
-<p>Button enregister</p>
-<p>Button supprimer mon compte</p>
+<div class="container">
+	<div class="row">
+		<h1>Mon profil</h1>
+		<div>
+			<form method="post" action="" class="form-inline">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="pseudo">Pseudo : </label>
+						<input type="text" name="pseudo" class="form-control" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="nom">Nom : </label>
+						<input type="text" name="nom" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="prenom">Prénom : </label>
+						<input type="text" name="prenom" class="form-control" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="email">Email : </label>
+						<input type="email" name="email" class="form-control" size="20" maxlength="20" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="tel">Teléphone :</label>
+						<input type="text" name="tel" class="form-control" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="rue">Rue :</label>
+						<input type="text" name="rue" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="codePostal">Code postal :</label>
+						<input type="text" name="codePostal" class="form-control" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="ville">Ville :</label>
+						<input type="text" name="ville" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="password">Mot de passe actuel :</label>
+						<input type="password" name="password" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="passwordNew">Nouveau mot de passe :</label>
+						<input type="password" name="passwordNew" class="form-control" required>
+					</div>
+					<div class="form-group col-md-6">
+				  		<label for="passwordNewConfirm">Confirmation :</label>
+						<input type="password" name="passwordNewConfirm" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="credit">Crédit</label>
+						${utilisateurConnecte.credit}
+					</div>
+				</div>
+				<br>
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
+					</div>
+				</div>
+			</form>
+			<a href=""><button type="submit" class="btn btn-primary">Supprimer mon compte</button></a>
+		</div>
+		<br>
+		<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
+	</div>
+</div>			
 
 
 </body>

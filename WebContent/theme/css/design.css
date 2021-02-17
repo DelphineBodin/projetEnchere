@@ -2,7 +2,7 @@
 
 
 button {
-	min-width: 250px;
+	width: auto;
 	padding-top : 25px;
 	padding-bottom : 25px;
 	margin : 10px;
@@ -10,7 +10,7 @@ button {
 
 
 input {
-	min-width: 250px;
+	min-width: 220px;
 	padding-top : 10px;
 	padding-bottom : 10px;
 }
@@ -22,7 +22,7 @@ h1 {
 }
 
 label {
-	min-width: 120px;
+	min-width: 180px;
 	padding-top : 10px;
 	padding-bottom : 10px;
 }

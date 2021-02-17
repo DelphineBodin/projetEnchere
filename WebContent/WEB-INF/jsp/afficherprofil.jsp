@@ -38,23 +38,33 @@
 			   </tr>
 			   <tr>
 			       <td>Email : </td>
-			       <td>4</td>
+			       <td>
+			       		${utilisateurConnecte.email}
+			       	</td>
 			   </tr>
 			   <tr>
 			       <td>Téléphone : </td>
-			       <td>5</td>
+			       <td>
+			       		${utilisateurConnecte.telephone}
+			       </td>
 			   </tr>
 			   <tr>
 			       <td>Rue : </td>
-			       <td>6</td>
+			       <td>
+			       		${utilisateurConnecte.rue}
+			       </td>
 			   </tr>
 			   <tr>
 			       <td>Code postal : </td>
-			       <td>7</td>
+			       <td>
+			       		${utilisateurConnecte.codePostal}
+			       </td>
 			   </tr>  
 			   <tr>
 			       <td>Ville : </td>
-			       <td>8</td>
+			       <td>
+			       		${utilisateurConnecte.ville}
+			       </td>
 			   </tr>
 			</table>
 		</div>
