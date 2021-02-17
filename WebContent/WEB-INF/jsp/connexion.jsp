@@ -6,8 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="ISO-8859-1">
-<link rel="stylesheet"
-	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
 <title>Connexion Utilisateur</title>
 </head>
@@ -35,7 +34,7 @@
 				<div class="checkbox">
 					<label><input type="checkbox" value="">Se souvenir de moi</label>
 				</div>
-				<div class="form-group"> <a href="https://example.com">Mot de passe oublié</a>
+				<div class="form-group"> <a href="">Mot de passe oublié</a>
 				</div>
 			</form>
 <!-- MOT DE PASSE OUBLIE>> AHREF A METTRE A JOUR -->
