@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+
+<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="200" height="50" alt="logoENIecole"/></a>
+		
+
+
+
+
+<!-- On ne ferme pas le body, il sera fermé dans le fragment footer -->
+<body>
+
