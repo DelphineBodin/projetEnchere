@@ -28,31 +28,28 @@
 					<input type="password" name="smotdepasse" class="form-control"required>
 				</div>
 				<br>
-					<div class="form-group">
-						<button type="submit" name="ssubmit" class="btn btn-primary" value="Connexion">Connexion</button>
-						<font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
-					</div>
-			</form>				
-				<div class="checkbox">
-					<label><input type="checkbox" value="">Se souvenir de moi</label>
+				<div class="form-group col-md-2">
+					<button type="submit" name="ssubmit" class="btn btn-primary btn-lg" value="Connexion">Connexion</button>
+					<font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
 				</div>
-				<div class="form-group"> 
+			</form>
+			<div class="form-group col-md-4">			
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+					<label>Se souvenir de moi</label>
+					<br>
+<!-- MOT DE PASSE OUBLIE>> AHREF A METTRE A JOUR -->
 					<a href="">Mot de passe oublié</a>
 				</div>
-<!-- MOT DE PASSE OUBLIE>> AHREF A METTRE A JOUR -->
+			</div>
 		</div>
+		<br>
+		<div class=boutton-creer-compte>
+			<a href="./Profil"> 
+				<input type="submit" class="btn btn-primary btn-lg" value="Créer un compte">
+			</a>
+		</div> 
 	</div>
-
-
-	<!-- 		container pour creer compte, toujours pareil ça ne fmarche pas dans le form -->
-
-	<div class="from-group col-md-2 col-md-offset-5">
-		<!-- 	bouton creer compte sorti du form ci dessus car le lien ne marchait pas, gregoyr m'a dit que ça devrai marcher...bizarre -->
-		<br> <a href="./Profil"> <input type="submit"
-			class="btn btn-primary btn-lg" value="Créer un compte"></a>
-	</div>
-
-
 	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

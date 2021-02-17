@@ -1,9 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<%@ include file="../fragments/header.jspf" %>
 <title>Modifier mon profil</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -81,7 +83,7 @@
 				</div>
 				<br>
 				<div class="form-row">
-					<div class="form-group col-md-2">
+					<div class="form-group col-md-offset-4 col-md-2">
 						<button type="submit" class="btn btn-primary">Enregistrer</button>
 					</div>
 				</div>
@@ -89,6 +91,9 @@
 			<a href=""><button type="submit" class="btn btn-primary">Supprimer mon compte</button></a>
 		</div>
 		<br>
+			<c:if test="${messageValidation!=null}">
+					<font color="green"><c:out value="${messageValidation}"/></font>
+			</c:if>
 		<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
 	</div>
 </div>			

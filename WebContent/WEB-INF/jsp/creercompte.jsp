@@ -70,7 +70,11 @@
 					</div>
 				</div>
 				<br>
-				<button type="submit" class="btn btn-primary">Créer</button>
+				<div class="form-row">
+					<div class="form-group col-md-offset-4 col-md-2">
+						<button type="submit" class="btn btn-primary">Créer</button>
+					</div>
+				</div>		
 			</form>
 			<a href="./ListesDesEncheres"><button type="submit" class="btn btn-primary">Annuler</button></a>
 		</div>

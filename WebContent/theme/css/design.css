@@ -1,9 +1,8 @@
 @charset "ISO-8859-1";
 
-
 button {
 	width: auto;
-	padding-top : 25px;
+	padding-top: 50px;
 	padding-bottom : 25px;
 	margin : 10px;
 }
@@ -11,14 +10,15 @@ button {
 
 input {
 	min-width: 250px;
+	max-width: 250px;
 	padding-top : 10px;
 	padding-bottom : 10px;
 }
 
 h1 {
-	text-align: center !important;
-		padding-top : 20px;
-		padding-bottom : 50px;
+	text-align: center;
+	padding-top : 100px;
+	padding-bottom : 50px;
 }
 
 label {
@@ -27,9 +27,8 @@ label {
 	padding-bottom : 10px;
 }
 
-
 table {
-	margin-top: 200px;
+	margin-top: 100px;
 	margin-bottom: 50px;
 	padding: 30px;
 	font-weight: 20;
@@ -40,4 +39,30 @@ table {
 
 tr{
 	margin : 25px
+}
+
+/* CLASSE */
+.boutton-creer-compte{
+	width: 100%;
+}
+
+.form-check > input {
+	min-width: 0px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+.form-check > label {
+	min-width: 0px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+
+/* .lien{ */
+/* 	width: auto; */
+/* } */
+
+.logo{
+	margin: 20px;
+	padding-left: 20px;
 }

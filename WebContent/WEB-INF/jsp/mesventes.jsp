@@ -15,11 +15,20 @@
 <title>Liste des enchères</title>
 </head>
 <body>
-
-	<a href="">Enchères</a>
-	<a href="./VendreArticle">Vendre un Article</a>
-	<a href="./AfficherProfil">Mon profil</a>
-	<a href="./seDeconnecter">Déconnexion</a>
+	<div>
+		<div class="lien">
+			<a href="">Enchères</a>
+		</div>
+		<div class="lien">
+			<a href="./VendreArticle">Vendre un Article</a>
+		</div>
+		<div class="lien">
+			<a href="./AfficherProfil">Mon profil</a>
+		</div>
+		<div class="lien">
+			<a href="./seDeconnecter">Déconnexion</a>
+		</div>	
+	</div>
 	
 	<h1>Liste des enchères mes ventes.jsp</h1>
 	<c:if test="${messageValidation!=null}">
