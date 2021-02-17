@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="fr.eni.projetEnchere.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.LocalDate"%>
@@ -19,26 +20,6 @@
 </head>
 <body>
 				<!-- //////////////PAGE 9/13\\\\\\\\\\\\\\\ -->
-	<%
-// je récupère la liste de catégorie
-List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategorie");
-String rue = "";
-String ville = "";
-String codePostal = "";
-
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateurConnecte");
-		if (u != null) {
-			rue = u.getRue();
-			codePostal=u.getCodePostal();
-			ville = u.getVille();
-			
-		}
-		
-		%>
-
-
-		
-
 	<div class="container">
 		<div class="row">
 			<h1>Nouvelle vente</h1>
@@ -64,27 +45,16 @@ String codePostal = "";
 					<label class="control-label col-sm-2" for="sel1">Categorie</label>
 					<div class="col-sm-6">
 						<select name="scategorie" class="form-control" id="sel1">
-	<%
-		if(categories==null || categories.isEmpty()){
-	%>
-							<option value="0">Aucune Catégorie</option>
-	<%
-	}else{
-	for(Categorie c :categories)
-	{
-	%>
-							<option value="<%=c.getNoCategorie()%>"><%=c.getLibelle()%></option>
-	<% 
-	}
-	}
-	%>
+							<c:forEach items="${ categories }" var="cate">
+							<option value="<c:out value="${cate.noCategorie}"/>"><c:out value="${cate.libelle}"/></option>
+   							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<br>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Photo de l'article</label>
-					<button class="btn btn-secondary">UPLOADER</button>
+					<button class="btn btn-secondary" disabled>UPLOADER</button>
 					<br>
 				</div>
 				<br>
@@ -117,26 +87,28 @@ String codePostal = "";
 					<div class="form-group">
 						<label class="control-label col-sm-2">Rue</label>
 						<div class="col-sm-6">
-							<input type="text" name="srue" class="form-control" placeholder="<%=rue%>">
+							<input type="text" name="srue" class="form-control" placeholder="${utilisateurConnecte.rue}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2">Code postal</label>
 						<div class="col-sm-6">
-							<input type="text" name="scodePostal" class="form-control" placeholder="<%=codePostal%>">
+							<input type="text" name="scodePostal" class="form-control" placeholder="${utilisateurConnecte.codePostal}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2">Ville</label>
 						<div class="col-sm-6">
-							<input type="text" name="sville" class="form-control" placeholder="<%=ville%>">
+							<input type="text" name="sville" class="form-control" placeholder="${utilisateurConnecte.ville}">
 						</div>
 					</div>
 				</fieldset>
 				<br> <input type="submit" value="Enregistrer"class="btn btn-primary"> </form>
 				<a href="./MesVentes"><input type="submit" class="btn btn-primary" value="Annuler"></a>
-			<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
-		</div>
+				<c:if test="${messageErreur!=null}">
+					<font color="red"><c:out value="${messageErreur}"/></font>
+				</c:if>
+			</div>
 	</div>
 
 

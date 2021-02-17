@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="fr.eni.projetEnchere.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@ page import="fr.eni.projetEnchere.bo.Utilisateur"%>
@@ -14,17 +15,16 @@
 <title>Liste des enchères</title>
 </head>
 <body>
-	<%
-// je récupère la liste de catégorie
-List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategorie");
-%>
+
 	<a href="">Enchères</a>
 	<a href="./VendreArticle">Vendre un Article</a>
 	<a href="./AfficherProfil">Mon profil</a>
 	<a href="./seDeconnecter">Déconnexion</a>
 	
 	<h1>Liste des enchères mes ventes.jsp</h1>
-	
+	<c:if test="${messageValidation!=null}">
+					<font color="green"><c:out value="${messageValidation}"/></font>
+	</c:if>
 	<p>Filtres</p>
 	<form method="post" action=>
 		<div class="col-sm-4">
@@ -40,20 +40,9 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 					<label class="control-label col-sm-2" for="sel1">Categorie</label>
 					<div class="col-sm-6">
 						<select name="scategorie" class="form-control" id="sel1">
-	<%
-		if(categories==null || categories.isEmpty()){
-	%>
-							<option value="0">Aucune Catégorie</option>
-	<%
-	}else{
-	for(Categorie c :categories)
-	{
-	%>
-							<option value="<%=c.getNoCategorie()%>"><%=c.getLibelle()%></option>
-	<% 
-	}
-	}
-	%>
+							<c:forEach items="${ categories }" var="cate">
+							<option value="<c:out value="${cate.noCategorie}"/>"><c:out value="${cate.libelle}"/></option>
+   							</c:forEach>
 						</select>
 					</div>
 				</div>

@@ -28,21 +28,12 @@ public class MesVentes extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		CategorieManager cat = CategorieManager.getInstance();
-		StringBuilder messageerreur = new StringBuilder();
-		try {
-			this.categories=cat.getCategories();
-		} catch (BLLException e) {
-			System.out.println(messageerreur.append("Je n'arrive pas à récupérer les Categories"));;
-			
-		}
-		
+				
 	}
 
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("listeCategorie", categories);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp").forward(request, response);
 	}
 

@@ -42,21 +42,13 @@ public class PageVendreArticle extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		cat = CategorieManager.getInstance();
-		StringBuilder messageerreur = new StringBuilder();
-		try {
-			categories=cat.getCategories();
-		} catch (BLLException e) {
-			messageerreur.append("Je n'arrive pas à récupérer les Categories");
-		}
-		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		u=(Utilisateur) session.getAttribute("utilisateurConnecte");
-		request.setAttribute("listeCategorie", categories);
+	//	request.setAttribute("listeCategorie", categories);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/pagevendrearticle.jsp").forward(request, response);
 	}
 
@@ -73,6 +65,7 @@ public class PageVendreArticle extends HttpServlet {
 		int miseAPrix=0;
 		StringBuilder message = new StringBuilder("L'enregistrement de cette vente à échoué : \n");
 		RetraitManager retraitManager= RetraitManager.getInstance();
+		cat = CategorieManager.getInstance();
 		boolean ok = true;
 		// Récupératon article et description
 		String nomProduit=request.getParameter("sarticle");
@@ -163,6 +156,8 @@ public class PageVendreArticle extends HttpServlet {
 		}
 		RequestDispatcher disp=null;
 		if(ok==true) {
+			String messageValidation="Votre article "+article.getNomArticle()+" a été enregistré";
+			request.setAttribute("messageValidation",messageValidation);
 			disp = request.getRequestDispatcher("./MesVentes");
 		}else {
 			request.setAttribute("messageErreur", message.toString());
