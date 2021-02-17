@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="fr.eni.projetEnchere.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -34,10 +35,10 @@
 					<label class="control-label col-sm-2" for="sel1">Categorie</label>
 					<div class="col-sm-6">
 						<select name="scategorie" class="form-control" id="sel1">
-							<option value="${categories[0].noCategorie}">${categories[0].libelle}</option>
-							<option value="${categories[1].noCategorie}">${categories[1].libelle}</option>
-							<option value="${categories[2].noCategorie}">${categories[2].libelle}</option>
-						</select>
+						<c:forEach items="${ categories }" var="cate">
+						<option value="<c:out value="${cate.noCategorie}"/>"><c:out value="${cate.libelle}"/></option>
+   						</c:forEach>
+					</select>
 					</div>
 				</div>
 				<br>

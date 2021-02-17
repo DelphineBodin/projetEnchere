@@ -22,11 +22,10 @@
 <input type="texte" name="filtre" placeholder="barre de recherche a mettre">
 <br><br>
 <label for="pays">categorie:</label>
-<select name="catégorie[]"  multiple>
-			<option value="0">Toutes</option>
-			<option value="fr">catégorie1</option>
-			<option value="be">catégorie2</option>
-			<option value="al">catégorie3</option>
+<select name="scategorie"  multiple>
+			<c:forEach items="${ categories }" var="cate">
+							<option value="<c:out value="${cate.noCategorie}"/>"><c:out value="${cate.libelle}"/></option>
+   							</c:forEach>
 		</select>
 
 <br>
