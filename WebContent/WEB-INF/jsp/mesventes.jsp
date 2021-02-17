@@ -28,7 +28,6 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 	<p>Filtres</p>
 	<form method="post" action=>
 		<div class="col-sm-4">
-		
 			<div class="input-group">
 				<span class="input-group-addon"><i
 					class="glyphicon glyphicon-search"></i></span> <input type="text"
@@ -59,12 +58,47 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 					</div>
 				</div>
 				<br>
+				<br>
 				
-	<p>Checkbox Mes Ventes</p>	
-	</div>
+
+
 	<input type="submit" value="Enregistrer"class="btn btn-primary"> 
 	
 	</form>
+<!-- 	j'essaie de mettre ça ds un container mais il aime pas, don j'essaie de les mettre en ligne -->
+<div class="row">
+
+	<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">Achats</label>
+</div>
+
+	<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">Mes Ventes</label>
+</div>
+
+<div class="checkbox">
+  <label><input type="checkbox" value="">encheres ouvertes</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" >mes encheres</label>
+</div>
+<div class="checkbox disabled">
+  <label><input type="checkbox" value="" >encheres remportées</label>
+</div>
+	
+<!-- 	TROUVER MOYEN DE METTRE CHECKBOX EN 2 COLONNES -->
+	<div class="checkbox">
+  <label><input type="checkbox" value="">encheres ouvertes</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" >mes encheres</label>
+</div>
+<div class="checkbox disabled">
+  <label><input type="checkbox" value="" >mes encheres remportees</label>
+</div>
+	</div>
 
 	
 
@@ -77,6 +111,9 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 		}
 		%>
 		<%=nomUtilisateur%>
+<!-- 		fermeture de div rajouté, a regarder si probleme -->
+		</div>
+	
 
 		<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
 </body>
