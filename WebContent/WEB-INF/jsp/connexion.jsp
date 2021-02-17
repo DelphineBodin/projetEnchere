@@ -6,8 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="ISO-8859-1">
-<link rel="stylesheet"
-	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"    href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
 <title>Connexion Utilisateur</title>
 </head>
