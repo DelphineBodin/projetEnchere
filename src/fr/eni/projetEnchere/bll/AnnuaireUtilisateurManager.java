@@ -1,7 +1,5 @@
 package fr.eni.projetEnchere.bll;
 
-import com.sun.java.swing.action.NewAction;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.DALException;
