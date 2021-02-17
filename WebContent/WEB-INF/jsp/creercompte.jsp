@@ -59,11 +59,11 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-7">
 						<label for="password">Mot de passe :</label>
 						<input type="password" name="password" class="form-control" required>
 					</div>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-5">
 				  		<label for="passwordConfirm">Confirmation :</label>
 						<input type="password" name="passwordConfirm" class="form-control" required>
 					</div>
