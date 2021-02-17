@@ -15,10 +15,7 @@
 </head>
 <body>
 				<!-- //////////////PAGE 1/13\\\\\\\\\\\\\\\ -->
-<%
-// je récupère la liste de catégorie
-List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategorie");
-%>
+
 	<a href="./connexion">Se connecter S'inscrire</a>
 	<h1>Liste des enchères</h1>
 	<p>Filtres</p>
@@ -37,20 +34,9 @@ List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategor
 					<label class="control-label col-sm-2" for="sel1">Categorie</label>
 					<div class="col-sm-6">
 						<select name="scategorie" class="form-control" id="sel1">
-	<%
-		if(categories==null || categories.isEmpty()){
-	%>
-							<option value="0">Aucune Catégorie</option>
-	<%
-	}else{
-	for(Categorie c :categories)
-	{
-	%>
-							<option value="<%=c.getNoCategorie()%>"><%=c.getLibelle()%></option>
-	<% 
-	}
-	}
-	%>
+							<option value="${categories[0].noCategorie}">${categories[0].libelle}</option>
+							<option value="${categories[1].noCategorie}">${categories[1].libelle}</option>
+							<option value="${categories[2].noCategorie}">${categories[2].libelle}</option>
 						</select>
 					</div>
 				</div>
