@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Vente remportée</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
+
 </head>
 <body>
+				<!-- //////////////PAGE 12/13\\\\\\\\\\\\\\\ -->
 <h1>Vous avez remporté la vente</h1>
 
 <p>titre objet a vendre</p>

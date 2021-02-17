@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Mon Profil</title>
+<title>Modifier mon profil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
 </head>
 <body>
-
+				<!-- //////////////PAGE 8/13\\\\\\\\\\\\\\\ -->
 <p>label Pseudo</p>
 <p>label Prenom</p>
 <p>label Telephone</p>

@@ -7,12 +7,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/projetEnchere/theme/css/style.css">
+
+<link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
+
 <title>Listes des encheres</title>
 </head>
 <body>
+				<!-- //////////////PAGE 1/13\\\\\\\\\\\\\\\ -->
 <%
 // je récupère la liste de catégorie
 List<Categorie> categories = (List<Categorie>)request.getAttribute("listeCategorie");
