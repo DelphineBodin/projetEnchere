@@ -36,49 +36,27 @@ public class PageConnexionUtilisateur extends HttpServlet {
 		StringBuilder message = new StringBuilder();
 		AnnuaireUtilisateurManager dao = AnnuaireUtilisateurManager.getInstance();
 		Utilisateur u = null;
-		boolean res = false;
 		//on s'assure que tomcat decodera les informations reçues avc le coade utf-8
 		request.setCharacterEncoding("UTF-8");
 		//recuperation ds parametre identifiant et vérification que le champs est rempli
 		String identifiant = request.getParameter("sidentifiant");
 		String motDePasse = request.getParameter("smotdepasse");
-		// Test si le champs pseudo n'est pas vide
-		if(identifiant==null||identifiant.trim().isEmpty()) {
-			message.append("Aucun Pseudo n'a été saisi");
-			res=false;
-		}else if (motDePasse==null||motDePasse.trim().isEmpty()) {
-				message.append("Aucun Mot de passe n'a été saisi");
-				res=false;
-		// si champs mot de passe et pseudo ne sont pas vide
-			}else {
-				try {
-					// je récupére l'utilisateur à partir du pseudo/identifiant
-					u=dao.getUtilisateur(identifiant);
-					// je vérifie que je récupère un utilisateur
-					if(u==null) {
-						res=false;
-						message.append("Le pseudo saisi n'existe pas \n");
-					// je vérifie que le mot de passe de l'utilisateur recupéré correspond à celui saisi	
-					}else 
-						if(u.getMotDePasse().equals(motDePasse)){
-							res=true;
-						}else {
-							res=false;
-							message.append("Le mot de passe est erroné \n");
-						}// Fin des test
-				} catch (BLLException e) {
-						message.append("Problème interne Serveur :"+e.getMessage());
-						res=false;
-				}//Fin du catch
-			}
+		// On va chercher la méthode dans la BLL testConnection
+		// Elle nous renvera l'utilisateur en session si connection est accordée
+		try {
+			u=dao.testConnexion(identifiant, motDePasse);
+		} catch (BLLException e) {
+			message.append(e.getMessage());
+		}
 		HttpSession maSession=null;
 		RequestDispatcher dispatcher = null;
-		if(res==true) {
+		// Si la connexion est ok l'utilisateur n'est pas nul et donc peut entrer en session
+		// Si non on recharge la page avec message erreur
+		if(u!=null) {
 			maSession = request.getSession();
 			maSession.setAttribute("utilisateurConnecte", u);	
 			dispatcher = request.getRequestDispatcher("./MesVentes");
 		}else {
-			System.out.println("page erreur");
 			request.setAttribute("messageErreur", message.toString());
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 		}

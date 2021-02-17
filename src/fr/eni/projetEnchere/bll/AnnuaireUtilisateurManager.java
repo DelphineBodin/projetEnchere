@@ -1,5 +1,6 @@
 package fr.eni.projetEnchere.bll;
 
+import com.sun.java.swing.action.NewAction;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import fr.eni.projetEnchere.bo.Utilisateur;
@@ -133,6 +134,47 @@ public class AnnuaireUtilisateurManager {
 		}
 		return u;
 	}
+
+	/**
+	 * Méthode qui permet ou non de se connecter et d'entrer en session 
+	 * * @return Utilisatateur (si on ne peut se connecter il sera nul
+	 * @throws BLLException 
+	 */
+	public Utilisateur testConnexion(String pseudo, String motDePasse) throws BLLException {
+		Utilisateur u = null;
+		boolean res = true;
+		StringBuilder sb = new StringBuilder("Vous ne pouvez pas vous connecter : \n");
+		if(pseudo==null||pseudo.trim().isEmpty()) {
+			sb.append("Aucun Pseudo n'a été saisi");			
+			res=false;
+		}else if (motDePasse==null||motDePasse.trim().isEmpty()) {
+			sb.append("Aucun Mot de passe n'a été saisi");
+			res=false;
+			// si champs mot de passe et pseudo ne sont pas vide
+		}else {			
+			// je récupére l'utilisateur à partir du pseudo/identifiant
+			u=getUtilisateur(pseudo);
+			// je vérifie que je récupère un utilisateur
+			if(u==null) {
+				res=false;
+				sb.append("Le pseudo saisi n'existe pas \n");
+				// je vérifie que le mot de passe de l'utilisateur recupéré correspond à celui saisi	
+			}else 
+				if(u.getMotDePasse().equals(motDePasse)){
+					res=true;
+				}else {
+					res=false;
+					sb.append("Le mot de passe est erroné \n");
+				}
+		}// Fin des tests
+		if(res!=true) {
+			throw new BLLException(sb.toString());
+		}
+		return u;
+
+	}
+
+	
 
 	//	//Mise à jour des données d'un utilisateur à notre application
 	//	public void uptdateUtilsateur(Utilisateur u) throws BLLException {
