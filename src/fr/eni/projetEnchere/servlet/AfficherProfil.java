@@ -22,15 +22,13 @@ public class AfficherProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Appel du manager (lien servlet <> BLL);
 		AnnuaireUtilisateurManager annuaire = AnnuaireUtilisateurManager.getInstance();
-		Utilisateur u;
 		//Verifier si session active
 		HttpSession maSession = request.getSession();
-		
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/afficherprofil.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

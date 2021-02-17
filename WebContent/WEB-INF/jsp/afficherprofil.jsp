@@ -17,18 +17,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-			<table>
+			<table>			       		
 			   <tr>
 			       <td>Pseudo : </td>
-			       <td>1-jojo44</td>
+			       <td>    		
+						${utilisateurConnecte.pseudo}
+					</td>
 			   </tr>
 			   <tr>
 			       <td>Nom : </td>
-			       <td>2</td>
+			       <td>	
+			       		${utilisateurConnecte.nom}		       
+			       </td>
 			   </tr>
 			   <tr>
 			       <td>Prénom : </td>
-			       <td>3</td>
+			       <td>
+			       		${utilisateurConnecte.prenom}
+			       </td>
 			   </tr>
 			   <tr>
 			       <td>Email : </td>
@@ -59,14 +65,7 @@
 </div>	
 
 
-		<%
- 		String pseudoUtilisateur = "";
-		Utilisateur u = (Utilisateur) session.getAttribute("utilisateurConnecte");
- 		if (u == null) {
- 			pseudoUtilisateur = u.getPseudo();
- 		}
- 		%>
-		<%=pseudoUtilisateur%>
+
 
 
 	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>

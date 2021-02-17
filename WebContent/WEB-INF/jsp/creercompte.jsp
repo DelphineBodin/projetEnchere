@@ -21,51 +21,51 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="pseudo">Pseudo : </label>
-						<input type="text" name="pseudo" class="form-control">
+						<input type="text" name="pseudo" class="form-control" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nom">Nom : </label>
-						<input type="text" name="nom" class="form-control">
+						<input type="text" name="nom" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" class="form-control">
+						<input type="text" name="prenom" class="form-control" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="email">Email : </label>
-						<input type="email" name="email" class="form-control" size="20" maxlength="20">
+						<input type="email" name="email" class="form-control" size="20" maxlength="20" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="tel">Teléphone :</label>
-						<input type="text" name="tel" class="form-control">
+						<input type="text" name="tel" class="form-control" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="rue">Rue :</label>
-						<input type="text" name="rue" class="form-control">
+						<input type="text" name="rue" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="codePostal">Code postal :</label>
-						<input type="text" name="codePostal" class="form-control">
+						<input type="text" name="codePostal" class="form-control" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="ville">Ville :</label>
-						<input type="text" name="ville" class="form-control">
+						<input type="text" name="ville" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="password">Mot de passe :</label>
-						<input type="password" name="password" class="form-control">
+						<input type="password" name="password" class="form-control" required>
 					</div>
 					<div class="form-group col-md-6">
 				  		<label for="passwordConfirm">Confirmation :</label>
-						<input type="password" name="passwordConfirm" class="form-control">
+						<input type="password" name="passwordConfirm" class="form-control" required>
 					</div>
 				</div>
 				<br>
