@@ -50,9 +50,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 //		System.out.println(e.getStackTrace());
 //		e.printStackTrace();
 //	}
-	
-//	Utilisateur u4= new Utilisateur(1003);
-	UtilisateurDAOImpl utilisateurdaoimpl= new UtilisateurDAOImpl();
+
 	
 	// =================> A TOI BRICE <============================
 	// Test selectByPseudo
