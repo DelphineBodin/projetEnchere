@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@ include file="../fragments/header.jspf" %>
+<%-- <%@ include file="../fragments/header.jspf" %> --%>
 <title>Nouvelle Vente</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,13 @@
 </head>
 <body>
 				<!-- //////////////PAGE 10/13\\\\\\\\\\\\\\\ -->
-
+	<div class="container col-md-offset-1 col-md-10">
+			<div class = "col-md-4">
+				<div class="logo">
+					<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				</div>
+			</div>
+	
 <h1>Nouvelle vente</h1>
 
 <p> article label</p>
@@ -33,7 +39,8 @@
 <p>Button enregister</p>
 <p>Button annuler</p>
 <p>Button annuler la vente</p>
-
+	
+	</div>
 
 
 </body>

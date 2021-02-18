@@ -31,7 +31,7 @@
 			</nav>
 			<h1 class= "col-md-12">Liste des enchères</h1>
 			<h2 class= "col-md-offset-1 col-md-11">Filtres</h2>
-			<form method="post" >
+			<form method="post">
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-6">
