@@ -18,13 +18,23 @@ public class TestUtilisateurManagerV2 extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+		//		String rue, String codePostal, String ville, String motDePasse) {
+		
+		
+		
 		AnnuaireUtilisateurManager a = AnnuaireUtilisateurManager.getInstance();
-		try {
-			Utilisateur utest =a.getUtilisateur("tsalmon");
-			System.out.println(utest);
-		} catch (BLLException e) {
-			System.out.println(e.getMessage());
-		}
+		
+			try {
+				Utilisateur u = new Utilisateur("---", "papin", "jean îerre", "rose@orange.fr", "060606", "4 rue", "44000", "nantes","coucou3");
+				System.out.println(" pseudo "+u.getPseudo()+" nom "+u.getNom()+" prenom "+u.getPrenom()+" email "+u.getEmail()+" telephone "+
+						u.getTelephone()+" rue "+u.getRue()+"code postal "+u.getCodePostal()+"ville "+u.getVille()+"m mot de passe "+u.getMotDePasse());
+					
+				
+				System.err.println(a.validerInscription(u));
+			} catch (BLLException e) {
+				System.out.println(e.getMessage());
+			}
 		
 	
 		

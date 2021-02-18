@@ -8,11 +8,12 @@ public interface UtilisateurDAO {
 	
 	void addUtilisateur(Utilisateur u) throws DALException;
 	boolean upUtilisateur(Utilisateur uMiseAJour) throws DALException;
+	boolean delUtilisateur(Utilisateur uSuppression) throws DALException;
 	boolean emailAlreadyExist( String email) throws DALException;
 
 		
 	
-	// ajout delete + liste utilisateur
+	// ajout delete= done ligne 11 + liste utilisateur
 
 
 
