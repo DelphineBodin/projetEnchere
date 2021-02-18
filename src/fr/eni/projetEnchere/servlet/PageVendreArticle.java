@@ -121,27 +121,23 @@ public class PageVendreArticle extends HttpServlet {
 		String rueFormulaire=request.getParameter("srue");
 		String codeFormulaire=request.getParameter("scodePostal");
 		String villeFormulaire=request.getParameter("sville");
-		// Est ce que je crée un lieu de retrait
-		if(!rueFormulaire.trim().isEmpty()&
-				!codeFormulaire.trim().isEmpty()&
-				!villeFormulaire.trim().isEmpty()) {
-			// je crée un lieu de retrait
-			if(rueFormulaire.trim().isEmpty()) {
-				rueFormulaire=rueDefaut;
-			}
-			if(codeFormulaire.trim().isEmpty()) {
-				codeFormulaire=codeDefaut;
-			}
-			if(villeFormulaire.trim().isEmpty()) {
-				villeFormulaire=villeDefaut;
-			}
-			r=new Retrait(rueFormulaire,villeFormulaire,codeFormulaire);
-			try {
-				retraitManager.ajouterRetrait(r);
-			} catch (BLLException e) {
-				message.append(e.getMessage());
-				ok=false;
-			}
+		// Je crée un lieu de retrait
+		// je crée un lieu de retrait
+		if(rueFormulaire.trim().isEmpty()) {
+			rueFormulaire=rueDefaut;
+		}
+		if(codeFormulaire.trim().isEmpty()) {
+			codeFormulaire=codeDefaut;
+		}
+		if(villeFormulaire.trim().isEmpty()) {
+			villeFormulaire=villeDefaut;
+		}
+		r=new Retrait(rueFormulaire,villeFormulaire,codeFormulaire);
+		try {
+			retraitManager.ajouterRetrait(r);
+		} catch (BLLException e) {
+			message.append(e.getMessage());
+			ok=false;
 		}
 		// je ne crée pas de lieu de retrait r restera à null
 		if(ok==true) {
