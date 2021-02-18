@@ -3,6 +3,7 @@ package fr.eni.projetEnchere.bll;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,27 +61,24 @@ public class AnnuaireArticleManager {
 			messageErreur.append("La mise à prix doit être inférieur à 15 000€.\n(voir nos conditions générales)\n");
 			venteValide=false;
 		}
-		if(article.getDateDebutEncheres().isBefore(LocalDate.now())){
+		if(article.getDateHeureDebutEncheres().isBefore(LocalDateTime.now().minusMinutes(30))){
 			messageErreur.append("La date de début d'enchère ne doit pas être dans le passé\n");
 			venteValide=false;
 		}
-		if(article.getDateDebutEncheres().isAfter(LocalDate.now().plusDays(45))){
+		if(article.getDateHeureDebutEncheres().isAfter(LocalDateTime.now().plusDays(45))){
 			messageErreur.append("La date de début d'enchère ne doit pas être dans plus de 45 jours\n(voir nos conditions générales)\\n");
 			venteValide=false;
 		}
-		if(article.getDateFinEncheres().isBefore(article.getDateDebutEncheres())) {
+		if(article.getDateHeureFinEncheres().isBefore(article.getDateHeureDebutEncheres())) {
 			messageErreur.append("La date de fin d'enchère doit être après la date de début d'enchère\n");
 			venteValide=false;
 		}
-		long nbdejours = ChronoUnit.DAYS.between(article.getDateDebutEncheres(),article.getDateFinEncheres());
+		long nbdejours = ChronoUnit.DAYS.between(article.getDateHeureDebutEncheres(),article.getDateHeureFinEncheres());
 		if(nbdejours>45) {
 			messageErreur.append("La date de fin d'enchère doit être dans les 45 jours après la date de début d'enchère\n");
 			venteValide=false;
 		}
-		//if(article.getDateDebutEncheres().isEqual(article.getDateFinEncheres())) {
-		//	);
-		//}
-			
+		
 		if(!venteValide) {
 			throw new BLLException(messageErreur.toString());
 		}

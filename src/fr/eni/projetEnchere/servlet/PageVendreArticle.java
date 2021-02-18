@@ -4,6 +4,7 @@ package fr.eni.projetEnchere.servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -57,10 +58,8 @@ public class PageVendreArticle extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Categorie categorie=null;
 		ArticleVendu article=null;
-		LocalDate dateDebut=null;
-		LocalDate dateFin=null;
-		LocalTime heureDebut =null;
-		LocalTime heureFin=null;
+		LocalDateTime dateDebut=null;
+		LocalDateTime dateFin=null;
 		int idcategorie;
 		int miseAPrix=0;
 		StringBuilder message = new StringBuilder("L'enregistrement de cette vente à échoué : \n");
@@ -81,29 +80,18 @@ public class PageVendreArticle extends HttpServlet {
 		}
 		// Récupération des dates
 		if(!request.getParameter("sdateDebut").trim().isEmpty()) {
-			dateDebut=LocalDate.parse(request.getParameter("sdateDebut"));
+			dateDebut=LocalDateTime.parse(request.getParameter("sdateDebut"));
 		}else {
 			ok=false;
 			message.append("Une date de début d'enchère doit être saisie. \n");
 		}
 		if(!request.getParameter("sdateFin").trim().isEmpty()) {
-			dateFin=LocalDate.parse(request.getParameter("sdateFin"));
+			dateFin=LocalDateTime.parse(request.getParameter("sdateFin"));
 		}else {
 			ok=false;
 			message.append("Une date de fin d'enchère doit être saisie. \n");
 		}
-		if(!request.getParameter("sheureFin").trim().isEmpty()) {
-			heureDebut=LocalTime.parse(request.getParameter("sheureDebut"));
-		}else {
-			ok=false;
-			message.append("Une heure de début d'enchère doit être saisie. \n");
-		}
-		if(!request.getParameter("sheureFin").trim().isEmpty()) {
-			heureFin=LocalTime.parse(request.getParameter("sheureFin"));
-		}else {
-			ok=false;
-			message.append("Une heure de fin d'enchère doit être saisie. \n");
-		}
+		
 		// Récupére la catégorie
 		try {
 			categorie=cat.getCategorieParId(idcategorie);
@@ -142,7 +130,7 @@ public class PageVendreArticle extends HttpServlet {
 		// je ne crée pas de lieu de retrait r restera à null
 		if(ok==true) {
 		a=AnnuaireArticleManager.getInstance();
-		article=new ArticleVendu(nomProduit, description, dateDebut,heureDebut, dateFin,heureFin, miseAPrix, categorie);
+		article=new ArticleVendu(nomProduit, description, dateDebut, dateFin, miseAPrix, categorie);
 		try {
 			a.nouvelleVente(article, u, categorie, r);
 		} catch (BLLException e) {

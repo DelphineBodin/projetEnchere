@@ -67,20 +67,14 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Début de l'enchere</label>
-					<div class="col-sm-3">
-						<input type="date" class="form-control" name="sdateDebut">
-					</div>
-					<div class="col-sm-3">
-						<input type="time" class="form-control" name="sheureDebut">
+					<div class="col-sm-6">
+						<input type="datetime-local" class="form-control" name="sdateDebut">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Fin de l'enchere</label>
-					<div class="col-sm-3">
-						<input class="form-control" id="date" name="sdateFin" type="date">
-					</div>
-					<div class="col-sm-3">
-						<input class="form-control" id="date" name="sheureFin" type="time">
+					<div class="col-sm-6">
+						<input class="form-control" id="date" name="sdateFin" type="datetime-local">
 					</div>
 				</div>
 				<fieldset class="scheduler-border">

@@ -20,7 +20,7 @@
 	<a href="./connexion">Se connecter S'inscrire</a>
 	<h1>Liste des enchères</h1>
 	<p>Filtres</p>
-	<form method="post" action=>
+	<form method="post" >
 		<div class="col-sm-4">
 		
 			<div class="input-group">

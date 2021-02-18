@@ -12,10 +12,8 @@ public class ArticleVendu {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalTime heureDebutEnchere;
-	private LocalDate dateFinEncheres;	
-	private LocalTime heureFinEnchere;
+	private LocalDateTime dateHeureDebutEncheres;
+	private LocalDateTime dateHeureFinEncheres;	
 	private int miseAPrix;
 	private int prixVente;
 	// Type à valider avec Gregory (enchères non débuté, enchère en cours, enchère cloturé ???)
@@ -29,14 +27,12 @@ public class ArticleVendu {
 	// si le lieu de retrait est l'adresse de l'utilisateur (vendeur), valeur = null
 
 	// constructeur avec les parametres suivants :  nomArticle, description, dateDebutEncheres,dateFinEncheres,  miseAPrix,  Categorie 
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,LocalTime heureDebutEnchere,
-			LocalDate dateFinEncheres,LocalTime heureFinEnchere, int miseAPrix,  Categorie categorie) {
+	public ArticleVendu(String nomArticle, String description, LocalDateTime dateHeureDebutEncheres,
+			LocalDateTime dateHeureFinEncheres, int miseAPrix,  Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.heureDebutEnchere=heureDebutEnchere;
-		this.dateFinEncheres = dateFinEncheres;
-		this.heureFinEnchere=heureFinEnchere;
+		this.dateHeureDebutEncheres = dateHeureDebutEncheres;
+		this.dateHeureFinEncheres = dateHeureFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.categorie = categorie;
 	}
@@ -49,15 +45,13 @@ public class ArticleVendu {
 
 
 	// constructeur (sans prix de vente et mise à prix = DON)
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,LocalTime heureDebutEnchere,
-			LocalDate dateFinEncheres,LocalTime heureFinEnchere, int etatVente, Retrait retrait, Categorie categorie) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateHeureDebutEncheres,
+			LocalDateTime dateHeureFinEncheres, int etatVente, Retrait retrait, Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.heureDebutEnchere=heureDebutEnchere;
-		this.dateFinEncheres = dateFinEncheres;
-		this.heureFinEnchere=heureFinEnchere;
+		this.dateHeureDebutEncheres = dateHeureDebutEncheres;
+		this.dateHeureFinEncheres = dateHeureFinEncheres;
 		this.etatVente = etatVente;
 		this.lieuRetrait = retrait;
 		this.categorie = categorie;
@@ -91,20 +85,20 @@ public class ArticleVendu {
 		this.description = description;
 	}
 
-	public LocalDate getDateDebutEncheres() {
-		return dateDebutEncheres;
+	public LocalDateTime getDateHeureDebutEncheres() {
+		return dateHeureDebutEncheres;
 	}
 
-	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
-		this.dateDebutEncheres = dateDebutEncheres;
+	public void setDateHeureDebutEncheres(LocalDateTime dateHeureDebutEncheres) {
+		this.dateHeureDebutEncheres = dateHeureDebutEncheres;
 	}
 
-	public LocalDate getDateFinEncheres() {
-		return dateFinEncheres;
+	public LocalDateTime getDateHeureFinEncheres() {
+		return dateHeureFinEncheres;
 	}
 
-	public void setDateFinEncheres(LocalDate dateFinEncheres) {
-		this.dateFinEncheres = dateFinEncheres;
+	public void setDateHeureFinEncheres(LocalDateTime dateHeureFinEncheres) {
+		this.dateHeureFinEncheres = dateHeureFinEncheres;
 	}
 
 	public int getMiseAPrix() {
@@ -132,27 +126,19 @@ public class ArticleVendu {
 	//	 NON_DEBUTEE= 0; EN_COURS= 1; TERMINEE= 2;
 	// si date du jour = date de debut = date de fin on regarde l'heure
 	int monEtatVente=3;
-	LocalDate dateDuJour = LocalDate.now();
-	LocalTime heureMaintenant = LocalTime.now();
+	LocalDateTime dateDuJour = LocalDateTime.now();
 	// 0=identique -1AvantDateDuJour 1AprèsDatedujour
 	int testdateDebutEnchere=3;
-	if(dateDuJour.isEqual(this.dateDebutEncheres)){
-		testdateDebutEnchere=0;
-	}else if (dateDuJour.isAfter(this.dateDebutEncheres)){
-		testdateDebutEnchere=-1;
-	}else if (dateDuJour.isBefore(this.dateDebutEncheres)) {
-		testdateDebutEnchere=1;
-	}
 	int testdateFinEnchere=3;
-	if(dateDuJour.isEqual(this.dateFinEncheres)){
+	if(dateDuJour.isEqual(this.dateHeureFinEncheres)){
 		testdateFinEnchere=0;
-	}else if (dateDuJour.isAfter(this.dateFinEncheres)){
+	}else if (dateDuJour.isAfter(this.dateHeureFinEncheres)){
 		testdateFinEnchere=-1;
-	}else if (dateDuJour.isBefore(this.dateFinEncheres)) {
+	}else if (dateDuJour.isBefore(this.dateHeureFinEncheres)) {
 		testdateFinEnchere=1;
 	}
-	System.out.println(testdateFinEnchere+"testdateFinEnchere");
-	System.out.println(testdateDebutEnchere+"testdateFinEnchere");
+	//System.out.println(testdateFinEnchere+"testdateFinEnchere");
+	//System.out.println(testdateDebutEnchere+"testdateFinEnchere");
 	
 	if(testdateFinEnchere==0&&testdateDebutEnchere==0) {
 		monEtatVente=1;
@@ -165,7 +151,7 @@ public class ArticleVendu {
 			||testdateFinEnchere==0&&testdateDebutEnchere==-1) {
 		monEtatVente=1;
 	}
-	int e;
+	int e=15;
 	switch (monEtatVente) {
 	case 0://System.out.println("NON_DEBUTEE");	
 		e=EtatVente.NON_DEBUTEE;
@@ -180,25 +166,6 @@ public class ArticleVendu {
 	this.etatVente=monEtatVente;
 	}
 	
-//	int testheureDebutEnchere=3;
-//	if (heureMaintenant.isAfter(this.heureDebutEnchere)){
-//		testheureDebutEnchere=-1;
-//	}else if (heureMaintenant.isBefore(this.heureDebutEnchere)) {
-//		testheureDebutEnchere=1;
-//	}
-//	int testheureFinEnchere=3;
-//	if (heureMaintenant.isAfter(this.heureFinEnchere)){
-//		testheureFinEnchere=-1;
-//	}else if (heureMaintenant.isBefore(this.heureFinEnchere)) {
-//		testheureFinEnchere=1;
-//	}
-	
-	
-	
-	
-
-
-
 	public Retrait getRetrait() {
 		return lieuRetrait;
 	}
@@ -227,27 +194,6 @@ public class ArticleVendu {
 		this.listeEncheres = listeEncheres;
 	}
 
-
-	public LocalTime getHeureDebutEnchere() {
-		return heureDebutEnchere;
-	}
-
-
-	public void setHeureDebutEnchere(LocalTime heureDebutEnchere) {
-		this.heureDebutEnchere = heureDebutEnchere;
-	}
-
-
-	public LocalTime getHeureFinEnchere() {
-		return heureFinEnchere;
-	}
-
-
-	public void setHeureFinEnchere(LocalTime heureFinEnchere) {
-		this.heureFinEnchere = heureFinEnchere;
-	}
-
-
 	//Méthodes :
 	// TODO : met on retrait dans l'article vendu dans le string builder?
 	// met on categorie dans l'article vendu dans le string builder?
@@ -262,9 +208,9 @@ public class ArticleVendu {
 		builder.append(", description=");
 		builder.append(description);
 		builder.append(", dateDebutEncheres=");
-		builder.append(dateDebutEncheres);
+		builder.append(dateHeureDebutEncheres);
 		builder.append(", dateFinEncheres=");
-		builder.append(dateFinEncheres);
+		builder.append(dateHeureFinEncheres);
 		builder.append(", miseAPrix=");
 		builder.append(miseAPrix);
 		builder.append(", prixVente=");

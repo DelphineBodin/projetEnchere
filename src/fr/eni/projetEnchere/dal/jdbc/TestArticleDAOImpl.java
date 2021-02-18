@@ -2,6 +2,7 @@ package fr.eni.projetEnchere.dal.jdbc;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +32,10 @@ public class TestArticleDAOImpl extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
-//		Categorie cat1=new Categorie(1,"INFORMATIQUE");
+		Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
+		Categorie cat1=new Categorie(1,"INFORMATIQUE");
 //		//ArticleVendu a1=new ArticleVendu("Ordinateur Portable","Philips",LocalDate.of(2021,02, 25),LocalDate.of(2021,02, 28),100,cat1);//utilisateur ?
-//		ArticleDAOImpl a = new ArticleDAOImpl();
+		ArticleDAOImpl a = new ArticleDAOImpl();
 
 // Test 1 Création d'une vente sans classe Retrait		
 //		try {
@@ -54,14 +55,14 @@ public class TestArticleDAOImpl extends HttpServlet {
 //			System.out.println(e.getMessage());
 //		}		
 		// Test 3 Création d'une vente avec classe Retrait à null
-//		ArticleVendu a3=new ArticleVendu("Souris","Verte",LocalDate.of(2021,02, 25),LocalTime.of(9,00),LocalDate.of(2021,02, 27),LocalTime.of(10,00),5,cat1);
-//	
-//		try {
-//			a.nouvelleVente(a3, u1,cat1,null);
-//			System.out.println("J'ai créé un article sans retrait");
-//		} catch (DALException e) {
-//			System.out.println(e.getMessage());
-//		}
+		ArticleVendu a3=new ArticleVendu("Souris","Verte",LocalDateTime.of(2021,02,18,13,5),LocalDateTime.of(2021,02,19,13,5),5,cat1);
+	
+		try {
+		a.nouvelleVente(a3, u1,cat1,null);
+			System.out.println("J'ai créé un article sans retrait");
+		} catch (DALException e) {
+			System.out.println(e.getMessage());
+		}
 //	
 //	try {
 //		System.out.println(a.selectByNo(1));
@@ -89,17 +90,17 @@ public class TestArticleDAOImpl extends HttpServlet {
 //		System.out.println(e);
 //	}
 	
-		ArticleDAOImpl a = new ArticleDAOImpl();
-		List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
-		try {
-			articles=a.selectArticlesByCategorieNom(1,"");
-			for (ArticleVendu art : articles) {
-				System.out.println(art.toString());
-			}
-		} catch (DALException e) {
-			System.out.println(e.getMessage());
-		}
-		
+//		ArticleDAOImpl ad = new ArticleDAOImpl();
+//		List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
+//		try {
+//			articles=ad.selectArticlesByCategorieNom(1,"");
+//			for (ArticleVendu art : articles) {
+//				System.out.println(art.toString());
+//			}
+//		} catch (DALException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		
 	}
 	}
 

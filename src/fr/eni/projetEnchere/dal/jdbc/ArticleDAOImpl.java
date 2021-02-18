@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,8 @@ import fr.eni.projetEnchere.dal.DALException;
 
 public class ArticleDAOImpl implements ArticleDAO {
 
-	private static final String INSERT="INSERT into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_Retrait,heure_debut_encheres,heure_fin_encheres) values(?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT="select no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait,heure_debut_encheres,heure_fin_encheres from ARTICLES_VENDUS where nom_article like ? and no_categorie=?";
+	private static final String INSERT="INSERT into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_Retrait) values(?,?,?,?,?,?,?,?)";
+	private static final String SELECT="select no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait from ARTICLES_VENDUS where nom_article like ? and no_categorie=?";
 	@Override
 	public void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException {
 		
@@ -36,8 +37,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			pstatement=cnx.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
 			pstatement.setString(1, a.getNomArticle());
 			pstatement.setString(2, a.getDescription());
-			pstatement.setDate(3, java.sql.Date.valueOf(a.getDateDebutEncheres()));
-			pstatement.setDate(4, java.sql.Date.valueOf(a.getDateFinEncheres()));
+			pstatement.setTimestamp(3, Timestamp.valueOf(a.getDateHeureDebutEncheres()));
+			pstatement.setTimestamp(4, Timestamp.valueOf(a.getDateHeureFinEncheres()));
 			pstatement.setInt(5, a.getMiseAPrix());
 			pstatement.setInt(6, u.getNoUtilisateur());
 			pstatement.setInt(7,c.getNoCategorie());
@@ -46,8 +47,6 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}else {
 				pstatement.setNull(8, Types.INTEGER);
 			}
-			pstatement.setTime(9, java.sql.Time.valueOf(a.getHeureDebutEnchere()));
-			pstatement.setTime(10, java.sql.Time.valueOf(a.getHeureFinEnchere()));
 			// Exécution de la requête
 			pstatement.executeUpdate();
 			//récupération de la valeur de identity pour noArticle
@@ -86,15 +85,13 @@ public class ArticleDAOImpl implements ArticleDAO {
 					articleCourant.setNoArticle(rs.getInt("no_article"));
 					articleCourant.setNomArticle(rs.getString("nom_article"));
 					articleCourant.setDescription(rs.getString("description"));
-					articleCourant.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-					articleCourant.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+					articleCourant.setDateHeureDebutEncheres(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
+					articleCourant.setDateHeureFinEncheres(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 					articleCourant.setMiseAPrix(rs.getInt("prix_initial"));
 					articleCourant.setPrixVente(rs.getInt("prix_vente"));
 					articleCourant.setCategorie(new Categorie(rs.getInt("no_categorie"),cat.selectByNo(rs.getInt("no_categorie")).getLibelle()));
 					//Finalement je ne récupère pas retrait car j'en ai pas besoin
-					articleCourant.setEtatVente();
-					articleCourant.setHeureDebutEnchere(rs.getTime("heure_debut_encheres").toLocalTime());
-					articleCourant.setHeureFinEnchere(rs.getTime("heure_fin_encheres").toLocalTime());
+					// Et l'utilisateur ?			
 					liste.add(articleCourant);
 				}
 			
