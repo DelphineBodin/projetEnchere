@@ -153,7 +153,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}finally {
 		ConnexionProvider.seDeconnecter(pstmt,cnx);
 		}
-		System.out.println(email+" "+emailRecup);
 		// Comparaison de l'email en paramètre et le l'email récupéré
 		if(emailRecup.trim().equalsIgnoreCase(email)) {
 			return true;

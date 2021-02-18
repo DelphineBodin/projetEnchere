@@ -87,20 +87,25 @@ public class AnnuaireUtilisateurManager {
 			messageErreur.append("\n");
 			inscriptionValide = false;
 		}
-//		// Est ce que le pseudo Existe déjà ?
-//		
-//		if(getUtilisateur(u.getPseudo())==null) {
-//			messageErreur.append("Un utilisateur a déjà ce pseudo. Merci d'en renseigner un autre. \n");
-//			inscriptionValide=false;
-//		}
+	// Est ce que le pseudo Existe déjà ?
+		
+		
+		try {
+			if(daoUtilisateur.emailAlreadyExist(u.getEmail())) {
+				messageErreur.append("Un utilisateur a déjà cet email. Merci d'en renseigner un autre. \n");
+				inscriptionValide=false;}
+		} catch (DALException e1) {
+			throw new BLLException(e1.getMessage());
+		}
+	
 		
 		//Est ce que le pseudo contient des caracteres alphanumeric a-z A-Z 0-9?
 		
-//		if(!u.getPseudo().matches("[A-Za-z0-9]")) {
-//			messageErreur.append("Le pseudo nécessite un code alphanumerique \n");
-//			inscriptionValide=false;
-//		}
-//		
+		if(!u.getPseudo().matches("^[A-Za-z0-9]+$")) {
+			messageErreur.append("Saisir des chiffres et/ou des lettres dans le pseudo uniquement \n");
+			inscriptionValide=false;
+		}
+		
 		// Est ce que le pseudo Existe déjà ?
 		try {
 			if(daoUtilisateur.selectByPseudo(u.getPseudo())!=null) {
