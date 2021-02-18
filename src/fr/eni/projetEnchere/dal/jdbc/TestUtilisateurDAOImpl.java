@@ -43,25 +43,26 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 //	
 	
 //	Utilisateur u3 = new Utilisateur(12, "Gui4444", "Neau", "Guillaume", "email@kk", "0000", "4 rue", "444000", "Nnatre", "5555", 300000000, false);
-	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
+//	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
 //	try {
 //		utilisateurdaoimpl.upUtilisateur(u3);
 //	} catch (DALException e) {
 //		System.out.println(e.getStackTrace());
 //		e.printStackTrace();
 //	}
+
 	
 	// =================> A TOI BRICE <============================
 	// Test selectByPseudo
 	// =================> A TOI BRICE <============================
 	
-	String email="lucile@yahoo.com";
-	try {		
-		System.out.println(utilisateurdaoimpl.emailAlreadyExist(email));
-		
-	} catch (DALException e) {
-		System.out.println("emailexist pas");
-	}
+//	String email="rose@orange.com";
+//	try {
+//		System.out.println(utilisateurdaoimpl.emailAlreadyExist(email));
+//		System.out.println("emailexist");
+//	} catch (DALException e) {
+//		System.out.println("emailexist pas");
+//	}
 	
 	
 }

@@ -67,7 +67,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		cnx = ConnexionProvider.seConnecter();
-		
+
 		String requeteSQL ="UPDATE UTILISATEURS SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe = ? WHERE no_utilisateur=?";
 		//UPDATE UTILISATEURS SET pseudo = 'bavard',nom = 'Salmon',prenom = 'Gaek',email = '40687554',telephone ='',rue ='',code_postal ='',ville = '',mot_de_passe = 'coucou' WHERE no_utilisateur=3
 		try {
@@ -88,10 +88,39 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			throw new DALException("Erreur lors de la mise à jour de l'utilisateur");
 		}
-	ConnexionProvider.seDeconnecter(pstmt,cnx);
-	return res;
+		ConnexionProvider.seDeconnecter(pstmt,cnx);
+		return res;
 	}
-	
+
+
+
+	////////////////////////////////////////////DELETEUTILISATEUR////////////////////////////////////////
+	public boolean delUtilisateur(Utilisateur uSuppression) throws DALException{
+		boolean res= false;
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		cnx = ConnexionProvider.seConnecter();
+
+
+		String requeteSQL= "DELETE from UTILISATEURS where no_utilisateur= ?";
+		//DELETE from UTILISATEURS where no_utilisateur=1002
+		try {
+			pstmt = cnx.prepareStatement(requeteSQL);
+			// Etape : Remplacer les ? (valoriser les parametres de la requete) 
+			pstmt.setInt(1,uSuppression.getNoUtilisateur());
+			pstmt.executeUpdate();
+			res=true;
+		} catch (SQLException e) {
+			throw new DALException("Erreur lors de la suppression du compte de l'utilisateur");
+		}
+		ConnexionProvider.seDeconnecter(pstmt,cnx);
+		return res;
+
+
+	}
+
+
+
 	////////////////////////////////////////////SELECTBYPSEUDO////////////////////////////////////////
 	public Utilisateur selectByPseudo(String pseudo) throws DALException {
 		Connection cnx=null;
@@ -101,7 +130,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 		//requete sql testee et fonctionnelle: affiche pseudo et mdp quand pseudo= qqch
 		String requeteSQL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur "
-		+ "FROM UTILISATEURS where pseudo= ?"; 
+				+ "FROM UTILISATEURS where pseudo= ?"; 
 		try {
 			pstmt= cnx.prepareStatement(requeteSQL);
 			pstmt.setString(1,pseudo);
@@ -151,13 +180,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			throw new DALException("Requête emailIsExist "+ e.getMessage());
 		}finally {
-		ConnexionProvider.seDeconnecter(pstmt,cnx);
+			ConnexionProvider.seDeconnecter(pstmt,cnx);
 		}
 		// Comparaison de l'email en paramètre et le l'email récupéré
 		if(emailRecup.trim().equalsIgnoreCase(email)) {
 			return true;
 		}else
-		return false;
+			return false;
 	}
 
 
