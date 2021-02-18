@@ -108,13 +108,7 @@ public class AnnuaireUtilisateurManager {
 			messageErreur.append("Saisir des chiffres et/ou des lettres dans le pseudo uniquement \n");
 			inscriptionValide=false;
 		}
-//		// Est ce que je suis dans le cas d'une mofication
-//		try {
-//			Utilisateur u2 =daoUtilisateur.selectByPseudo(u.getPseudo());
-//		} catch (DALException e1) {
-//			
-//			e1.printStackTrace();
-//		}
+
 		// Est ce que le pseudo Existe déjà ?
 		try {
 			if(daoUtilisateur.selectByPseudo(u.getPseudo())!=null) {
@@ -146,10 +140,21 @@ public class AnnuaireUtilisateurManager {
 		}
 	}
 	public Utilisateur getUtilisateur(String pseudo) throws BLLException {
-		UtilisateurDAO dao = new UtilisateurDAOImpl();
+		
 		Utilisateur u= null;
 		try {
-			u = dao.selectByPseudo(pseudo);
+			u = this.daoUtilisateur.selectByPseudo(pseudo);
+		} catch (DALException e) {
+			throw new BLLException(e.getMessage());
+		}
+		return u;
+	}
+	
+	public Utilisateur getUId(int id) throws BLLException {
+	
+		Utilisateur u= null;
+		try {
+			u = this.daoUtilisateur.selectById(id);
 		} catch (DALException e) {
 			throw new BLLException(e.getMessage());
 		}

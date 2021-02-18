@@ -1,5 +1,6 @@
 package fr.eni.projetEnchere.dal;
 
+import java.util.HashMap;
 import java.util.List;
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
@@ -11,6 +12,6 @@ public interface ArticleDAO {
 
 void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException;
 
-List<ArticleVendu>selectArticlesByCategorieNom(int categorie,String nom)throws DALException;
+HashMap<ArticleVendu,Integer>selectArticlesByCategorieNom(int categorie,String nom)throws DALException;
 	
 }

@@ -2,6 +2,7 @@ package fr.eni.projetEnchere.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,10 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetEnchere.bll.AnnuaireArticleManager;
+import fr.eni.projetEnchere.bll.AnnuaireUtilisateurManager;
 import fr.eni.projetEnchere.bll.BLLException;
 import fr.eni.projetEnchere.bll.CategorieManager;
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
+import fr.eni.projetEnchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletDemarrage
@@ -55,6 +58,7 @@ public class ServletDemarrage extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AnnuaireArticleManager annuaire = AnnuaireArticleManager.getInstance();
+		AnnuaireUtilisateurManager annuaireUtilisateur = AnnuaireUtilisateurManager.getInstance();
 		//on s'assure que tomcat decodera les informations reçues avc le coade utf-8
 		request.setCharacterEncoding("UTF-8");
 		//recuperation ds parametre identifiant et vérification que le champs est rempli
@@ -63,7 +67,9 @@ public class ServletDemarrage extends HttpServlet {
 		String nom = request.getParameter("srecherche");
 		System.out.println(nom);
 		StringBuilder sb = new StringBuilder();
-		List<ArticleVendu>listeArticleEnCours = new ArrayList<ArticleVendu>();
+		HashMap<ArticleVendu,Integer>listeArticleEnCours = new HashMap<ArticleVendu,Integer>();
+		HashMap<ArticleVendu,Utilisateur>listeAvecUtilisateur = new HashMap<ArticleVendu,Utilisateur>();
+		
 		
 		try {
 			listeArticleEnCours=annuaire.afficherVenteEnCours(categorie, nom);

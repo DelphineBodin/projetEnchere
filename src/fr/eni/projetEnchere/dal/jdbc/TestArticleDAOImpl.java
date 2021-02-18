@@ -5,7 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,14 +58,14 @@ public class TestArticleDAOImpl extends HttpServlet {
 //			System.out.println(e.getMessage());
 //		}		
 		// Test 3 Création d'une vente avec classe Retrait à null
-		ArticleVendu a3=new ArticleVendu("Souris","Verte",LocalDateTime.of(2021,02,18,13,5),LocalDateTime.of(2021,02,19,13,5),5,cat1);
-	
-		try {
-		a.nouvelleVente(a3, u1,cat1,null);
-			System.out.println("J'ai créé un article sans retrait");
-		} catch (DALException e) {
-			System.out.println(e.getMessage());
-		}
+//		ArticleVendu a3=new ArticleVendu("Souris","Verte",LocalDateTime.of(2021,02,18,13,5),LocalDateTime.of(2021,02,19,13,5),5,cat1);
+//	
+//		try {
+//		a.nouvelleVente(a3, u1,cat1,null);
+//			System.out.println("J'ai créé un article sans retrait");
+//		} catch (DALException e) {
+//			System.out.println(e.getMessage());
+//		}
 //	
 //	try {
 //		System.out.println(a.selectByNo(1));
@@ -90,17 +93,19 @@ public class TestArticleDAOImpl extends HttpServlet {
 //		System.out.println(e);
 //	}
 	
-//		ArticleDAOImpl ad = new ArticleDAOImpl();
-//		List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
-//		try {
-//			articles=ad.selectArticlesByCategorieNom(1,"");
-//			for (ArticleVendu art : articles) {
-//				System.out.println(art.toString());
-//			}
-//		} catch (DALException e) {
-//			System.out.println(e.getMessage());
-//		}
-//		
+		ArticleDAOImpl ad = new ArticleDAOImpl();
+		HashMap <ArticleVendu,Integer> resultat= new HashMap<ArticleVendu,Integer>();
+	
+			try {
+				resultat=ad.selectArticlesByCategorieNom(1,"");
+			} catch (DALException e) {
+				System.out.println(e.getMessage());
+			}
+	for(HashMap.Entry<ArticleVendu,Integer> monEntree : resultat.entrySet()) {
+		System.out.println(monEntree.getKey());
+		System.out.println("Vendeur :"+monEntree.getValue());
+	}
+			
 	}
 	}
 

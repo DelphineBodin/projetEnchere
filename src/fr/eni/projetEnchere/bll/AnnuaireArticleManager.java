@@ -6,10 +6,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
+import fr.eni.projetEnchere.bo.EtatVente;
 import fr.eni.projetEnchere.bo.Retrait;
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.ArticleDAO;
@@ -93,21 +95,23 @@ public class AnnuaireArticleManager {
 			throw new BLLException("Echec Insertion vente",e);
 		}
 	}
-	public List<ArticleVendu> afficherVenteEnCours(int numeroCategorie,String nom) throws BLLException {
-		List <ArticleVendu> articles = new ArrayList<ArticleVendu>();
-		List <ArticleVendu> articlesEnCours = new ArrayList<ArticleVendu>();
+	
+	
+	public HashMap<ArticleVendu,Integer> afficherVenteEnCours(int numeroCategorie,String nom) throws BLLException {
+		HashMap <ArticleVendu,Integer> articles = new HashMap<ArticleVendu,Integer>();
+		HashMap <ArticleVendu,Integer> articlesEnCours = new HashMap<ArticleVendu,Integer>();
 		try {
 			articles=this.articleDao.selectArticlesByCategorieNom(numeroCategorie, nom);
-			// Je sélectionne que les enchères en cours
-			for (ArticleVendu articleVendu : articles) {
-				if(articleVendu.getEtatVente()==1) {
-				articlesEnCours.add(articleVendu);
-				}
+			for(HashMap.Entry<ArticleVendu,Integer> monEntree : articles.entrySet()) {
+				if(monEntree.getKey().getEtatVente()==EtatVente.EN_COURS) {
+				articlesEnCours.put(monEntree.getKey(), monEntree.getValue());
 			}
+			}
+		
 		} catch (DALException e) {
 			throw new BLLException("Echec de Sélection"+e);
 		}
-		return articlesEnCours;
+		return articles;
 	}
 		
 	}

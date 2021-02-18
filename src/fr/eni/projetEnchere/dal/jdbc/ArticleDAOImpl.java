@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
@@ -64,17 +65,19 @@ public class ArticleDAOImpl implements ArticleDAO {
 			ConnexionProvider.seDeconnecter(pstatement,cnx);
 		}
 	}
-	public List<ArticleVendu>selectArticlesByCategorieNom(int noCategorie,String nom) throws DALException{
-		List<ArticleVendu> liste =new ArrayList<ArticleVendu>();
+	public HashMap <ArticleVendu,Integer> selectArticlesByCategorieNom(int noCategorie,String nom) throws DALException{
+		HashMap <ArticleVendu,Integer> resultat= new HashMap<ArticleVendu,Integer>();
 		PreparedStatement pstatement=null;
 		ResultSet rs;
 		Connection cnx = ConnexionProvider.seConnecter();
 		CategorieDAOImpl cat= new CategorieDAOImpl();
+		UtilisateurDAOImpl uti = new UtilisateurDAOImpl();
 		try {
 			pstatement=cnx.prepareStatement(SELECT);
 			pstatement.setString(1,"%"+nom+"%");
 			pstatement.setInt(2,+noCategorie);
 			ArticleVendu articleCourant= new ArticleVendu();
+			Utilisateur utilisateurCourant = new Utilisateur();
 			rs = pstatement.executeQuery();
 			
 			// Chargement de la valeur dans l'objet ArticleCourant
@@ -91,8 +94,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 					articleCourant.setPrixVente(rs.getInt("prix_vente"));
 					articleCourant.setCategorie(new Categorie(rs.getInt("no_categorie"),cat.selectByNo(rs.getInt("no_categorie")).getLibelle()));
 					//Finalement je ne récupère pas retrait car j'en ai pas besoin
-					// Et l'utilisateur ?			
-					liste.add(articleCourant);
+					resultat.put(articleCourant,rs.getInt("no_utilisateur"));
+					
 				}
 			
 			}
@@ -103,7 +106,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			ConnexionProvider.seDeconnecter(pstatement,cnx);
 		}
 		
-		return liste;
+		return resultat;
 		
 	}
 	

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,13 +32,20 @@ public class TestArticleManager extends HttpServlet {
 	Categorie cat1=new Categorie(1,"INFORMATIQUE");
 	ArticleVendu a1=new ArticleVendu("Ecran","Philips",LocalDateTime.of(2021,2, 25,15,15),LocalDateTime.of(2021,2, 28,15,15),14000,cat1);
 	Retrait retrait1 = new Retrait(1,"rue des Peupliers","13000","Aix en Provence");
+	HashMap<ArticleVendu,Integer>resultat = new HashMap<ArticleVendu,Integer>();
+	
 	try {
 		//System.out.println(annuaire.validerVente(a1,u1, cat1, null));
-		annuaire.nouvelleVente(a1, u1, cat1, retrait1);
+		//annuaire.nouvelleVente(a1, u1, cat1, retrait1);
+		annuaire.afficherVenteEnCours(1,"ordi");
+		
 	} catch (BLLException e) {
 		System.out.println((e.getMessage()));
 	}
-		
+	for(HashMap.Entry<ArticleVendu,Integer> monEntree : resultat.entrySet()) {
+		System.out.println(monEntree.getKey());
+		System.out.println("Vendeur :"+monEntree.getValue());
+	}
 		
 	}
 	

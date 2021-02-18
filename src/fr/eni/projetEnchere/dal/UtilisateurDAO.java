@@ -5,7 +5,7 @@ import fr.eni.projetEnchere.bo.Utilisateur;
 public interface UtilisateurDAO {
 	
 	Utilisateur selectByPseudo(String pseudo) throws DALException;
-	
+	Utilisateur selectById(int pseuid) throws DALException;
 	void addUtilisateur(Utilisateur u) throws DALException;
 	boolean upUtilisateur(Utilisateur uMiseAJour) throws DALException;
 	boolean delUtilisateur(Utilisateur uSuppression) throws DALException;

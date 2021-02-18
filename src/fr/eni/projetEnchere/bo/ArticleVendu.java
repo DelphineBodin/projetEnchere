@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.tools.sjavac.server.SysInfo;
+
 public class ArticleVendu {
 
 	// Attributs
@@ -35,11 +37,13 @@ public class ArticleVendu {
 		this.dateHeureFinEncheres = dateHeureFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.categorie = categorie;
+		setEtatVente();
 	}
 
 
 	// constructeur vide (java bean)
 	public ArticleVendu() {
+		//setEtatVente();
 		this.listeEncheres = new ArrayList<Enchere>();
 	}
 
@@ -56,6 +60,7 @@ public class ArticleVendu {
 		this.lieuRetrait = retrait;
 		this.categorie = categorie;
 		this.listeEncheres = new ArrayList<Enchere>();
+		setEtatVente();
 	}
 
 
@@ -130,6 +135,9 @@ public class ArticleVendu {
 	// 0=identique -1AvantDateDuJour 1AprèsDatedujour
 	int testdateDebutEnchere=3;
 	int testdateFinEnchere=3;
+	System.out.println(dateDuJour);
+	System.out.println(dateHeureDebutEncheres);
+	System.out.println(dateHeureFinEncheres);
 	if(dateDuJour.isEqual(this.dateHeureFinEncheres)){
 		testdateFinEnchere=0;
 	}else if (dateDuJour.isAfter(this.dateHeureFinEncheres)){
