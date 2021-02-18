@@ -22,41 +22,41 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="pseudo">Pseudo : </label>
-						<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.pseudo}">
+						<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" value="${utilisateurConnecte.pseudo}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nom">Nom : </label>
-						<input type="text" name="nom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.nom}">
+						<input type="text" name="nom" class="form-control" size="30" maxlength="30" value="${utilisateurConnecte.nom}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.prenom}">
+						<input type="text" name="prenom" class="form-control" size="30" maxlength="30" value="${utilisateurConnecte.prenom}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="email">Email : </label>
-						<input type="email" name="email" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.email}">
+						<input type="email" name="email" class="form-control" size="20" maxlength="20" value="${utilisateurConnecte.email}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="tel">Teléphone :</label>
-						<input type="text" name="tel" class="form-control" size="10" maxlength="10" placeholder="${utilisateurConnecte.telephone}">
+						<input type="text" name="tel" class="form-control" size="10" maxlength="10" value="${utilisateurConnecte.telephone}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="rue">Rue :</label>
-						<input type="text" name="rue" class="form-control" size="50" maxlength="50"placeholder="${utilisateurConnecte.rue}">
+						<input type="text" name="rue" class="form-control" size="50" maxlength="50"value="${utilisateurConnecte.rue}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="codePostal">Code postal :</label>
-						<input type="text" name="codePostal" class="form-control" minlength="5" maxlength="5" placeholder="${utilisateurConnecte.codePostal}">
+						<input type="text" name="codePostal" class="form-control" minlength="5" maxlength="5" value="${utilisateurConnecte.codePostal}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="ville">Ville :</label>
-						<input type="text" name="ville" class="form-control" placeholder="${utilisateurConnecte.ville}">
+						<input type="text" name="ville" class="form-control" value="${utilisateurConnecte.ville}">
 					</div>
 				</div>
 				<div class="form-row">
@@ -92,10 +92,9 @@
 		</div>
 		<br>
 			<c:if test="${messageErreurProfil!=null}">
-					<font color="red"><c:out value="${messageErreur}"/></font>
+					<font color="red"><c:out value="${messageErreurProfil}"/></font>
 			</c:if>
-		<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
-	</div>
+		</div>
 </div>			
 
 

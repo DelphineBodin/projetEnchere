@@ -91,8 +91,12 @@ public class AnnuaireUtilisateurManager {
 		
 		try {
 			if(daoUtilisateur.emailAlreadyExist(u.getEmail())) {
+				// Gestion du cas de l'update utilisateur A  revoir :)
+				int id = daoUtilisateur.selectByPseudo(u.getPseudo()).getNoUtilisateur();
+				if(id!=u.getNoUtilisateur()) {
 				messageErreur.append("Un utilisateur a déjà cet email. Merci d'en renseigner un autre. \n");
-				inscriptionValide=false;}
+				inscriptionValide=false;
+				}}
 		} catch (DALException e1) {
 			throw new BLLException(e1.getMessage());
 		}
@@ -104,13 +108,22 @@ public class AnnuaireUtilisateurManager {
 			messageErreur.append("Saisir des chiffres et/ou des lettres dans le pseudo uniquement \n");
 			inscriptionValide=false;
 		}
-		
+//		// Est ce que je suis dans le cas d'une mofication
+//		try {
+//			Utilisateur u2 =daoUtilisateur.selectByPseudo(u.getPseudo());
+//		} catch (DALException e1) {
+//			
+//			e1.printStackTrace();
+//		}
 		// Est ce que le pseudo Existe déjà ?
 		try {
 			if(daoUtilisateur.selectByPseudo(u.getPseudo())!=null) {
+				// Gestion du cas de l'update au cas où je garde mon pseudo qui est déjà dans la base A revoir
+				int id = daoUtilisateur.selectByPseudo(u.getPseudo()).getNoUtilisateur();
+				if(id!=u.getNoUtilisateur()) {
 				messageErreur.append("Ce pseudo est déjà utilisé, merci d'en renseigner un autre. \n");
 				inscriptionValide=false;
-			}
+			}}
 		} catch (DALException e) {
 			throw new BLLException("Pb pseudo "+ e.getMessage());
 		}
@@ -181,7 +194,7 @@ public class AnnuaireUtilisateurManager {
 
 	// Méthode pour mettre à jour des données d'un utilisateur à notre application
 	public void updateUtilisateur(Utilisateur u) throws BLLException {
-		//validerInscription(u);
+		validerInscription(u);
 		try {
 			// Méthode préciser = celle de la DAL
 			this.daoUtilisateur.upUtilisateur(u);

@@ -35,16 +35,6 @@ public class ModifierProfil extends HttpServlet {
 		HttpSession maSession = request.getSession();
 		u=(Utilisateur) maSession.getAttribute("utilisateurConnecte");
 		
-		//Récupération des infos de l'utilsateur par defaut :
-		String pseudoDefaut = u.getPseudo();
-		String nomDefaut = u.getNom();
-		String prenomDefaut = u.getPrenom();
-		String emailDefaut = u.getEmail();
-		String telephoneDefaut = u.getTelephone();
-		String rueDefaut = u.getRue();
-		String codePostalDefaut = u.getCodePostal();
-		String villeDefaut = u.getVille();
-
 		// Récupération des infos saisies lors de la mise à jour du formulaire
 		String pseudoFormulaire = request.getParameter("pseudo");
 		String nomFormulaire = request.getParameter("nom");
@@ -54,50 +44,28 @@ public class ModifierProfil extends HttpServlet {
 		String rueFormulaire = request.getParameter("rue");
 		String codePostalFormulaire = request.getParameter("codePostal");
 		String villeFormulaire = request.getParameter("ville");
+		
 		// password et new passwoord à revoir dans la BLL
 		String password = request.getParameter("password");
 		String passwordNew = request.getParameter("passwordNew");
 		String passwordNewConfirm = request.getParameter("passwordNewConfirm");
 		boolean test = true;
-		
 		StringBuilder message = new StringBuilder("La modification a échouée : \n");
-		
-		// test dans formulaire si champ vide = valeur de la BDD
-		if(pseudoFormulaire.trim().isEmpty()) {
-			pseudoFormulaire=pseudoDefaut;
+		//
+		try {
+			annuaire.testConnexion(u.getPseudo(), password);
+		} catch (BLLException e2) {
+			test=false;
+			message.append(e2);
 		}
-		if(nomFormulaire.trim().isEmpty()) {
-			nomFormulaire=nomDefaut;
-		}
-		if(prenomFormulaire.trim().isEmpty()) {
-			prenomFormulaire=prenomDefaut;
-		}
-		if(emailFormulaire.trim().isEmpty()) {
-			emailFormulaire=emailDefaut;
-		} else
-			try {
-				if(annuaire.verifierMail(emailFormulaire)){
-					message.append("L'email est déjà utilisé");
-					test = false;
-				}
-			} catch (BLLException e1) {
-				message.append("Problème email");
+			
+		if((!passwordNew.trim().isEmpty())||!passwordNewConfirm.trim().isEmpty())  {
+			if(!passwordNew.equals(passwordNewConfirm)) {
+				test=false;
+				message.append("Pour changer le mot de passe, saisir deux mots de passes identiques");
 			}
-		
-		if(telephoneFormulaire.trim().isEmpty()) {
-			telephoneFormulaire=telephoneDefaut;
 		}
-		if(rueFormulaire.trim().isEmpty()) {
-			rueFormulaire=rueDefaut;
-		}
-		if(codePostalFormulaire.trim().isEmpty()) {
-			codePostalFormulaire=codePostalDefaut;
-		}
-		if(villeFormulaire.trim().isEmpty()) {
-			villeFormulaire=villeDefaut;
-		}
-		
-		if(!passwordNew.isEmpty() & passwordNew.equals(passwordNewConfirm)) {
+		if(passwordNew.isEmpty())  {
 			passwordNew=password;
 		}
 		
@@ -108,18 +76,24 @@ public class ModifierProfil extends HttpServlet {
 		int noUtilisateur = u.getNoUtilisateur();
 		
 		Utilisateur uModifier = new Utilisateur(noUtilisateur, pseudoFormulaire, nomFormulaire, prenomFormulaire, emailFormulaire, telephoneFormulaire, rueFormulaire, codePostalFormulaire, villeFormulaire, passwordNew); 
+			
+		if(test==true) {
 		try {
 			annuaire.updateUtilisateur(uModifier);
-			System.out.println("Modification de l'utilisateur enregistrer");
-			;
+					
 		} catch (BLLException e) {
 			test= false;
 			message.append(e.getMessage());
 		}
+		}
+	
+	
 		if(test==true) {
+			maSession = request.getSession();
+			maSession.setAttribute("utilisateurConnecte", uModifier);	
 			String messageValidation = "Vos modifications ont été enregistrées";
 			request.setAttribute("messageValidationProfil", messageValidation);
-			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp");
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/afficherprofil.jsp");
 		}else {
 			request.setAttribute("messageErreurProfil", message.toString());
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp");
