@@ -7,7 +7,7 @@
 
 </head>
 
-<div class="container col-md-6">
+<div class="container col-md-1">
 	<div class="logo">
 		<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 	</div>

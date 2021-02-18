@@ -11,26 +11,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
-<%@ include file="../fragments/header.jspf" %>
+<%-- <%@ include file="../fragments/header.jspf" %> --%>
 <title>Liste des enchères</title>
 </head>
 <body>
 				<!-- //////////////PAGE 4/13\\\\\\\\\\\\\\\ -->
-<div class="container">
-	<div class="row">
+<div class="container col-md-offset-1 col-md-10 ">
 	<div>
-		<div class="lien">
-			<a href="">Enchères</a>
+		<div class = "col-md-2">
+			<div class="logo">
+				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+			</div>
 		</div>
-		<div class="lien">
-			<a href="./VendreArticle">Vendre un Article</a>
-		</div>
-		<div class="lien">
-			<a href="./AfficherProfil">Mon profil</a>
-		</div>
-		<div class="lien">
-			<a href="./seDeconnecter">Déconnexion</a>
-		</div>	
+		<nav class = "col-md-offset-3 col-md-6">
+			<ul>
+				<li><a href="">Enchères</a></li>
+				<li><a href="./VendreArticle">Vendre un Article</a></li>
+				<li><a href="./AfficherProfil">Mon profil</a></li>
+				<li><a href="./seDeconnecter">Déconnexion</a></li>
+			</ul>
+		</nav>
+	<div class="row">
 	</div>
 	
 	<h1>Liste des enchères</h1>

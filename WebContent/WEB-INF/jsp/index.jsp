@@ -11,49 +11,58 @@
 
 <link rel="stylesheet"	href="/projetEnchere/theme/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/projetEnchere/theme/css/design.css">
-<%@ include file="../fragments/header.jspf" %>
+<%-- <%@ include file="../fragments/header.jspf" %> --%>
 <title>Listes des encheres</title>
 </head>
 <body>
 				<!-- //////////////PAGE 1/13\\\\\\\\\\\\\\\ -->
-
-	<a href="./connexion">Se connecter S'inscrire</a>
-	<h1>Liste des enchères</h1>
-	<p>Filtres</p>
-	<form method="post" >
-		<div class="col-sm-4">
-		
-			<div class="input-group">
-				<span class="input-group-addon"><i
-					class="glyphicon glyphicon-search"></i></span> <input type="text"
-					class="form-control" name="srecherche"
-					placeholder="Le nom de l'article contient">
+	<div class="container col-md-offset-1 col-md-10">
+		<div class = "col-md-4">
+			<div class="logo">
+				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 			</div>
+		</div>
+		<nav class = "col-md-offset-4 col-md-4">
+			<ul>
+				<li><a href="./connexion">Se connecter - S'inscrire</a></li>
+			</ul>
+		</nav>
 		
-		<br>
-					<div class="form-group">
-					<label class="control-label col-sm-2" for="sel1">Categorie</label>
-					<div class="col-sm-6">
-						<select name="scategorie" class="form-control" id="sel1">
-						<c:forEach items="${ categories }" var="cate">
-						<option value="<c:out value="${cate.noCategorie}"/>"><c:out value="${cate.libelle}"/></option>
-   						</c:forEach>
-					</select>
-					</div>
+		<h1 class= "col-md-12">Liste des enchères</h1>
+		<h2 class= "col-md-12">Filtres</h2>
+		<form method="post" >
+			<div class="col-md-8">
+				<div class="input-group col-md-6">
+					<span class="input-group-addon">
+						<i class="glyphicon glyphicon-search"></i>
+					</span> 
+					<input type="text" class="form-control" name="srecherche" placeholder="Le nom de l'article contient">
 				</div>
 				<br>
-				
-	<p>Checkbox Mes Ventes</p>	
+				<div class="form-group col-md-6">
+					<label class="control-label col-md-3">Categorie : </label>
+						<div class="col-sm-">
+							<select name="scategorie" class="form-control" id="sel1">
+								<c:forEach items="${ categories }" var="cate">
+									<option value="<c:out value="${cate.noCategorie}"/>">
+										<c:out value="${cate.libelle}"/>
+									</option>
+		   						</c:forEach>
+							</select>
+						</div>
+					</div>
+				<br>		
+				<p>Checkbox Mes Ventes</p>	
+			</div>
+			<input type="submit" value="Rechercher"class="btn btn-primary"> 
+		
+		</form>
+	${message}
+	<c:forEach items="${listeArticles }" var="article">
+	<p><c:out value="${article.nomArticle}"/><c:out value="${article.description}"/></p>
+	 </c:forEach>
+		
 	</div>
-	<input type="submit" value="Enregistrer"class="btn btn-primary"> 
-	
-	</form>
-${message}
-<c:forEach items="${listeArticles }" var="article">
-<p><c:out value="${article.nomArticle}"/><c:out value="${article.description}"/></p>
- </c:forEach>
-	
-
-<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
