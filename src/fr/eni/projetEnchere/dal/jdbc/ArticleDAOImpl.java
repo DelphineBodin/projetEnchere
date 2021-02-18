@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
@@ -20,7 +21,7 @@ import fr.eni.projetEnchere.dal.DALException;
 public class ArticleDAOImpl implements ArticleDAO {
 
 	private static final String INSERT="INSERT into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie,no_Retrait,heure_debut_encheres,heure_fin_encheres) values(?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT="select no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait,heure_debut_encheres,heure_fin_encheres from ARTICLES_VENDUS where nom_article like'%?%' and no_categorie=?";
+	private static final String SELECT="select no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie,no_retrait,heure_debut_encheres,heure_fin_encheres from ARTICLES_VENDUS where nom_article like ? and no_categorie=?";
 	@Override
 	public void nouvelleVente(ArticleVendu a, Utilisateur u,Categorie c,Retrait r) throws DALException {
 		
@@ -65,42 +66,48 @@ public class ArticleDAOImpl implements ArticleDAO {
 		}
 	}
 	public List<ArticleVendu>selectArticlesByCategorieNom(int noCategorie,String nom) throws DALException{
-		List<ArticleVendu> liste=null;
+		List<ArticleVendu> liste =new ArrayList<ArticleVendu>();
 		PreparedStatement pstatement=null;
 		ResultSet rs;
 		Connection cnx = ConnexionProvider.seConnecter();
 		CategorieDAOImpl cat= new CategorieDAOImpl();
-		RetraitDAOImpl ret = new RetraitDAOImpl();
 		try {
-			pstatement=cnx.prepareStatement(INSERT,PreparedStatement.RETURN_GENERATED_KEYS);
+			pstatement=cnx.prepareStatement(SELECT);
+			pstatement.setString(1,"%"+nom+"%");
+			pstatement.setInt(2,+noCategorie);
 			ArticleVendu articleCourant= new ArticleVendu();
-			pstatement.executeQuery();
-			rs = pstatement.getGeneratedKeys();
-			// Chargement de la valeur dans l'objet Article
+			rs = pstatement.executeQuery();
+			
+			// Chargement de la valeur dans l'objet ArticleCourant
 			while(rs.next()) {
-				articleCourant.setNoArticle(rs.getInt("no_article"));
-				articleCourant.setNomArticle(rs.getString("nom_article"));
-				articleCourant.setDescription(rs.getString("description"));
-				articleCourant.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-				articleCourant.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-				articleCourant.setMiseAPrix(rs.getInt("prix_initial"));
-				articleCourant.setPrixVente(rs.getInt("prix_vente"));
-				articleCourant.setPrixVente(rs.getInt("no_utilisateur"));
-				articleCourant.setCategorie(new Categorie(rs.getInt("no_categorie"),cat.selectByNo(rs.getInt("no_categorie")).getLibelle()));
-				//articleCourant.setRetrait(new Retrait(rs.getInt("no_retrait"),));
-				//heure_debut_encheres,heure_fin_encheres
-				articleCourant.setHeureDebutEnchere(rs.getTime("heure_debut_encheres").toLocalTime());
-				articleCourant.setHeureFinEnchere(rs.getTime("heure_fin_encheres").toLocalTime());
-				liste.add(articleCourant);
+				//Changer Article à chaque tour de manège
+				if(rs.getInt("no_article")!=articleCourant.getNoArticle()) {
+					articleCourant=new ArticleVendu();
+					articleCourant.setNoArticle(rs.getInt("no_article"));
+					articleCourant.setNomArticle(rs.getString("nom_article"));
+					articleCourant.setDescription(rs.getString("description"));
+					articleCourant.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
+					articleCourant.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
+					articleCourant.setMiseAPrix(rs.getInt("prix_initial"));
+					articleCourant.setPrixVente(rs.getInt("prix_vente"));
+					articleCourant.setCategorie(new Categorie(rs.getInt("no_categorie"),cat.selectByNo(rs.getInt("no_categorie")).getLibelle()));
+					//Finalement je ne récupère pas retrait car j'en ai pas besoin
+					articleCourant.setEtatVente();
+					articleCourant.setHeureDebutEnchere(rs.getTime("heure_debut_encheres").toLocalTime());
+					articleCourant.setHeureFinEnchere(rs.getTime("heure_fin_encheres").toLocalTime());
+					liste.add(articleCourant);
+				}
+			
 			}
 				rs.close();
 		} catch (SQLException e) {
 			throw new DALException(e.getMessage());
 		}finally {
 			ConnexionProvider.seDeconnecter(pstatement,cnx);
-		
 		}
+		
 		return liste;
+		
 	}
 	
 }

@@ -4,7 +4,8 @@ package fr.eni.projetEnchere.bll;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
@@ -93,8 +94,24 @@ public class AnnuaireArticleManager {
 		} catch (DALException e) {
 			throw new BLLException("Echec Insertion vente",e);
 		}
-	
+	}
+	public List<ArticleVendu> afficherVenteEnCours(int numeroCategorie,String nom) throws BLLException {
+		List <ArticleVendu> articles = new ArrayList<ArticleVendu>();
+		List <ArticleVendu> articlesEnCours = new ArrayList<ArticleVendu>();
+		try {
+			articles=this.articleDao.selectArticlesByCategorieNom(numeroCategorie, nom);
+			// Je sélectionne que les enchères en cours
+			for (ArticleVendu articleVendu : articles) {
+				if(articleVendu.getEtatVente()==1) {
+				articlesEnCours.add(articleVendu);
+				}
+			}
+		} catch (DALException e) {
+			throw new BLLException("Echec de Sélection"+e);
+		}
+		return articlesEnCours;
+	}
 		
 	}
 
-}
+

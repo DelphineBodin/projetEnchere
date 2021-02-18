@@ -19,7 +19,7 @@ public class ArticleVendu {
 	private int miseAPrix;
 	private int prixVente;
 	// Type à valider avec Gregory (enchères non débuté, enchère en cours, enchère cloturé ???)
-	private EtatVente etatVente;    //pas un boolean, on a cree une classe EtatVente avc 3 attributs
+	private int etatVente;    //pas un boolean, on a cree une classe EtatVente avc 3 attributs
 	private Retrait lieuRetrait = null;
 	private Categorie categorie;
 	private List<Enchere> listeEncheres;
@@ -50,7 +50,7 @@ public class ArticleVendu {
 
 	// constructeur (sans prix de vente et mise à prix = DON)
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,LocalTime heureDebutEnchere,
-			LocalDate dateFinEncheres,LocalTime heureFinEnchere, EtatVente etatVente, Retrait retrait, Categorie categorie) {
+			LocalDate dateFinEncheres,LocalTime heureFinEnchere, int etatVente, Retrait retrait, Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -123,10 +123,11 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public EtatVente isEtatVente() {
+	public int getEtatVente() {
 		return etatVente;
 	}
 
+	
 	public void setEtatVente() {
 	//	 NON_DEBUTEE= 0; EN_COURS= 1; TERMINEE= 2;
 	// si date du jour = date de debut = date de fin on regarde l'heure
@@ -164,13 +165,19 @@ public class ArticleVendu {
 			||testdateFinEnchere==0&&testdateDebutEnchere==-1) {
 		monEtatVente=1;
 	}
+	int e;
 	switch (monEtatVente) {
-	case 0:System.out.println("NON_DEBUTEE");	
+	case 0://System.out.println("NON_DEBUTEE");	
+		e=EtatVente.NON_DEBUTEE;
 		break;
-	case 1:System.out.println("EN COURS");	
+	case 1://System.out.println("EN COURS");
+		e=EtatVente.EN_COURS;
 	break;
-	case 2:System.out.println("TERMINEE");	
+	case 2://System.out.println("TERMINEE");
+		e=EtatVente.TERMINEE;	
 	break;
+	}
+	this.etatVente=monEtatVente;
 	}
 	
 //	int testheureDebutEnchere=3;
@@ -189,7 +196,7 @@ public class ArticleVendu {
 	
 	
 	
-	}
+
 
 
 	public Retrait getRetrait() {
@@ -262,6 +269,8 @@ public class ArticleVendu {
 		builder.append(miseAPrix);
 		builder.append(", prixVente=");
 		builder.append(prixVente);
+		builder.append(", catagorie");
+		builder.append(categorie);
 		builder.append(", etatVente=");
 		builder.append(etatVente);
 		builder.append("]");

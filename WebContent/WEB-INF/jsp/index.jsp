@@ -48,7 +48,10 @@
 	<input type="submit" value="Enregistrer"class="btn btn-primary"> 
 	
 	</form>
-
+${message}
+<c:forEach items="${listeArticles }" var="article">
+<p><c:out value="${article.nomArticle}"/><c:out value="${article.description}"/></p>
+ </c:forEach>
 	
 
 <script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>

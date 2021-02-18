@@ -1,16 +1,20 @@
 package fr.eni.projetEnchere.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetEnchere.bll.AnnuaireArticleManager;
 import fr.eni.projetEnchere.bll.BLLException;
 import fr.eni.projetEnchere.bll.CategorieManager;
+import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
 
 /**
@@ -50,8 +54,33 @@ public class ServletDemarrage extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		AnnuaireArticleManager annuaire = AnnuaireArticleManager.getInstance();
+		//on s'assure que tomcat decodera les informations reçues avc le coade utf-8
+		request.setCharacterEncoding("UTF-8");
+		//recuperation ds parametre identifiant et vérification que le champs est rempli
+		int categorie = Integer.parseInt(request.getParameter("scategorie"));
+		System.out.println(categorie);
+		String nom = request.getParameter("srecherche");
+		System.out.println(nom);
+		StringBuilder sb = new StringBuilder();
+		List<ArticleVendu>listeArticleEnCours = new ArrayList<ArticleVendu>();
+		
+		try {
+			listeArticleEnCours=annuaire.afficherVenteEnCours(categorie, nom);
+			
+		} catch (BLLException e) {
+			sb.append(e);
+		}
+		RequestDispatcher disp=null;
+		if(listeArticleEnCours!=null) {
+			request.setAttribute("listeArticles",listeArticleEnCours);
+			disp = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+		}else {
+			sb.append("Aucun Article pour votre recherche.");
+			request.setAttribute("message",sb.toString());
+			disp = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+		}
+		disp.forward(request, response);
 	}
 
 }
