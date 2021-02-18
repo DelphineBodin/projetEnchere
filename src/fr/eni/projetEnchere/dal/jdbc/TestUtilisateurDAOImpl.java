@@ -42,14 +42,17 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 //}
 //	
 	
-	Utilisateur u3 = new Utilisateur(12, "Gui4444", "Neau", "Guillaume", "email@kk", "0000", "4 rue", "444000", "Nnatre", "5555", 300000000, false);
-	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
-	try {
-		utilisateurdaoimpl.upUtilisateur(u3);
-	} catch (DALException e) {
-		System.out.println(e.getStackTrace());
-		e.printStackTrace();
-	}
+//	Utilisateur u3 = new Utilisateur(12, "Gui4444", "Neau", "Guillaume", "email@kk", "0000", "4 rue", "444000", "Nnatre", "5555", 300000000, false);
+//	UtilisateurDAOImpl utilisateurdaoimpl = new UtilisateurDAOImpl();
+//	try {
+//		utilisateurdaoimpl.upUtilisateur(u3);
+//	} catch (DALException e) {
+//		System.out.println(e.getStackTrace());
+//		e.printStackTrace();
+//	}
+	
+//	Utilisateur u4= new Utilisateur(1003);
+	UtilisateurDAOImpl utilisateurdaoimpl= new UtilisateurDAOImpl();
 	
 	// =================> A TOI BRICE <============================
 	// Test selectByPseudo
