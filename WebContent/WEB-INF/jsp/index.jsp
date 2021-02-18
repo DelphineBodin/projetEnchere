@@ -16,53 +16,155 @@
 </head>
 <body>
 				<!-- //////////////PAGE 1/13\\\\\\\\\\\\\\\ -->
+				
+	<!-- //////////////1er partie\\\\\\\\\\\\\\\ -->	
 	<div class="container col-md-offset-1 col-md-10">
-		<div class = "col-md-4">
-			<div class="logo">
-				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
-			</div>
-		</div>
-		<nav class = "col-md-offset-4 col-md-4">
-			<ul>
-				<li><a href="./connexion">Se connecter - S'inscrire</a></li>
-			</ul>
-		</nav>
-		
-		<h1 class= "col-md-12">Liste des enchères</h1>
-		<h2 class= "col-md-12">Filtres</h2>
-		<form method="post" >
-			<div class="col-md-8">
-				<div class="input-group col-md-6">
-					<span class="input-group-addon">
-						<i class="glyphicon glyphicon-search"></i>
-					</span> 
-					<input type="text" class="form-control" name="srecherche" placeholder="Le nom de l'article contient">
+			<div class = "col-md-4">
+				<div class="logo">
+					<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 				</div>
-				<br>
-				<div class="form-group col-md-6">
-					<label class="control-label col-md-3">Categorie : </label>
-						<div class="col-sm-">
+			</div>
+			<nav class = "col-md-offset-4 col-md-4">
+				<ul>
+					<li><a href="./connexion">Se connecter - S'inscrire</a></li>
+				</ul>
+			</nav>
+			<h1 class= "col-md-12">Liste des enchères</h1>
+			<h2 class= "col-md-offset-1 col-md-11">Filtres</h2>
+			<form method="post" >
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-6">
+					<div class="input-group col-md-12">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-search col-md-10"></i>
+						</span> 
+						<input type="text" class="form-control col-md-8" name="srecherche" placeholder="Le nom de l'article contient">
+					</div>
+					<br>
+					<div class="col-md-12">
+						<label class="control-label col-md-1">Categorie : </label>
+						<div class="form-group col-md-6">
 							<select name="scategorie" class="form-control" id="sel1">
-								<c:forEach items="${ categories }" var="cate">
-									<option value="<c:out value="${cate.noCategorie}"/>">
-										<c:out value="${cate.libelle}"/>
-									</option>
-		   						</c:forEach>
+									<c:forEach items="${ categories }" var="cate">
+										<option value="<c:out value="${cate.noCategorie}"/>">
+												<c:out value="${cate.libelle}"/>
+										</option>
+				   					</c:forEach>
 							</select>
 						</div>
 					</div>
-				<br>		
-				<p>Checkbox Mes Ventes</p>	
-			</div>
-			<input type="submit" value="Rechercher"class="btn btn-primary"> 
-		
-		</form>
-	${message}
-	<c:forEach items="${listeArticles }" var="article">
-	<p><c:out value="${article.nomArticle}"/><c:out value="${article.description}"/></p>
-	 </c:forEach>
-		
+				</div>
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-3">
+					<button type="submit" class="col-md-12 btn btn-primary btn-lg"> Rechercher </button>
+				</div>
+				<div class="col-md-1">
+				</div>
+			</form>
+	<!-- //////////////espace\\\\\\\\\\\\\\\ -->	
 	</div>
+	<div class="container col-md-12">
+		<br>
+		<br>
+	</div>
+	<!-- //////////////2ème partie\\\\\\\\\\\\\\\ -->	
+	<div class="container col-md-offset-1 col-md-10">
+	
+			<div class="container col-md-5">
+				<div class="annonceEnchereEnCours">
+					<div class="col-md-5">
+						<div class="annonceImg">
+							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="annonceText">
+							<div class="annonceTitre">
+								<p>ANNONCE ____</p>
+							</div>
+							<br>
+							<div class="annoncePrix">
+								<p>Prix :</p>
+							</div>
+							<div class="annonceDate">
+								<p>Fin de l'enchère :</p>
+							</div>
+							<br>
+							<div class="annonceVendeur">
+								<p>Vendeur : </p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="container col-md-5">
+				<div class="annonceEnchereEnCours">
+					<div class="col-md-5">
+						<div class="annonceImg">
+							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="annonceText">
+							<div class="annonceTitre">
+								<p>ANNONCE ____</p>
+							</div>
+							<br>
+							<div class="annoncePrix">
+								<p>Prix :</p>
+							</div>
+							<div class="annonceDate">
+								<p>Fin de l'enchère :</p>
+							</div>
+							<br>
+							<div class="annonceVendeur">
+								<p>Vendeur : </p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+							
+			<div class="container col-md-5">
+				<div class="annonceEnchereEnCours">
+					<div class="col-md-5">
+						<div class="annonceImg">
+							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="annonceText">
+							<div class="annonceTitre">
+								<p>ANNONCE ____</p>
+							</div>
+							<br>
+							<div class="annoncePrix">
+								<p>Prix :</p>
+							</div>
+							<div class="annonceDate">
+								<p>Fin de l'enchère :</p>
+							</div>
+							<br>
+							<div class="annonceVendeur">
+								<p>Vendeur : </p>
+							</div>
+						</div>
+						
+					</div>
+				</div>	
+			</div>
+	
+				${message}
+		<c:forEach items="${listeArticles }" var="article">
+		<p><c:out value="${article.nomArticle}"/><c:out value="${article.description}"/></p>
+		 </c:forEach>
+	</div>
+	
 	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
