@@ -15,6 +15,9 @@
 <title>Liste des enchères</title>
 </head>
 <body>
+				<!-- //////////////PAGE 4/13\\\\\\\\\\\\\\\ -->
+<div class="container">
+	<div class="row">
 	<div>
 		<div class="lien">
 			<a href="">Enchères</a>
@@ -30,31 +33,31 @@
 		</div>	
 	</div>
 	
-	<h1>Liste des enchères mes ventes.jsp</h1>
+	<h1>Liste des enchères</h1>
 	<c:if test="${messageValidation!=null}">
 					<font color="green"><c:out value="${messageValidation}"/></font>
 	</c:if>
-	<p>Filtres</p>
+	<h2>Filtres</h2>
 	<form method="post" action=>
-		<div class="col-sm-4">
+		<div class="col-md-6">
 			<div class="input-group">
-				<span class="input-group-addon"><i
-					class="glyphicon glyphicon-search"></i></span> <input type="text"
-					class="form-control" name="srecherche"
-					placeholder="Le nom de l'article contient">
-			</div>
-		
-		<br>
-					<div class="form-group">
-					<label class="control-label col-sm-2" for="sel1">Categorie</label>
-					<div class="col-sm-6">
-						<select name="scategorie" class="form-control" id="sel1">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-search"></i>
+				</span> 
+				<input type="text" class="form-control" name="srecherche" placeholder="Le nom de l'article contient">
+			</div>	
+			<br>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="sel1">Catégorie</label>
+				<div class="col-sm-6">
+					<select name="scategorie" class="form-control" id="sel1">
 							<c:forEach items="${ categories }" var="cate">
 							<option value="<c:out value="${cate.noCategorie}"/>"><c:out value="${cate.libelle}"/></option>
    							</c:forEach>
-						</select>
-					</div>
+					</select>
 				</div>
+			</div>
+		</div>
 				<br>
 				<br>
 				
@@ -111,8 +114,8 @@
 		<%=nomUtilisateur%>
 <!-- 		fermeture de div rajouté, a regarder si probleme -->
 		</div>
-	
-
+	</div>
+</div>
 		<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

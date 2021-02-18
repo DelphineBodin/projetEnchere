@@ -22,57 +22,57 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="pseudo">Pseudo : </label>
-						<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.pseudo}"required>
+						<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.pseudo}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="nom">Nom : </label>
-						<input type="text" name="nom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.nom}" required>
+						<input type="text" name="nom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.nom}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="prenom">Prénom : </label>
-						<input type="text" name="prenom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.prenom}" required>
+						<input type="text" name="prenom" class="form-control" size="30" maxlength="30" placeholder="${utilisateurConnecte.prenom}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="email">Email : </label>
-						<input type="email" name="email" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.email}" required>
+						<input type="email" name="email" class="form-control" size="20" maxlength="20" placeholder="${utilisateurConnecte.email}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="tel">Teléphone :</label>
-						<input type="text" name="tel" class="form-control" size="10" maxlength="10" placeholder="${utilisateurConnecte.telephone}" required>
+						<input type="text" name="tel" class="form-control" size="10" maxlength="10" placeholder="${utilisateurConnecte.telephone}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="rue">Rue :</label>
-						<input type="text" name="rue" class="form-control" size="50" maxlength="50"placeholder="${utilisateurConnecte.rue}" required>
+						<input type="text" name="rue" class="form-control" size="50" maxlength="50"placeholder="${utilisateurConnecte.rue}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="codePostal">Code postal :</label>
-						<input type="text" name="codePostal" class="form-control" size="5" maxlength="5" placeholder="${utilisateurConnecte.codePostal}" required>
+						<input type="text" name="codePostal" class="form-control" size="5" maxlength="5" placeholder="${utilisateurConnecte.codePostal}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="ville">Ville :</label>
-						<input type="text" name="ville" class="form-control" placeholder="${utilisateurConnecte.ville}"required>
+						<input type="text" name="ville" class="form-control" placeholder="${utilisateurConnecte.ville}">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="password">Mot de passe actuel :</label>
-						<input type="password" name="password" class="form-control" placeholder="xxxxxxxxxxxxx" required>
+						<input type="password" name="password" class="form-control" placeholder="xxxxxxxxxxxxx">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="passwordNew">Nouveau mot de passe :</label>
-						<input type="password" name="passwordNew" class="form-control" placeholder="xxxxxxxxxxxxx" required>
+						<input type="password" name="passwordNew" class="form-control" placeholder="xxxxxxxxxxxxx">
 					</div>
 					<div class="form-group col-md-6">
 				  		<label for="passwordNewConfirm">Confirmation :</label>
-						<input type="password" name="passwordNewConfirm" class="form-control" placeholder="xxxxxxxxxxxxx" required>
+						<input type="password" name="passwordNewConfirm" class="form-control" placeholder="xxxxxxxxxxxxx">
 					</div>
 				</div>
 				<div class="form-row">
