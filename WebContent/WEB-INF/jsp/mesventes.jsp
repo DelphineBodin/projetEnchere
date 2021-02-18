@@ -37,6 +37,9 @@
 	<c:if test="${messageValidation!=null}">
 					<font color="green"><c:out value="${messageValidation}"/></font>
 	</c:if>
+	<c:if test="${messageValidationProfil!=null}">
+		 <font color="green"><c:out value="${messageValidationProfil}"/></font>
+	</c:if>
 	<h2>Filtres</h2>
 	<form method="post" action=>
 		<div class="col-md-6">

@@ -52,7 +52,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="codePostal">Code postal :</label>
-						<input type="text" name="codePostal" class="form-control" size="5" maxlength="5" placeholder="${utilisateurConnecte.codePostal}">
+						<input type="text" name="codePostal" class="form-control" minlength="5" maxlength="5" placeholder="${utilisateurConnecte.codePostal}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="ville">Ville :</label>
@@ -62,7 +62,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="password">Mot de passe actuel :</label>
-						<input type="password" name="password" class="form-control" placeholder="xxxxxxxxxxxxx">
+						<input type="password" name="password" class="form-control" placeholder="xxxxxxxxxxxxx" required>
 					</div>
 				</div>
 				<div class="form-row">
@@ -91,8 +91,8 @@
 			<a href=""><button type="submit" class="btn btn-primary">Supprimer mon compte</button></a>
 		</div>
 		<br>
-			<c:if test="${messageValidation!=null}">
-					<font color="green"><c:out value="${messageValidation}"/></font>
+			<c:if test="${messageErreurProfil!=null}">
+					<font color="red"><c:out value="${messageErreur}"/></font>
 			</c:if>
 		<font color="red"><%=request.getAttribute("messageErreur")!=null?request.getAttribute("messageErreur"):"" %></font>
 	</div>

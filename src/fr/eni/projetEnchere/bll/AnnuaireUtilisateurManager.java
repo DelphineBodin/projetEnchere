@@ -89,7 +89,6 @@ public class AnnuaireUtilisateurManager {
 		}
 	// Est ce que le pseudo Existe déjà ?
 		
-		
 		try {
 			if(daoUtilisateur.emailAlreadyExist(u.getEmail())) {
 				messageErreur.append("Un utilisateur a déjà cet email. Merci d'en renseigner un autre. \n");
@@ -182,7 +181,7 @@ public class AnnuaireUtilisateurManager {
 
 	// Méthode pour mettre à jour des données d'un utilisateur à notre application
 	public void updateUtilisateur(Utilisateur u) throws BLLException {
-		validerInscription(u);
+		//validerInscription(u);
 		try {
 			// Méthode préciser = celle de la DAL
 			this.daoUtilisateur.upUtilisateur(u);
@@ -203,6 +202,16 @@ public class AnnuaireUtilisateurManager {
 	// +++++++++++++++++++++++++METHODE BLL POUR BRICE++++++++++++++++++++++++++++++ // BASE A VERIFIER = PAS SUR
 
 
+	// Méthode vérifier mail existant
+	public boolean verifierMail(String email) throws BLLException {
+		boolean mailExistant = false;
+		try {
+			mailExistant = daoUtilisateur.emailAlreadyExist(email);
+		} catch (DALException e1) {
+			throw new BLLException(e1.getMessage());
+		}
+		return mailExistant;
+	}
 
 	
 	

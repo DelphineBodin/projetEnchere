@@ -31,6 +31,10 @@ public class ModifierProfil extends HttpServlet {
 		// Appel du manager (lien servlet <> BLL);
 		AnnuaireUtilisateurManager annuaire = AnnuaireUtilisateurManager.getInstance();
 		
+		// Initialisation des attributs session
+		HttpSession maSession = request.getSession();
+		u=(Utilisateur) maSession.getAttribute("utilisateurConnecte");
+		
 		//Récupération des infos de l'utilsateur par defaut :
 		String pseudoDefaut = u.getPseudo();
 		String nomDefaut = u.getNom();
@@ -56,6 +60,8 @@ public class ModifierProfil extends HttpServlet {
 		String passwordNewConfirm = request.getParameter("passwordNewConfirm");
 		boolean test = true;
 		
+		StringBuilder message = new StringBuilder("La modification a échouée : \n");
+		
 		// test dans formulaire si champ vide = valeur de la BDD
 		if(pseudoFormulaire.trim().isEmpty()) {
 			pseudoFormulaire=pseudoDefaut;
@@ -68,7 +74,16 @@ public class ModifierProfil extends HttpServlet {
 		}
 		if(emailFormulaire.trim().isEmpty()) {
 			emailFormulaire=emailDefaut;
-		}
+		} else
+			try {
+				if(annuaire.verifierMail(emailFormulaire)){
+					message.append("L'email est déjà utilisé");
+					test = false;
+				}
+			} catch (BLLException e1) {
+				message.append("Problème email");
+			}
+		
 		if(telephoneFormulaire.trim().isEmpty()) {
 			telephoneFormulaire=telephoneDefaut;
 		}
@@ -82,8 +97,11 @@ public class ModifierProfil extends HttpServlet {
 			villeFormulaire=villeDefaut;
 		}
 		
+		if(!passwordNew.isEmpty() & passwordNew.equals(passwordNewConfirm)) {
+			passwordNew=password;
+		}
+		
 		// Initialisation des attributs session
-		HttpSession maSession = request.getSession();
 		RequestDispatcher dispatcher = null;
 		
 		Utilisateur u = (Utilisateur) maSession.getAttribute("utilisateurConnecte");
@@ -93,13 +111,19 @@ public class ModifierProfil extends HttpServlet {
 		try {
 			annuaire.updateUtilisateur(uModifier);
 			System.out.println("Modification de l'utilisateur enregistrer");
-			dispatcher = request.getRequestDispatcher("./MesVentes");
+			;
 		} catch (BLLException e) {
-			e.printStackTrace();
+			test= false;
+			message.append(e.getMessage());
 		}
-		
-
-				
+		if(test==true) {
+			String messageValidation = "Vos modifications ont été enregistrées";
+			request.setAttribute("messageValidationProfil", messageValidation);
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp");
+		}else {
+			request.setAttribute("messageErreurProfil", message.toString());
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/modifierprofil.jsp");
+		}	
 		dispatcher.forward(request, response);
 	}
 

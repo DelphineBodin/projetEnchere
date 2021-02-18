@@ -27,9 +27,16 @@ public class TestUtilisateurManager extends HttpServlet {
 //			System.out.println(e.getMessage());
 //		}
 		
-		Utilisateur u = new Utilisateur(12, "jp", "jean-pierre", "papin", "jpp44@orange.fr", "060606", "4", "440000", "nantes", "000");
+//		Utilisateur u = new Utilisateur(12, "jp", "jean-pierre", "papin", "jpp44@orange.fr", "060606", "4", "440000", "nantes", "000");
+//		try {
+//			annuaire.updateUtilisateur(u);
+//		} catch (BLLException e) {
+//			System.out.println(e.getMessage());
+//		}
+		
+		
 		try {
-			annuaire.updateUtilisateur(u);
+			System.out.println(annuaire.verifierMail("noo@gmail.com"));
 		} catch (BLLException e) {
 			System.out.println(e.getMessage());
 		}
