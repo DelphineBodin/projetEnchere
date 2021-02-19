@@ -18,7 +18,7 @@
 	<div class="container col-md-offset-1 col-md-10">
 		<div class = "col-md-4">
 			<div class="logo">
-				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				<a href="./MesVentes" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 			</div>
 		</div>
 	    <div class="row">
@@ -75,8 +75,10 @@
 				</table>
 			</div>
 		</div>
-		<div class="form-group col-md-4 col-md-offset-5">	
-			<a href="./ModifierProfil"><button type="submit" class="btn btn-primary">Modifier</button></a>
+		<div class="form-group col-md-12 ">
+			<div class="boutonAfficherProfil">	
+				<a href="./ModifierProfil"><button type="submit" class="btn btn-primary">Modifier</button></a>
+			</div>
 		</div>
 	</div>	
 

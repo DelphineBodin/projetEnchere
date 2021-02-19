@@ -17,7 +17,7 @@
 	<div class="container col-md-offset-1 col-md-10">
 			<div class = "col-md-4">
 				<div class="logo">
-					<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+					<a href="./MesVentes" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 				</div>
 			</div>
 			<h1 class= "col-md-12">Mon profil</h1>
@@ -46,11 +46,11 @@
 					<div class="form-row">
 						<div class="form-group col-md-offset-2 col-md-4">
 							<label for="tel">Teléphone :</label>
-							<input type="text" name="tel" class="form-control"  size="20" maxlength="10" value="${utilisateurConnecte.telephone}">
+							<input type="text" name="tel" class="form-control" size="20" maxlength="10" value="${utilisateurConnecte.telephone}">
 						</div>
 						<div class="form-group col-md-5">
 							<label for="rue">Rue :</label>
-							<input type="text" name="rue" class="form-control" size="20" maxlength="50"value="${utilisateurConnecte.rue}">
+							<input type="text" name="rue" class="form-control" size="20" maxlength="50" value="${utilisateurConnecte.rue}">
 						</div>
 					</div>
 					<div class="form-row">

@@ -20,21 +20,11 @@
 	<div class="container col-md-offset-1 col-md-10">
 		<div class = "col-md-3">
 			<div class="logo">
-				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				<a href="./MesVentes" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 			</div>
 		</div>
 		<nav class = "col-md-9">
 			<ul>
-				<div class="col-md-2" style="color:tomato; font-size:18px;">
-					<%
-					String nomUtilisateur = "";
-					Utilisateur u = (Utilisateur) session.getAttribute("utilisateurConnecte");
-					if (u != null) {
-						nomUtilisateur = u.getPrenom();
-					}
-					%>
-					<%=nomUtilisateur%>
-				</div>
 				<li><a href="">Enchères</a></li>
 				<li><a href="./VendreArticle">Vendre un Article</a></li>
 				<li><a href="./AfficherProfil">Mon profil</a></li>
@@ -63,8 +53,10 @@
 				</div>	
 				<br>
 				<div class="col-md-12">
-					<label class="control-label col-md-1">Categorie : </label>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-4">
+						<label>Categorie : </label>
+					</div>
+					<div class="form-group col-md-8">
 						<select name="scategorie" class="form-control" id="sel1">
 								<c:forEach items="${ categories }" var="cate">
 								<option value="<c:out value="${cate.noCategorie}"/>">
@@ -90,7 +82,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-check col-md-5">
+					<div class="form-check col-md-offset-1 col-md-5">
 						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
 						<label class="form-check-label" for="flexRadioDefault1">Mes Ventes</label>
 						<div>
@@ -121,14 +113,14 @@
 			<br>
 		</div>
 		<div class="col-md-offset-2 col-md-3" style="color:tomato; font-size:18px;">
-			<%
-			String nomUtilisateurB = "";
-			Utilisateur u2 = (Utilisateur) session.getAttribute("utilisateurConnecte");
-			if (u2 != null) {
-				nomUtilisateurB = u.getPrenom();
-			}
-			%>
-			<p> Bienvenue :  <%=nomUtilisateurB%> </p>
+					<%
+					String nomUtilisateur = "";
+					Utilisateur u = (Utilisateur) session.getAttribute("utilisateurConnecte");
+					if (u != null) {
+						nomUtilisateur = u.getPrenom();
+					}
+					%>
+					<%=nomUtilisateur%>
 		</div>
 	</div>
 

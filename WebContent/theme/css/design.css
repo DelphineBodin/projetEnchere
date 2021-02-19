@@ -8,7 +8,7 @@ button {
 }
 br{
 	margin: 5px;
-	paddin: 5px;
+	padding: 5px;
 }
 
 input {
@@ -47,13 +47,18 @@ li {
 
 
 table {
+	margin-left:50px;
 	margin-top: 100px;
 	margin-bottom: 50px;
 	padding: 30px;
 	font-weight: 20;
 	font-size : 18px;
 	min-height: 400px;
-	min-width: 300px
+	min-width: 300px;
+}
+
+td{
+	padding-left : 15px;
 }
 
 tr{
@@ -70,6 +75,10 @@ ul{
 /* CLASSE */
 .bouttonCreerCompte{
 	width: 300px;
+}
+
+.boutonAfficherProfil{
+	text-align: center;
 }
 
 .containerfirst{

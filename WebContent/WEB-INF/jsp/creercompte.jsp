@@ -22,21 +22,21 @@
 			</div>
 			<h1 class= "col-md-12">Mon profil</h1>
 			<div>
-				<form method="post" action="./Profil" class="form-inline">
+				<form method="post" action="./MesVentes" class="form-inline">
 					<div class="form-row">
 						<div class="form-group col-md-offset-2 col-md-4">
 							<label for="pseudo">Pseudo : </label>
-							<input type="text" name="pseudo" class="form-control" required>
+							<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" required>
 						</div>
 						<div class="form-group col-md-5">
 							<label for="nom">Nom : </label>
-							<input type="text" name="nom" class="form-control" required>
+							<input type="text" name="nom" class="form-control" size="20" maxlength="30"  required>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-offset-2 col-md-4">
 							<label for="prenom">Prénom : </label>
-							<input type="text" name="prenom" class="form-control" required>
+							<input type="text" name="prenom" class="form-control" size="20" maxlength="30" required>
 						</div>
 						<div class="form-group col-md-5">
 							<label for="email">Email : </label>
@@ -46,31 +46,31 @@
 					<div class="form-row">
 						<div class="form-group col-md-offset-2 col-md-4">
 							<label for="tel">Teléphone :</label>
-							<input type="text" name="tel" class="form-control" required>
+							<input type="text" name="tel" class="form-control" size="20" maxlength="10" required>
 						</div>
 						<div class="form-group col-md-5">
 							<label for="rue">Rue :</label>
-							<input type="text" name="rue" class="form-control" required>
+							<input type="text" name="rue" class="form-control" size="20" maxlength="50" required>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-offset-2 col-md-4">
 							<label for="codePostal">Code postal :</label>
-							<input type="text" name="codePostal" class="form-control" required>
+							<input type="text" name="codePostal" class="form-control" size="20" minlength="5" maxlength="5" required>
 						</div>
 						<div class="form-group col-md-5">
 							<label for="ville">Ville :</label>
-							<input type="text" name="ville" class="form-control" required>
+							<input type="text" name="ville" class="form-control" size="20" required>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-offset-2 col-md-4">
 							<label for="password">Mot de passe :</label>
-							<input type="password" name="password" class="form-control" required>
+							<input type="password" name="password" class="form-control" size="20" required>
 						</div>
 						<div class="form-group col-md-5">
 					  		<label for="passwordConfirm">Confirmation :</label>
-							<input type="password" name="passwordConfirm" class="form-control" required>
+							<input type="password" name="passwordConfirm" class="form-control" size="20" required>
 						</div>
 					</div>
 					<br>

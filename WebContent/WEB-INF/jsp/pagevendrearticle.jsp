@@ -24,7 +24,7 @@
 	<div class="container col-md-offset-1 col-md-10">
 		<div class = "col-md-4">
 			<div class="logo">
-				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				<a href="./MesVentes" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
 			</div>
 		</div>
 		<h1 class= "col-md-12">Nouvelle vente</h1>
@@ -66,7 +66,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2">Mise à prix</label>
 				<div class="col-sm-6">
-					<input type="number" name="sprix" class="form-control" min="0" max="15000"><br>
+					<input type="number" name="sprix" class="form-control" min="0" max="50000"><br>
 				</div>
 			</div>
 			<div class="form-group">
