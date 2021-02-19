@@ -1,8 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.HashMap"%>
 <%@page import="fr.eni.projetEnchere.bo.Categorie"%>
+<%@page import="fr.eni.projetEnchere.bo.ArticleVendu"%>
+<%@page import="fr.eni.projetEnchere.bo.Utilisateur"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +32,7 @@
 					<li><a href="./connexion">Se connecter - S'inscrire</a></li>
 				</ul>
 			</nav>
-			<h1 class= "col-md-12">Liste des enchères</h1>
+			<h1 class= "col-md-12">Liste des enchÃ¨res</h1>
 			<h2 class= "col-md-offset-1 col-md-11">Filtres</h2>
 			<form method="post" >
 				<div class="col-md-1">
@@ -62,107 +65,60 @@
 				</div>
 				<div class="col-md-1">
 				</div>
+				
 			</form>
+			
 	<!-- //////////////espace\\\\\\\\\\\\\\\ -->	
 	</div>
 	<div class="container col-md-12">
 		<br>
 		<br>
 	</div>
-	<!-- //////////////2ème partie\\\\\\\\\\\\\\\ -->	
+	<!-- //////////////2Ã¨me partie\\\\\\\\\\\\\\\ -->	
 	<div class="container col-md-offset-1 col-md-10">
 	
-			<div class="container col-md-5">
-				<div class="annonceEnchereEnCours">
-					<div class="col-md-5">
-						<div class="annonceImg">
-							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
-						</div>
-					</div>
-					<div class="col-md-7">
-						<div class="annonceText">
-							<div class="annonceTitre">
-								<p>ANNONCE ____</p>
-							</div>
-							<br>
-							<div class="annoncePrix">
-								<p>Prix :</p>
-							</div>
-							<div class="annonceDate">
-								<p>Fin de l'enchère :</p>
-							</div>
-							<br>
-							<div class="annonceVendeur">
-								<p>Vendeur : </p>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			
-			<div class="container col-md-5">
-				<div class="annonceEnchereEnCours">
-					<div class="col-md-5">
-						<div class="annonceImg">
-							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
-						</div>
-					</div>
-					<div class="col-md-7">
-						<div class="annonceText">
-							<div class="annonceTitre">
-								<p>ANNONCE ____</p>
-							</div>
-							<br>
-							<div class="annoncePrix">
-								<p>Prix :</p>
-							</div>
-							<div class="annonceDate">
-								<p>Fin de l'enchère :</p>
-							</div>
-							<br>
-							<div class="annonceVendeur">
-								<p>Vendeur : </p>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-							
-			<div class="container col-md-5">
-				<div class="annonceEnchereEnCours">
-					<div class="col-md-5">
-						<div class="annonceImg">
-							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
-						</div>
-					</div>
-					<div class="col-md-7">
-						<div class="annonceText">
-							<div class="annonceTitre">
-								<p>ANNONCE ____</p>
-							</div>
-							<br>
-							<div class="annoncePrix">
-								<p>Prix :</p>
-							</div>
-							<div class="annonceDate">
-								<p>Fin de l'enchère :</p>
-							</div>
-							<br>
-							<div class="annonceVendeur">
-								<p>Vendeur : </p>
-							</div>
-						</div>
-						
-					</div>
-				</div>	
-			</div>
 	
-				${message}
-		<c:forEach items="${listeArticles }" var="article">
-		<p><c:out value="${article.nomArticle}"/><c:out value="${article.description}"/></p>
-		 </c:forEach>
+	  
+      
+   
+	
+	<c:forEach items="${listeArticles.entrySet().toArray()}" var="article">
+			<div class="container col-md-5">
+				<div class="annonceEnchereEnCours">
+					<div class="col-md-5">
+						<div class="annonceImg">
+							<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="annonceText">
+							<div class="annonceTitre">
+								<p> ${article.key.nomArticle}</p>
+								<p> ${article.key.description}</p>
+							</div>
+							<br>
+							<div class="annoncePrix">
+								<p>Prix :${article.key.miseAPrix} euros</p>
+							</div>
+							<div class="annonceDate">
+								<p>DÃ©but de l'enchÃ¨re : ${article.key.dateHeureDebutEncheres} </p>
+							</div>
+							<div class="annonceDate">
+								<p>Fin de l'enchÃ¨re : ${article.key.dateHeureFinEncheres} </p>
+							</div>
+							<br>
+							<div class="annonceVendeur">
+								<p>Vendeur : ${article.value.nom} ${article.value.prenom}</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		 </c:forEach>	
+						
+			${message}
+		
 	</div>
 	
 	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
