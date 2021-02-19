@@ -1,13 +1,7 @@
 package fr.eni.projetEnchere.bll;
-
-
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-
 import java.util.HashMap;
-
-
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
 import fr.eni.projetEnchere.bo.EtatVente;
@@ -16,6 +10,12 @@ import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.ArticleDAO;
 import fr.eni.projetEnchere.dal.DALException;
 import fr.eni.projetEnchere.dal.FactoryDAO;
+/**
+ * Classe BLL qui permet de créer une base unique d'Articles grâce au pattern Singleton
+ * @author Brice Guillaume Delphine
+ *
+ */
+
 
 public class AnnuaireArticleManager {
 
@@ -34,7 +34,16 @@ public class AnnuaireArticleManager {
 		}
 		return annuaire;
 	}
-	// méthode valider vente - A faire choisir les régles métiers
+	/**
+	 * Méthode qui valide la vente selon une liste de règles métier
+	 *  @param article
+	 * @param utilisateur
+	 * @param categorie
+	 * @param retrait
+	 * @return true si valide
+	 * @throws BLLException si faux l'exception est envoyé avec son message 
+	 * pour gestion de l'erreur en IHM
+	 */
 	public boolean validerVente(ArticleVendu article, Utilisateur utilisateur, Categorie categorie,Retrait retrait) throws BLLException {
 		StringBuilder messageErreur = new StringBuilder();
 		boolean venteValide = true;
@@ -79,13 +88,22 @@ public class AnnuaireArticleManager {
 			messageErreur.append("La date de fin d'enchère doit être dans les 45 jours après la date de début d'enchère\n");
 			venteValide=false;
 		}
-		
+
 		if(!venteValide) {
 			throw new BLLException(messageErreur.toString());
 		}
 		return venteValide;
 	}
-	// méthode créer une vente si elle est valide
+
+	/**
+	 * méthode créer une vente si elle est valide
+	 * @param article
+	 * @param utilisateur
+	 * @param categorie
+	 * @param retrait
+	 * @throws BLLException si non valide l'exception est envoyé avec son message 
+	 * pour gestion de l'erreur en IHM 
+	 */
 	public void nouvelleVente(ArticleVendu article, Utilisateur utilisateur, Categorie categorie,Retrait retrait) throws BLLException {
 		validerVente(article,  utilisateur,  categorie, retrait);
 		try {
@@ -94,8 +112,14 @@ public class AnnuaireArticleManager {
 			throw new BLLException("Echec Insertion vente",e);
 		}
 	}
-	
-	
+	/**
+	 * Méthode permetttant d'afficher les ventes en cours selon Catégorie 
+	 * et nom ou partie de nom saisie dans le champs du formulaire
+	 * @param numeroCategorie
+	 * @param nom
+	 * @return Une HashMap avec l'article et le vendeur de cet article
+	 * @throws BLLException
+	 */
 	public HashMap<ArticleVendu,Utilisateur> afficherVenteEnCours(int numeroCategorie,String nom) throws BLLException {
 		HashMap <ArticleVendu,Integer> articles = new HashMap<ArticleVendu,Integer>();
 		HashMap <ArticleVendu,Integer> articlesEnCours = new HashMap<ArticleVendu,Integer>();
@@ -103,24 +127,22 @@ public class AnnuaireArticleManager {
 		try {
 			articles=this.articleDao.selectArticlesByCategorieNom(numeroCategorie, nom);
 			for(HashMap.Entry<ArticleVendu,Integer> monEntree : articles.entrySet()) {
-				//System.out.println("mon etat"+monEntree.getKey().getEtatVente());
-				// Etat vente ne fonctionne pas A revoir en BO
 				if(monEntree.getKey().getEtatVente()==EtatVente.EN_COURS) {
-				articlesEnCours.put(monEntree.getKey(), monEntree.getValue());
+					articlesEnCours.put(monEntree.getKey(), monEntree.getValue());
+				}
 			}
-			}
-		
+
 		} catch (DALException e) {
 			throw new BLLException("Echec de Sélection"+e);
 		}
-		// Test de ramener ici l'utilisateur Avec le tableau intial car etatVente ne fonctionne pas
+		// Ramener ici l'utilisateur à l'aide de son id (lien avec BLL)
 		HashMap <ArticleVendu,Utilisateur> articlesAvecVendeur = new HashMap<ArticleVendu,Utilisateur>();
 		for(HashMap.Entry<ArticleVendu,Integer> monEntree : articlesEnCours.entrySet()) {
 			articlesAvecVendeur.put(monEntree.getKey(),annuaireUtilisateur.getUtilisateur(monEntree.getValue()));
 		}
 		return articlesAvecVendeur;
 	}
-		
-	}
+
+}
 
 

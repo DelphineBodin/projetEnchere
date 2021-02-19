@@ -86,19 +86,19 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2">Rue</label>
 					<div class="col-sm-6">
-						<input type="text" name="srue" class="form-control" placeholder="${utilisateurConnecte.rue}">
+						<input type="text" name="srue" class="form-control" value="${utilisateurConnecte.rue}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Code postal</label>
 					<div class="col-sm-6">
-						<input type="text" name="scodePostal" class="form-control" placeholder="${utilisateurConnecte.codePostal}">
+						<input type="text" name="scodePostal" class="form-control" value="${utilisateurConnecte.codePostal}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2">Ville</label>
 					<div class="col-sm-6">
-						<input type="text" name="sville" class="form-control" placeholder="${utilisateurConnecte.ville}">
+						<input type="text" name="sville" class="form-control" value="${utilisateurConnecte.ville}">
 					</div>
 				</div>
 			</fieldset>
@@ -112,6 +112,7 @@
 		<div class="form-row col-md-4">
 			<a href="./MesVentes">
 			<button type="submit" class="btn btn-primary">Annuler</button>
+			</a>
 		</div>
 		<br>
 		<c:if test="${messageErreur!=null}">

@@ -101,25 +101,9 @@ public class PageVendreArticle extends HttpServlet {
 		}
 		// Gestion du lieu de Retrait
 		Retrait r = null;
-		// Récupération du lieu de retrait par défaut
-		String rueDefaut = u.getRue();
-		String codeDefaut = u.getCodePostal();
-		String villeDefaut = u.getVille();
-		// Récupération des infos saisies dans le formulaire
 		String rueFormulaire=request.getParameter("srue");
 		String codeFormulaire=request.getParameter("scodePostal");
 		String villeFormulaire=request.getParameter("sville");
-		// Je crée un lieu de retrait
-		// je crée un lieu de retrait
-		if(rueFormulaire.trim().isEmpty()) {
-			rueFormulaire=rueDefaut;
-		}
-		if(codeFormulaire.trim().isEmpty()) {
-			codeFormulaire=codeDefaut;
-		}
-		if(villeFormulaire.trim().isEmpty()) {
-			villeFormulaire=villeDefaut;
-		}
 		r=new Retrait(rueFormulaire,villeFormulaire,codeFormulaire);
 		try {
 			retraitManager.ajouterRetrait(r);

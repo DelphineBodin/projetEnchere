@@ -1,9 +1,9 @@
 package fr.eni.projetEnchere.bll;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+
+
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
-import fr.eni.projetEnchere.bo.Categorie;
-import fr.eni.projetEnchere.bo.Retrait;
+
 import fr.eni.projetEnchere.bo.Utilisateur;
 
 
@@ -28,10 +27,10 @@ public class TestArticleManager extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	AnnuaireArticleManager annuaire=AnnuaireArticleManager.getInstance();
-	Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
-	Categorie cat1=new Categorie(1,"INFORMATIQUE");
-	ArticleVendu a1=new ArticleVendu("Ecran","Philips",LocalDateTime.of(2021,2, 25,15,15),LocalDateTime.of(2021,2, 28,15,15),14000,cat1);
-	Retrait retrait1 = new Retrait(1,"rue des Peupliers","13000","Aix en Provence");
+//	Utilisateur u1=new Utilisateur(2,"tSalmon","Salmon","Titouan","titouan@gmail.com","0685445454","4 rue eglise","13100","Les Milles","coucou2",15,false);
+//	Categorie cat1=new Categorie(1,"INFORMATIQUE");
+//	ArticleVendu a1=new ArticleVendu("Ecran","Philips",LocalDateTime.of(2021,2, 25,15,15),LocalDateTime.of(2021,2, 28,15,15),14000,cat1);
+//	Retrait retrait1 = new Retrait(1,"rue des Peupliers","13000","Aix en Provence");
 	HashMap<ArticleVendu,Utilisateur>resultat = new HashMap<ArticleVendu,Utilisateur>();
 	
 	try {
