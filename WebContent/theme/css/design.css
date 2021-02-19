@@ -8,6 +8,7 @@ button {
 }
 br{
 	margin: 5px;
+	paddin: 5px;
 }
 
 input {
@@ -21,7 +22,7 @@ input {
 h1 {
 	text-align: center;
 	padding-top : 50px;
-	padding-bottom : 70px;
+	padding-bottom : 50px;
 }
 
 h2 {
@@ -67,8 +68,8 @@ ul{
 }
 
 /* CLASSE */
-.boutton-creer-compte{
-	width: 100%;
+.bouttonCreerCompte{
+	width: 300px;
 }
 
 .containerfirst{

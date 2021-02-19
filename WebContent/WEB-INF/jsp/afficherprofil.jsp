@@ -15,65 +15,70 @@
 </head>
 <body>
 				<!-- //////////////PAGE 7/13\\\\\\\\\\\\\\\ -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-			<table>			       		
-			   <tr>
-			       <td>Pseudo : </td>
-			       <td>    		
-						${utilisateurConnecte.pseudo}
-					</td>
-			   </tr>
-			   <tr>
-			       <td>Nom : </td>
-			       <td>	
-			       		${utilisateurConnecte.nom}		       
-			       </td>
-			   </tr>
-			   <tr>
-			       <td>Prénom : </td>
-			       <td>
-			       		${utilisateurConnecte.prenom}
-			       </td>
-			   </tr>
-			   <tr>
-			       <td>Email : </td>
-			       <td>
-			       		${utilisateurConnecte.email}
-			       	</td>
-			   </tr>
-			   <tr>
-			       <td>Téléphone : </td>
-			       <td>
-			       		${utilisateurConnecte.telephone}
-			       </td>
-			   </tr>
-			   <tr>
-			       <td>Rue : </td>
-			       <td>
-			       		${utilisateurConnecte.rue}
-			       </td>
-			   </tr>
-			   <tr>
-			       <td>Code postal : </td>
-			       <td>
-			       		${utilisateurConnecte.codePostal}
-			       </td>
-			   </tr>  
-			   <tr>
-			       <td>Ville : </td>
-			       <td>
-			       		${utilisateurConnecte.ville}
-			       </td>
-			   </tr>
-			</table>
+	<div class="container col-md-offset-1 col-md-10">
+		<div class = "col-md-4">
+			<div class="logo">
+				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+			</div>
 		</div>
-	</div>
-	<div class="form-group col-md-12 text-center">	
-		<a href="./ModifierProfil"><button type="submit" class="btn btn-primary">Modifier</button></a>
-	</div>
-</div>	
+	    <div class="row">
+	        <div class="col-md-4 col-md-offset-4">
+				<table>			       		
+				   <tr>
+				       <td>Pseudo : </td>
+				       <td>    		
+							${utilisateurConnecte.pseudo}
+						</td>
+				   </tr>
+				   <tr>
+				       <td>Nom : </td>
+				       <td>	
+				       		${utilisateurConnecte.nom}		       
+				       </td>
+				   </tr>
+				   <tr>
+				       <td>Prénom : </td>
+				       <td>
+				       		${utilisateurConnecte.prenom}
+				       </td>
+				   </tr>
+				   <tr>
+				       <td>Email : </td>
+				       <td>
+				       		${utilisateurConnecte.email}
+				       	</td>
+				   </tr>
+				   <tr>
+				       <td>Téléphone : </td>
+				       <td>
+				       		${utilisateurConnecte.telephone}
+				       </td>
+				   </tr>
+				   <tr>
+				       <td>Rue : </td>
+				       <td>
+				       		${utilisateurConnecte.rue}
+				       </td>
+				   </tr>
+				   <tr>
+				       <td>Code postal : </td>
+				       <td>
+				       		${utilisateurConnecte.codePostal}
+				       </td>
+				   </tr>  
+				   <tr>
+				       <td>Ville : </td>
+				       <td>
+				       		${utilisateurConnecte.ville}
+				       </td>
+				   </tr>
+				</table>
+			</div>
+		</div>
+		<div class="form-group col-md-4 col-md-offset-5">	
+			<a href="./ModifierProfil"><button type="submit" class="btn btn-primary">Modifier</button></a>
+		</div>
+	</div>	
 
 
 

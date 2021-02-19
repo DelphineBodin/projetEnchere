@@ -15,9 +15,14 @@
 	<%
 		String messageErreur = (String) request.getAttribute("messageErreur");
 	%>
-	<div class="container col-md-offset-4">
-		<div class="row">
-			<h1></h1>
+	<div class="container col-md-offset-1 col-md-10">
+		<div class = "col-md-4">
+			<div class="logo">
+				<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+			</div>
+		</div>
+		<h1 class= "col-md-12"></h1>
+		<div class= "col-md-offset-4 col-md-5">
 			<form method="post" action="./connexion" class="form-inline">
 				<div class="form-group col-md-12">
 					<label for="pseudo">Identifiant :</label> 
@@ -28,7 +33,7 @@
 					<input type="password" name="smotdepasse" class="form-control"required>
 				</div>
 				<br>
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-3">
 					<button type="submit" name="ssubmit" class="btn btn-primary btn-lg" value="Connexion">Connexion</button>
 					<font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
 				</div>
@@ -38,17 +43,20 @@
 					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 					<label>Se souvenir de moi</label>
 					<br>
-<!-- MOT DE PASSE OUBLIE>> AHREF A METTRE A JOUR -->
+	<!-- MOT DE PASSE OUBLIE>> AHREF A METTRE A JOUR -->
 					<a href="">Mot de passe oublié</a>
 				</div>
 			</div>
 		</div>
-		<br>
-		<div class=boutton-creer-compte>
+		<br class= "col-md-12">
+		<br class= "col-md-12">
+		<br class= "col-md-12">
+		<br class= "col-md-12">
+		<div class= "col-md-offset-5 col-md-5 bouttonCreerCompte">
 			<a href="./Profil"> 
 				<input type="submit" class="btn btn-primary btn-lg" value="Créer un compte">
 			</a>
-		</div> 
+		</div>
 	</div>
 	<script src="/projetEnchere/theme/bootstrap/js/bootstrap.min.js"></script>
 </body>

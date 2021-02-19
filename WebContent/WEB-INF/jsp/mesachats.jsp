@@ -15,6 +15,12 @@
 <body>
 
 				<!-- //////////////PAGE ???/13\\\\\\\\\\\\\\\ -->
+	<div class="container col-md-offset-1 col-md-10">
+			<div class = "col-md-4">
+				<div class="logo">
+					<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				</div>
+			</div>
 <h1>Liste des encheres mes achats.jsp</h1>
 
 
@@ -61,6 +67,6 @@
 		
 		<p>image enchere 1</p>
 		<p>image enchere 2</p>
-
+	</div>
 </body>
 </html>

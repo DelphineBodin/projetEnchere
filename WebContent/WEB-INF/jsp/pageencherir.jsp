@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@ include file="../fragments/header.jspf" %>
+<%-- <%@ include file="../fragments/header.jspf" %> --%>
 <title>Encherir</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,6 +14,12 @@
 </head>
 <body>
 				<!-- //////////////PAGE 11/13\\\\\\\\\\\\\\\ -->
+	<div class="container col-md-offset-1 col-md-10">
+			<div class = "col-md-4">
+				<div class="logo">
+					<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				</div>
+			</div>
 <h1>Detail Vente</h1>
 
 <p> grosse image de l'objet a gauche?</p>
@@ -30,6 +36,6 @@
 <p>Ma proposition: button up down</p>
 <p>button encherir</p>
 
-
+	</div>
 </body>
 </html>
