@@ -17,23 +17,29 @@
 </head>
 <body>
 				<!-- //////////////PAGE 4/13\\\\\\\\\\\\\\\ -->
-	<div class="container col-md-offset-1 col-md-10">
-		<div class = "col-md-3">
-			<div class="logo">
-				<a href="./MesVentes" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+	<div class="container col-md-10">
+		<div class= "col-md-12">
+			<div class = "col-md-1">
+				<div class="logo">
+					<a href="./MesVentes" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+				</div>
+			</div>
+			<div class = "col-md-11">
+					<nav>
+						<ul>
+							<li><a href="">Enchères</a></li>
+							<li><a href="./VendreArticle">Vendre un Article</a></li>
+							<li><a href="./AfficherProfil">Mon profil</a></li>
+							<li><a href="./seDeconnecter">Déconnexion</a></li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
-		<nav class = "col-md-9">
-			<ul>
-				<li><a href="">Enchères</a></li>
-				<li><a href="./VendreArticle">Vendre un Article</a></li>
-				<li><a href="./AfficherProfil">Mon profil</a></li>
-				<li><a href="./seDeconnecter">Déconnexion</a></li>
-			</ul>
-		</nav>
-	
-	
-	<h1 class= "col-md-12">Liste des enchères</h1>
+		<div class= "col-md-12">
+			<h1>Liste des enchères</h1>
+		</div>
+		
 		<c:if test="${messageValidation!=null}">
 						<font color="green"><c:out value="${messageValidation}"/></font>
 		</c:if>
@@ -105,7 +111,9 @@
 		<div class="col-md-1">
 		</div>
 		<div class="col-md-3">
-			<button type="submit" class="col-md-12 btn btn-primary btn-lg"> Rechercher </button>
+			<div class="boutonMesVentesRechercher">
+				<button type="submit" class="col-md-12 btn btn-primary btn-lg"> Rechercher </button>
+			</div>
 		</div>
 		<div class="col-md-1">
 		</div>
@@ -125,12 +133,12 @@
 	</div>
 
 <!-- //////////////2ème partie\\\\\\\\\\\\\\\ -->	
-	<div class="container col-md-offset-1 col-md-10">
+	<div class="container col-md-12">
 		<div class="container col-md-5">
 			<div class="annonceEnchereEnCours">
 				<div class="col-md-5">
 					<div class="annonceImg">
-						<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
+						<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto id="annonceImg"/></a>
 					</div>
 				</div>
 				<div class="col-md-7">
@@ -154,12 +162,13 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="container col-md-1">
+		</div>
 		<div class="container col-md-5">
 			<div class="annonceEnchereEnCours">
 				<div class="col-md-5">
 					<div class="annonceImg">
-						<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto/></a>
+						<a href=""><img src="./images/annonceVoiture.jpg" width="100%" height=auto id="annonceImg"/></a>
 					</div>
 				</div>
 				<div class="col-md-7">

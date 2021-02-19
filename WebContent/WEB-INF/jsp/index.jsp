@@ -22,16 +22,18 @@
 				
 	<!-- //////////////1er partie\\\\\\\\\\\\\\\ -->	
 	<div class="container col-md-offset-1 col-md-10">
-			<div class = "col-md-4">
-				<div class="logo">
-					<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+			<div class= "col-md-12">
+				<div class = "col-md-4">
+					<div class="logo">
+						<a href="./ListesDesEncheres" title="retour accueil"><img src="./images/logo_small.png" width="220" height=auto alt="logoENIecole"/></a>
+					</div>
 				</div>
+				<nav class = "col-md-offset-4 col-md-4">
+					<ul>
+						<li><a href="./connexion">Se connecter - S'inscrire</a></li>
+					</ul>
+				</nav>
 			</div>
-			<nav class = "col-md-offset-4 col-md-4">
-				<ul>
-					<li><a href="./connexion">Se connecter - S'inscrire</a></li>
-				</ul>
-			</nav>
 			<h1 class= "col-md-12">Liste des enchères</h1>
 			<h2 class= "col-md-offset-1 col-md-11">Filtres</h2>
 			<form method="post">

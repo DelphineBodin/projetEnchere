@@ -23,15 +23,17 @@
 			</div>
 		</div>
 		<h1 class= "col-md-12"></h1>
-		<div class= "col-md-offset-4 col-md-5">
+		<div class= "col-md-offset-3 col-md-7">
 			<form method="post" action="./connexion" class="form-inline">
-				<div class="form-group col-md-12">
-					<label for="pseudo">Identifiant :</label> 
-					<input type="text" name="sidentifiant" class="form-control" required>
-				</div>
-				<div class="form-group col-md-12">
-					<label for="password">Mot de passe :</label> 
-					<input type="password" name="smotdepasse" class="form-control"required>
+				<div class="col-md-12">
+					<div class="form-group col-md-12">
+						<label for="pseudo">Identifiant :</label> 
+						<input type="text" name="sidentifiant" class="form-control" size="20" required>
+					</div>
+					<div class="form-group col-md-12">
+						<label for="password">Mot de passe :</label> 
+						<input type="password" name="smotdepasse" class="form-control" size="20"required>
+					</div>
 				</div>
 				<br>
 				<div class="form-group col-md-3">
@@ -39,7 +41,9 @@
 					<font color="red"><%=request.getAttribute("messageErreur") != null ? request.getAttribute("messageErreur") : ""%></font>
 				</div>
 			</form>
-			<div class="form-group col-md-4">			
+			<div class= "col-md-1">
+			</div>
+			<div class="form-group col-md-5">			
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 					<label>Se souvenir de moi</label>
