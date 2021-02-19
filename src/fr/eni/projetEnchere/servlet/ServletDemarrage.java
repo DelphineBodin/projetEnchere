@@ -58,7 +58,6 @@ public class ServletDemarrage extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AnnuaireArticleManager annuaire = AnnuaireArticleManager.getInstance();
-		AnnuaireUtilisateurManager annuaireUtilisateur = AnnuaireUtilisateurManager.getInstance();
 		//on s'assure que tomcat decodera les informations reçues avc le coade utf-8
 		request.setCharacterEncoding("UTF-8");
 		//recuperation ds parametre identifiant et vérification que le champs est rempli
@@ -67,19 +66,16 @@ public class ServletDemarrage extends HttpServlet {
 		String nom = request.getParameter("srecherche");
 		System.out.println(nom);
 		StringBuilder sb = new StringBuilder();
-		HashMap<ArticleVendu,Integer>listeArticleEnCours = new HashMap<ArticleVendu,Integer>();
 		HashMap<ArticleVendu,Utilisateur>listeAvecUtilisateur = new HashMap<ArticleVendu,Utilisateur>();
-		
-		
-		try {
-			listeArticleEnCours=annuaire.afficherVenteEnCours(categorie, nom);
 			
+		try {
+			listeAvecUtilisateur=annuaire.afficherVenteEnCours(categorie, nom);
 		} catch (BLLException e) {
 			sb.append(e);
 		}
 		RequestDispatcher disp=null;
-		if(listeArticleEnCours!=null) {
-			request.setAttribute("listeArticles",listeArticleEnCours);
+		if(listeAvecUtilisateur!=null) {
+			request.setAttribute("listeArticles",listeAvecUtilisateur);
 			disp = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		}else {
 			sb.append("Aucun Article pour votre recherche.");

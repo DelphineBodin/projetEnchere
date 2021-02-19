@@ -1,12 +1,11 @@
 package fr.eni.projetEnchere.bo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import com.sun.tools.sjavac.server.SysInfo;
+
 
 public class ArticleVendu {
 
@@ -37,7 +36,7 @@ public class ArticleVendu {
 		this.dateHeureFinEncheres = dateHeureFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.categorie = categorie;
-		setEtatVente();
+		
 	}
 
 
@@ -60,7 +59,7 @@ public class ArticleVendu {
 		this.lieuRetrait = retrait;
 		this.categorie = categorie;
 		this.listeEncheres = new ArrayList<Enchere>();
-		setEtatVente();
+		
 	}
 
 
@@ -123,54 +122,58 @@ public class ArticleVendu {
 	}
 
 	public int getEtatVente() {
-		return etatVente;
+		//	 NON_DEBUTEE= 0; EN_COURS= 1; TERMINEE= 2;
+		// si date du jour = date de debut = date de fin on regarde l'heure
+		int monEtatVente=3;
+		LocalDateTime dateDuJour = LocalDateTime.now();
+		// 0=identique -1AvantDateDuJour 1AprèsDatedujour
+		int testdateDebutEnchere=3;
+		int testdateFinEnchere=3;
+		if(dateDuJour.isEqual(this.dateHeureFinEncheres)){
+			testdateFinEnchere=0;
+		}else if (dateDuJour.isAfter(this.dateHeureFinEncheres)){
+			testdateFinEnchere=-1;
+		}else if (dateDuJour.isBefore(this.dateHeureFinEncheres)) {
+			testdateFinEnchere=1;
+		}
+		if(dateDuJour.isEqual(this.dateHeureFinEncheres)){
+			testdateFinEnchere=0;
+		}else if (dateDuJour.isAfter(this.dateHeureFinEncheres)){
+			testdateFinEnchere=-1;
+		}else if (dateDuJour.isBefore(this.dateHeureFinEncheres)) {
+			testdateFinEnchere=1;
+		}
+		//System.out.println(testdateFinEnchere+"testdateFinEnchere");
+		//System.out.println(testdateDebutEnchere+"testdateFinEnchere");
+		
+		if(testdateFinEnchere==0&&testdateDebutEnchere==0) {
+			monEtatVente=1;
+		}else if(testdateFinEnchere==-1) {
+			monEtatVente=2;
+		}else if (testdateDebutEnchere==1) {
+			monEtatVente=0;
+		}else if (testdateFinEnchere==1&&testdateDebutEnchere==-1
+				||testdateFinEnchere==1&&testdateDebutEnchere==0
+				||testdateFinEnchere==0&&testdateDebutEnchere==-1) {
+			monEtatVente=1;
+		}
+		int e=15;
+		switch (monEtatVente) {
+		case 0://System.out.println("NON_DEBUTEE");	
+			e=EtatVente.NON_DEBUTEE;
+			break;
+		case 1://System.out.println("EN COURS");
+			e=EtatVente.EN_COURS;
+		break;
+		case 2://System.out.println("TERMINEE");
+			e=EtatVente.TERMINEE;	
+		break;
+		}
+		return e;
 	}
 
 	
-	public void setEtatVente() {
-	//	 NON_DEBUTEE= 0; EN_COURS= 1; TERMINEE= 2;
-	// si date du jour = date de debut = date de fin on regarde l'heure
-	int monEtatVente=3;
-	LocalDateTime dateDuJour = LocalDateTime.now();
-	// 0=identique -1AvantDateDuJour 1AprèsDatedujour
-	int testdateDebutEnchere=3;
-	int testdateFinEnchere=3;
-	System.out.println(dateDuJour);
-	System.out.println(dateHeureDebutEncheres);
-	System.out.println(dateHeureFinEncheres);
-	if(dateDuJour.isEqual(this.dateHeureFinEncheres)){
-		testdateFinEnchere=0;
-	}else if (dateDuJour.isAfter(this.dateHeureFinEncheres)){
-		testdateFinEnchere=-1;
-	}else if (dateDuJour.isBefore(this.dateHeureFinEncheres)) {
-		testdateFinEnchere=1;
-	}
-	//System.out.println(testdateFinEnchere+"testdateFinEnchere");
-	//System.out.println(testdateDebutEnchere+"testdateFinEnchere");
-	
-	if(testdateFinEnchere==0&&testdateDebutEnchere==0) {
-		monEtatVente=1;
-	}else if(testdateFinEnchere==-1) {
-		monEtatVente=2;
-	}else if (testdateDebutEnchere==1) {
-		monEtatVente=0;
-	}else if (testdateFinEnchere==1&&testdateDebutEnchere==-1
-			||testdateFinEnchere==1&&testdateDebutEnchere==0
-			||testdateFinEnchere==0&&testdateDebutEnchere==-1) {
-		monEtatVente=1;
-	}
-	int e=15;
-	switch (monEtatVente) {
-	case 0://System.out.println("NON_DEBUTEE");	
-		e=EtatVente.NON_DEBUTEE;
-		break;
-	case 1://System.out.println("EN COURS");
-		e=EtatVente.EN_COURS;
-	break;
-	case 2://System.out.println("TERMINEE");
-		e=EtatVente.TERMINEE;	
-	break;
-	}
+	public void setEtatVente(int monEtatVente) {
 	this.etatVente=monEtatVente;
 	}
 	

@@ -150,7 +150,7 @@ public class AnnuaireUtilisateurManager {
 		return u;
 	}
 	
-	public Utilisateur getUId(int id) throws BLLException {
+	public Utilisateur getUtilisateur(int id) throws BLLException {
 	
 		Utilisateur u= null;
 		try {

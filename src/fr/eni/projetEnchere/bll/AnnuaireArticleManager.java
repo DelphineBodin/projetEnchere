@@ -2,12 +2,11 @@ package fr.eni.projetEnchere.bll;
 
 
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+
 
 import fr.eni.projetEnchere.bo.ArticleVendu;
 import fr.eni.projetEnchere.bo.Categorie;
@@ -54,12 +53,12 @@ public class AnnuaireArticleManager {
 			messageErreur.append("La description de l'article vendu est obligatoire.\n");
 			venteValide=false;
 		}
-		//Verification mise à prix est supérieur à 0 et inférieur à 15 000 €
+		//Verification mise à prix est supérieur à 0 et inférieur à 50 000 €
 		if(article.getMiseAPrix()<=0){
 			messageErreur.append("La mise à prix doit être supérieur ou égale à 0.\n");
 			venteValide=false;
 		}
-		if(article.getMiseAPrix()>15000){
+		if(article.getMiseAPrix()>50000){
 			messageErreur.append("La mise à prix doit être inférieur à 15 000€.\n(voir nos conditions générales)\n");
 			venteValide=false;
 		}
@@ -97,12 +96,15 @@ public class AnnuaireArticleManager {
 	}
 	
 	
-	public HashMap<ArticleVendu,Integer> afficherVenteEnCours(int numeroCategorie,String nom) throws BLLException {
+	public HashMap<ArticleVendu,Utilisateur> afficherVenteEnCours(int numeroCategorie,String nom) throws BLLException {
 		HashMap <ArticleVendu,Integer> articles = new HashMap<ArticleVendu,Integer>();
 		HashMap <ArticleVendu,Integer> articlesEnCours = new HashMap<ArticleVendu,Integer>();
+		AnnuaireUtilisateurManager annuaireUtilisateur = AnnuaireUtilisateurManager.getInstance();
 		try {
 			articles=this.articleDao.selectArticlesByCategorieNom(numeroCategorie, nom);
 			for(HashMap.Entry<ArticleVendu,Integer> monEntree : articles.entrySet()) {
+				System.out.println("mon etat"+monEntree.getKey().getEtatVente());
+				// Etat vente ne fonctionne pas A revoir en BO
 				if(monEntree.getKey().getEtatVente()==EtatVente.EN_COURS) {
 				articlesEnCours.put(monEntree.getKey(), monEntree.getValue());
 			}
@@ -111,7 +113,12 @@ public class AnnuaireArticleManager {
 		} catch (DALException e) {
 			throw new BLLException("Echec de Sélection"+e);
 		}
-		return articles;
+		// Test de ramener ici l'utilisateur Avec le tableau intial car etatVente ne fonctionne pas
+		HashMap <ArticleVendu,Utilisateur> articlesAvecVendeur = new HashMap<ArticleVendu,Utilisateur>();
+		for(HashMap.Entry<ArticleVendu,Integer> monEntree : articles.entrySet()) {
+			articlesAvecVendeur.put(monEntree.getKey(),annuaireUtilisateur.getUtilisateur(monEntree.getValue()));
+		}
+		return articlesAvecVendeur;
 	}
 		
 	}
