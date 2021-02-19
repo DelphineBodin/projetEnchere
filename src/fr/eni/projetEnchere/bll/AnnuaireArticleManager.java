@@ -103,7 +103,7 @@ public class AnnuaireArticleManager {
 		try {
 			articles=this.articleDao.selectArticlesByCategorieNom(numeroCategorie, nom);
 			for(HashMap.Entry<ArticleVendu,Integer> monEntree : articles.entrySet()) {
-				System.out.println("mon etat"+monEntree.getKey().getEtatVente());
+				//System.out.println("mon etat"+monEntree.getKey().getEtatVente());
 				// Etat vente ne fonctionne pas A revoir en BO
 				if(monEntree.getKey().getEtatVente()==EtatVente.EN_COURS) {
 				articlesEnCours.put(monEntree.getKey(), monEntree.getValue());
@@ -115,7 +115,7 @@ public class AnnuaireArticleManager {
 		}
 		// Test de ramener ici l'utilisateur Avec le tableau intial car etatVente ne fonctionne pas
 		HashMap <ArticleVendu,Utilisateur> articlesAvecVendeur = new HashMap<ArticleVendu,Utilisateur>();
-		for(HashMap.Entry<ArticleVendu,Integer> monEntree : articles.entrySet()) {
+		for(HashMap.Entry<ArticleVendu,Integer> monEntree : articlesEnCours.entrySet()) {
 			articlesAvecVendeur.put(monEntree.getKey(),annuaireUtilisateur.getUtilisateur(monEntree.getValue()));
 		}
 		return articlesAvecVendeur;

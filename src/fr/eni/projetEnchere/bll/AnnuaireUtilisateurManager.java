@@ -2,6 +2,7 @@ package fr.eni.projetEnchere.bll;
 
 
 import fr.eni.projetEnchere.bo.Utilisateur;
+import fr.eni.projetEnchere.dal.ConnexionProvider;
 import fr.eni.projetEnchere.dal.DALException;
 import fr.eni.projetEnchere.dal.FactoryDAO;
 import fr.eni.projetEnchere.dal.UtilisateurDAO;
@@ -12,7 +13,7 @@ import fr.eni.projetEnchere.dal.jdbc.UtilisateurDAOImpl;
 public class AnnuaireUtilisateurManager {
 
 	private UtilisateurDAO daoUtilisateur;
-	// ======>>>>>>Pourquoi static ???
+	
 	static AnnuaireUtilisateurManager annuaire;
 
 	// Constructeur privé pour mise en place du pattern Singleton	
@@ -92,11 +93,11 @@ public class AnnuaireUtilisateurManager {
 		try {
 			if(daoUtilisateur.emailAlreadyExist(u.getEmail())) {
 				// Gestion du cas de l'update utilisateur A  revoir :)
-				int id = daoUtilisateur.selectByPseudo(u.getPseudo()).getNoUtilisateur();
-				if(id!=u.getNoUtilisateur()) {
+				//int id = daoUtilisateur.selectByPseudo(u.getPseudo()).getNoUtilisateur();
+				//if(id!=u.getNoUtilisateur()) {
 				messageErreur.append("Un utilisateur a déjà cet email. Merci d'en renseigner un autre. \n");
 				inscriptionValide=false;
-				}}
+				}//}
 		} catch (DALException e1) {
 			throw new BLLException(e1.getMessage());
 		}
@@ -113,11 +114,11 @@ public class AnnuaireUtilisateurManager {
 		try {
 			if(daoUtilisateur.selectByPseudo(u.getPseudo())!=null) {
 				// Gestion du cas de l'update au cas où je garde mon pseudo qui est déjà dans la base A revoir
-				int id = daoUtilisateur.selectByPseudo(u.getPseudo()).getNoUtilisateur();
-				if(id!=u.getNoUtilisateur()) {
+				//int id = daoUtilisateur.selectByPseudo(u.getPseudo()).getNoUtilisateur();
+				//if(id!=u.getNoUtilisateur()) {
 				messageErreur.append("Ce pseudo est déjà utilisé, merci d'en renseigner un autre. \n");
 				inscriptionValide=false;
-			}}
+			}//}
 		} catch (DALException e) {
 			throw new BLLException("Pb pseudo "+ e.getMessage());
 		}
@@ -199,13 +200,12 @@ public class AnnuaireUtilisateurManager {
 
 	// Méthode pour mettre à jour des données d'un utilisateur à notre application
 	public void updateUtilisateur(Utilisateur u) throws BLLException {
-		validerInscription(u);
-		try {
-			// Méthode préciser = celle de la DAL
-			this.daoUtilisateur.upUtilisateur(u);
-		} catch (DALException e) {
-			throw new BLLException("Echec de la mise à jour du profil utilisateur", e);
-		} 
+				try {
+					this.daoUtilisateur.upUtilisateur(u);
+				} catch (DALException e) {
+					throw new BLLException("Echec de la mise à jour du profil utilisateur", e);
+				}
+		
 	}
 		
 //		// Suppression d'un utilisateur dans notre application

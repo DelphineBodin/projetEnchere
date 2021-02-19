@@ -7,6 +7,8 @@ import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.eni.projetEnchere.bll.AnnuaireUtilisateurManager;
+import fr.eni.projetEnchere.bll.BLLException;
 import fr.eni.projetEnchere.bo.Utilisateur;
 import fr.eni.projetEnchere.dal.ConnexionProvider;
 import fr.eni.projetEnchere.dal.DALException;
@@ -62,7 +64,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	////////////////////////////////////////////UPDATEUTILISATEUR////////////////////////////////////////
 	@Override
-	public boolean upUtilisateur(Utilisateur uMiseAJour) throws DALException {
+	public boolean upUtilisateur(Utilisateur uMiseAJour) throws DALException, BLLException {
+		AnnuaireUtilisateurManager annuaire =AnnuaireUtilisateurManager.getInstance();
+		
 		boolean res= false;
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
@@ -85,11 +89,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pstmt.setInt(10, uMiseAJour.getNoUtilisateur());
 			pstmt.executeUpdate();
 			res=true;
+		
 		} catch (SQLException e) {
 			throw new DALException("Erreur lors de la mise à jour de l'utilisateur");
 		}
+		
 		ConnexionProvider.seDeconnecter(pstmt,cnx);
 		return res;
+		
 	}
 
 
