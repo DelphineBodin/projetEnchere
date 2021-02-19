@@ -24,7 +24,7 @@
 			<div>
 				<form method="post" action="" class="form-inline">
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="pseudo">Pseudo : </label>
 							<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" value="${utilisateurConnecte.pseudo}">
 						</div>
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="prenom">Prénom : </label>
 							<input type="text" name="prenom" class="form-control" size="20" maxlength="30" value="${utilisateurConnecte.prenom}">
 						</div>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="tel">Teléphone :</label>
 							<input type="text" name="tel" class="form-control" size="20" maxlength="10" value="${utilisateurConnecte.telephone}">
 						</div>
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="codePostal">Code postal :</label>
 							<input type="text" name="codePostal" class="form-control" size="20" minlength="5" maxlength="5" value="${utilisateurConnecte.codePostal}">
 						</div>
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="passwordNew">Nouveau mot de passe :</label>
 							<input type="password" name="passwordNew" class="form-control" size="20" placeholder="xxxxxxxxxxxxx">
 						</div>

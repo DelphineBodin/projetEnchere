@@ -24,7 +24,7 @@
 			<div>
 				<form method="post" action="./MesVentes" class="form-inline">
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="pseudo">Pseudo : </label>
 							<input type="text" name="pseudo" class="form-control" size="20" maxlength="20" required>
 						</div>
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="prenom">Prénom : </label>
 							<input type="text" name="prenom" class="form-control" size="20" maxlength="30" required>
 						</div>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="tel">Teléphone :</label>
 							<input type="text" name="tel" class="form-control" size="20" maxlength="10" required>
 						</div>
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="codePostal">Code postal :</label>
 							<input type="text" name="codePostal" class="form-control" size="20" minlength="5" maxlength="5" required>
 						</div>
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-4">
+						<div class="form-group col-md-5">
 							<label for="password">Mot de passe :</label>
 							<input type="password" name="password" class="form-control" size="20" required>
 						</div>
