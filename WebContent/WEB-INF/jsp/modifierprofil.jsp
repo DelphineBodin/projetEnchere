@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<h1 class= "col-md-12">Mon profil</h1>
-			<div>
+			<div class="modifierProfil">
 				<form method="post" action="" class="form-inline">
 					<div class="form-row">
 						<div class="form-group col-md-5">
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-10">
+						<div class="form-group col-md-10">
 							<label for="password">Mot de passe actuel :</label>
 							<input type="password" name="password" class="form-control" size="20" placeholder="xxxxxxxxxxxxx" required>
 						</div>
@@ -80,7 +80,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-offset-2 col-md-10">
+						<div class="form-group col-md-10">
 							<label for="credit">Crédit</label>
 							${utilisateurConnecte.credit}
 						</div>

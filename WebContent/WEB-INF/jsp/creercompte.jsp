@@ -22,7 +22,7 @@
 			</div>
 			<h1 class= "col-md-12">Mon profil</h1>
 			<div>
-				<form method="post" action="./MesVentes" class="form-inline">
+				<form method="post" action="./Profil" class="form-inline">
 					<div class="form-row">
 						<div class="form-group col-md-5">
 							<label for="pseudo">Pseudo : </label>

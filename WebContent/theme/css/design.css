@@ -141,6 +141,10 @@ input > .form-control{
 	padding-left: 20px;
 }
 
+.modifierProfil{
+	text-align: center;
+}
+
 /*MEDIA*/
 @media all and (max-width: 850px) {
 	

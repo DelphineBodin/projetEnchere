@@ -54,17 +54,19 @@ public class CreerCompte extends HttpServlet {
 			messageError.append("\n"+"Les mots de passes" + "\n" +"ne sont pas identiques");
 		}
 		//Création de l'inscription
+		Utilisateur u = new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100);
 		try {
-			annuaire.nouvelleInscription(new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
+			annuaire.nouvelleInscription(u);
 		} catch (BLLException e1) {
 			testPassword=false;
 			messageError.append(e1.getMessage());
 		}
 		if(testPassword==true) {
 			maSession = request.getSession();
-			maSession.setAttribute("utilisateurConnecte", new Utilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,password,100));
+			maSession.setAttribute("utilisateurConnecte", u);
+			System.out.println("HELLO" + u);
 			//Si valide redirection vers la page...
-			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesachats.jsp");
+			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp");
 		}else {
 			request.setAttribute("messageErreur", messageError.toString());
 			//Si non valide redirection vers la page...

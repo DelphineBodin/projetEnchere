@@ -42,9 +42,6 @@
 			<c:if test="${messageValidation!=null}">
 							<font color="green"><c:out value="${messageValidation}"/></font>
 			</c:if>
-			<c:if test="${messageValidationProfil!=null}">
-				 <font color="green"><c:out value="${messageValidationProfil}"/></font>
-			</c:if>
 		</div>
 	<h2 class= "col-md-offset-1 col-md-11">Filtres</h2>
 		<form method="post" action=>
@@ -121,15 +118,13 @@
 			<br>
 		</div>
 		<div class="col-md-offset-2 col-md-3" style="color:tomato; font-size:18px;">
-					<%
-					String nomUtilisateur = "";
-					Utilisateur u = (Utilisateur) session.getAttribute("utilisateurConnecte");
-					if (u != null) {
-						nomUtilisateur = u.getPrenom();
-					}
-					%>
-					<p>Bonjour : <p>
-					<%=nomUtilisateur%>
+
+<!-- 					<p>Bonjour : <p> -->
+<%-- 					<%=nomUtilisateur%> --%>
+				<c:if test="${utilisateurConnecte.prenom!=null}">
+				<c:out value="${utilisateurConnecte.prenom}"/>
+				</c:if>
+					
 	
 		</div>
 	</div>
